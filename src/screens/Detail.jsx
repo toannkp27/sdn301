@@ -147,6 +147,7 @@ const Detail = () => {
                 <div className="col-2 lg:col-2  ">
                   <img
                     class="img-responsive"
+                    alt="ss"
                     src="//bizweb.dktcdn.net/100/455/315/themes/894917/assets/iamge_product2.png?1688607702821"
                   ></img>
                 </div>
@@ -161,6 +162,7 @@ const Detail = () => {
                 <div className="col-2 lg:col-2  ">
                   <img
                     class="img-responsive"
+                    alt="ss"
                     src="//bizweb.dktcdn.net/100/455/315/themes/894917/assets/iamge_product1.png?1688607702821"
                   ></img>
                 </div>
