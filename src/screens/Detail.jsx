@@ -27,7 +27,13 @@ const Detail = () => {
       numVisible: 1,
     },
   ];
+  const [selectedButton, setSelectedButton] = useState(null);
 
+  const handleButtonClick = (index) => {
+    setSelectedButton(index);
+  };
+
+  const buttons = ["3.5 UK", "4 UK", "4.5 UK", "5 UK"];
   const images = [
     {
       itemImageSrc:
@@ -184,6 +190,22 @@ const Detail = () => {
                 label="+"
                 onClick={increaseQuantity}
               />
+            </div>
+            <div className="mt-2">
+              {buttons.map((button, index) => (
+                <div key={index} className="mr-2 inline-block">
+                  <Button
+                    className={` ${
+                      selectedButton === index
+                        ? "bg-green-600 text-white"
+                        : "bg-white text-green-600 border-round border-1"
+                    }`}
+                    onClick={() => handleButtonClick(index)}
+                  >
+                    <span>{button}</span>
+                  </Button>
+                </div>
+              ))}
             </div>
             <div className="mt-2">
               <Button className="w-full bg-green-600" label="Mua ngay" />
