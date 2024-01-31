@@ -172,7 +172,7 @@ const Detail = () => {
                 </div>
               </div>
             </div>
-            <div>Số lượng:</div>
+            <div className="mt-2">Số lượng:</div>
             <div className="mt-2">
               <Button
                 className=" bg-white text-green-600 h-2rem w-4rem border-round border-2 border-green-600"
@@ -191,6 +191,7 @@ const Detail = () => {
                 onClick={increaseQuantity}
               />
             </div>
+            <div className="mt-2">Kích cỡ:</div>
             <div className="mt-2">
               {buttons.map((button, index) => (
                 <div key={index} className="mr-2 inline-block">
@@ -232,7 +233,7 @@ const Detail = () => {
                 preview
               />
               <div className="font-bold text-base">
-                Sơ mi đũi bé trai vải dày dặn
+                GIÀY ULTRABOOST 22
               </div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
@@ -250,7 +251,7 @@ const Detail = () => {
                 preview
               />
               <div className="font-bold text-base">
-                Sơ mi đũi bé trai vải dày dặn
+                GIÀY ULTRABOOST 22
               </div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
@@ -268,7 +269,7 @@ const Detail = () => {
                 preview
               />
               <div className="font-bold text-base">
-                Sơ mi đũi bé trai vải dày dặn
+                GIÀY ULTRABOOST 22
               </div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
@@ -286,7 +287,7 @@ const Detail = () => {
                 preview
               />
               <div className="font-bold text-base">
-                Sơ mi đũi bé trai vải dày dặn
+                GIÀY ULTRABOOST 22
               </div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
