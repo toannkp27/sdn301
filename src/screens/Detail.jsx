@@ -122,8 +122,8 @@ const Detail = () => {
             <Galleria
               value={images}
               responsiveOptions={responsiveOptions}
-              numVisible={4}
-              style={{ maxWidth: "650px" }}
+              numVisible={5}
+              style={{ maxWidth: "640px" }}
               item={itemTemplate}
               thumbnail={thumbnailTemplate}
             />
