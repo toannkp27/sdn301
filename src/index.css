@@ -1,6 +1,11 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
+@import "../node_modules/primereact/resources/themes/mdc-light-indigo/theme.css";
+@import "../node_modules/primereact/resources/primereact.min.css";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeflex/primeflex.css";
+/* @import '~bootstrap/dist/css/bootstrap.min.css'; */
+
 body {
   margin: 0;
 }
-
