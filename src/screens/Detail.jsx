@@ -8,8 +8,9 @@ import { useState } from "react";
 const Detail = () => {
   const [value, setValue] = useState(1);
   const items = [
-    { label: "Bé trai" },
-    { label: "Bộ sơ mi cotton bé trai" },
+    { label: "Nữ" },
+    { label: "Chạy" },
+    { label: "GIÀY ULTRABOOST 22" },
   ];
   const home = { icon: "pi pi-home", url: "http://localhost:3000/" };
   const responsiveOptions = [
@@ -30,24 +31,52 @@ const Detail = () => {
   const images = [
     {
       itemImageSrc:
-        "https://bizweb.dktcdn.net/100/455/315/products/4-jpeg-9a6e4ddb-3a67-4644-ac1b-1d3e8ff68e97.jpg?v=1653990460127",
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/798d3061f5934cd1983bade800a7f2dd_9366/GIAY_ULTRABOOST_22_trang_GX5595_01_standard.jpg",
       alt: "Image 1",
       thumbnailImageSrc:
-        "https://bizweb.dktcdn.net/100/455/315/products/4-jpeg-9a6e4ddb-3a67-4644-ac1b-1d3e8ff68e97.jpg?v=1653990460127",
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/798d3061f5934cd1983bade800a7f2dd_9366/GIAY_ULTRABOOST_22_trang_GX5595_01_standard.jpg",
     },
     {
       itemImageSrc:
-        "https://bizweb.dktcdn.net/100/455/315/products/1-jpeg-6bd0aac2-5c53-411a-9fb2-7432f8f9cdd9.jpg?v=1653990458150",
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b14ab283e8664331ac44ade800a804d3_9366/GIAY_ULTRABOOST_22_trang_GX5595_02_standard_hover.jpg",
       alt: "Image 2",
       thumbnailImageSrc:
-        "https://bizweb.dktcdn.net/100/455/315/products/1-jpeg-6bd0aac2-5c53-411a-9fb2-7432f8f9cdd9.jpg?v=1653990458150",
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b14ab283e8664331ac44ade800a804d3_9366/GIAY_ULTRABOOST_22_trang_GX5595_02_standard_hover.jpg",
     },
     {
       itemImageSrc:
-        "https://bizweb.dktcdn.net/100/455/315/products/2-jpeg-e920b6ad-4798-4333-9105-c7d33296880d.jpg?v=1653990459337",
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6e135a7cfd7c490a8ac4ade800a80d4e_9366/GIAY_ULTRABOOST_22_trang_GX5595_03_standard.jpg",
       alt: "Image 3",
       thumbnailImageSrc:
-        "https://bizweb.dktcdn.net/100/455/315/products/2-jpeg-e920b6ad-4798-4333-9105-c7d33296880d.jpg?v=1653990459337",
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6e135a7cfd7c490a8ac4ade800a80d4e_9366/GIAY_ULTRABOOST_22_trang_GX5595_03_standard.jpg",
+    },
+    {
+      itemImageSrc:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/616ba20c88d742909a7dade500f6a6fb_9366/GIAY_ULTRABOOST_22_trang_GX5595_04_standard.jpg",
+      alt: "Image 4",
+      thumbnailImageSrc:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/616ba20c88d742909a7dade500f6a6fb_9366/GIAY_ULTRABOOST_22_trang_GX5595_04_standard.jpg",
+    },
+    {
+      itemImageSrc:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7c6fde21e28743818a74ade800a81553_9366/GIAY_ULTRABOOST_22_trang_GX5595_05_standard.jpg",
+      alt: "Image 4",
+      thumbnailImageSrc:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7c6fde21e28743818a74ade800a81553_9366/GIAY_ULTRABOOST_22_trang_GX5595_05_standard.jpg",
+    },
+    {
+      itemImageSrc:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d81bb06294b440379161ade800a82c41_9366/GIAY_ULTRABOOST_22_trang_GX5595_09_standard.jpg",
+      alt: "Image 4",
+      thumbnailImageSrc:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d81bb06294b440379161ade800a82c41_9366/GIAY_ULTRABOOST_22_trang_GX5595_09_standard.jpg",
+    },
+    {
+      itemImageSrc:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/12fdec9a222f4226bea2ade800a7fc46_9366/GIAY_ULTRABOOST_22_trang_GX5595_06_standard.jpg",
+      alt: "Image 4",
+      thumbnailImageSrc:
+        "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/12fdec9a222f4226bea2ade800a7fc46_9366/GIAY_ULTRABOOST_22_trang_GX5595_06_standard.jpg",
     },
   ];
 
@@ -87,21 +116,21 @@ const Detail = () => {
             <Galleria
               value={images}
               responsiveOptions={responsiveOptions}
-              numVisible={3}
-              style={{ maxWidth: "640px" }}
+              numVisible={4}
+              style={{ maxWidth: "650px" }}
               item={itemTemplate}
               thumbnail={thumbnailTemplate}
             />
           </div>
           <div className="col-6 lg:col-6  ">
-            <h2>Bộ sơ mi cotton bé trai</h2>
+            <h2>GIÀY ULTRABOOST 22</h2>
             <div>Mã sp: Đang cập nhật</div>
             <div className=" ">
               <div className="text-4xl text-red-400 inline-block font-bold">
-                200.000đ
+                2.600.000₫
               </div>{" "}
               <span className="line-through text-xl text-color inline-block">
-                250.000đ
+                5.200.000₫
               </span>{" "}
               <div className=" font-bold text-white border-round w-4rem h-2rem m-2 bg-red-400 flex align-items-center justify-content-center">
                 Sale
@@ -175,7 +204,7 @@ const Detail = () => {
             <div className="m-2 border-round-md">
               <Image
                 className="border-round-md"
-                src="https://bizweb.dktcdn.net/thumb/large/100/455/315/products/4-jpeg-66d23174-0378-4f81-bc4e-2da7680f7338-eaf329e3-d8d4-4929-8093-2c858b5656a3.jpg?v=1656643686227"
+                src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/798d3061f5934cd1983bade800a7f2dd_9366/GIAY_ULTRABOOST_22_trang_GX5595_01_standard.jpg"
                 alt="Image"
                 width="210"
                 preview
@@ -184,16 +213,16 @@ const Detail = () => {
                 Sơ mi đũi bé trai vải dày dặn
               </div>
               <div className="text-xl text-red-400 inline-block font-bold">
-                200.000đ
+                2.600.000₫
               </div>{" "}
               <span className="line-through text-base text-color inline-block">
-                250.000đ
+                5.200.000₫
               </span>{" "}
             </div>
             <div className="m-2 border-round-md">
               <Image
                 className="border-round-md"
-                src="https://bizweb.dktcdn.net/thumb/large/100/455/315/products/4-jpeg-66d23174-0378-4f81-bc4e-2da7680f7338-eaf329e3-d8d4-4929-8093-2c858b5656a3.jpg?v=1656643686227"
+                src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/798d3061f5934cd1983bade800a7f2dd_9366/GIAY_ULTRABOOST_22_trang_GX5595_01_standard.jpg"
                 alt="Image"
                 width="210"
                 preview
@@ -202,16 +231,16 @@ const Detail = () => {
                 Sơ mi đũi bé trai vải dày dặn
               </div>
               <div className="text-xl text-red-400 inline-block font-bold">
-                200.000đ
+                2.600.000₫
               </div>{" "}
               <span className="line-through text-base text-color inline-block">
-                250.000đ
+                5.200.000₫
               </span>{" "}
             </div>
             <div className="m-2 border-round-md">
               <Image
                 className="border-round-md"
-                src="https://bizweb.dktcdn.net/thumb/large/100/455/315/products/4-jpeg-66d23174-0378-4f81-bc4e-2da7680f7338-eaf329e3-d8d4-4929-8093-2c858b5656a3.jpg?v=1656643686227"
+                src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/798d3061f5934cd1983bade800a7f2dd_9366/GIAY_ULTRABOOST_22_trang_GX5595_01_standard.jpg"
                 alt="Image"
                 width="210"
                 preview
@@ -220,16 +249,16 @@ const Detail = () => {
                 Sơ mi đũi bé trai vải dày dặn
               </div>
               <div className="text-xl text-red-400 inline-block font-bold">
-                200.000đ
+                2.600.000₫
               </div>{" "}
               <span className="line-through text-base text-color inline-block">
-                250.000đ
+                5.200.000₫
               </span>{" "}
             </div>
             <div className="m-2 border-round-md">
               <Image
                 className="border-round-md"
-                src="https://bizweb.dktcdn.net/thumb/large/100/455/315/products/4-jpeg-66d23174-0378-4f81-bc4e-2da7680f7338-eaf329e3-d8d4-4929-8093-2c858b5656a3.jpg?v=1656643686227"
+                src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/798d3061f5934cd1983bade800a7f2dd_9366/GIAY_ULTRABOOST_22_trang_GX5595_01_standard.jpg"
                 alt="Image"
                 width="210"
                 preview
@@ -238,10 +267,10 @@ const Detail = () => {
                 Sơ mi đũi bé trai vải dày dặn
               </div>
               <div className="text-xl text-red-400 inline-block font-bold">
-                200.000đ
+                2.600.000₫
               </div>{" "}
               <span className="line-through text-base text-color inline-block">
-                250.000đ
+                5.200.000₫
               </span>{" "}
             </div>
           </div>
