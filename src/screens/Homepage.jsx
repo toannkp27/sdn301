@@ -12,6 +12,7 @@ import filter3 from "../assets/images/filterKid.jpg";
 import shoe from "../assets/images/z4998921239665_57d2527a702bef236df303bacb0939d9-300x300.jpg";
 import blog from "../assets/images/blog.jpg";
 import "../styles/Homepage.css";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   return (
@@ -110,56 +111,80 @@ const Homepage = () => {
           <h1 className="text-center">New Product</h1>
           <Row>
             <Col md={3}>
-              <div class="card" style={{ width: "18rem" }}>
-                <img src={shoe} class="card-img-top" alt="../assets/images/" />
-                <div class="card-body">
-                  <p
-                    class="card-text"
-                    style={{ fontSize: "1.5rem", textAlign: "center" }}
-                  >
-                    Adidas 8681 Shoe Shoe
-                  </p>
+              <Link to={"/detail"} style={{ textDecoration: "none" }}>
+                <div class="card" style={{ width: "18rem" }}>
+                  <img
+                    src={shoe}
+                    class="card-img-top"
+                    alt="../assets/images/"
+                  />
+                  <div class="card-body">
+                    <p
+                      class="card-text"
+                      style={{ fontSize: "1.5rem", textAlign: "center" }}
+                    >
+                      Adidas 8681 Shoe Shoe
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </Col>
             <Col md={3}>
-              <div class="card" style={{ width: "18rem" }}>
-                <img src={shoe} class="card-img-top" alt="../assets/images/" />
-                <div class="card-body">
-                  <p
-                    class="card-text"
-                    style={{ fontSize: "1.5rem", textAlign: "center" }}
-                  >
-                    Adidas 8681 Shoe Shoe
-                  </p>
+              <Link to={"/detail"} style={{ textDecoration: "none" }}>
+                <div class="card" style={{ width: "18rem" }}>
+                  <img
+                    src={shoe}
+                    class="card-img-top"
+                    alt="../assets/images/"
+                  />
+                  <div class="card-body">
+                    <p
+                      class="card-text"
+                      style={{ fontSize: "1.5rem", textAlign: "center" }}
+                    >
+                      Adidas 8681 Shoe Shoe
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </Col>
             <Col md={3}>
-              <div class="card" style={{ width: "18rem" }}>
-                <img src={shoe} class="card-img-top" alt="../assets/images/" />
-                <div class="card-body">
-                  <p
-                    class="card-text"
-                    style={{ fontSize: "1.5rem", textAlign: "center" }}
-                  >
-                    Adidas 8681 Shoe Shoe
-                  </p>
+              <Link to={"/detail"} style={{ textDecoration: "none" }}>
+                <div class="card" style={{ width: "18rem" }}>
+                  <img
+                    src={shoe}
+                    class="card-img-top"
+                    alt="../assets/images/"
+                  />
+                  <div class="card-body">
+                    <p
+                      class="card-text"
+                      style={{ fontSize: "1.5rem", textAlign: "center" }}
+                    >
+                      Adidas 8681 Shoe Shoe
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </Col>
             <Col md={3}>
-              <div class="card" style={{ width: "18rem" }}>
-                <img src={shoe} class="card-img-top" alt="../assets/images/" />
-                <div class="card-body">
-                  <p
-                    class="card-text"
-                    style={{ fontSize: "1.5rem", textAlign: "center" }}
-                  >
-                    Adidas 8681 Shoe Shoe
-                  </p>
+              <Link to={"/detail"} style={{ textDecoration: "none" }}>
+                <div class="card" style={{ width: "18rem" }}>
+                  <img
+                    src={shoe}
+                    class="card-img-top"
+                    alt="../assets/images/"
+                  />
+                  <div class="card-body">
+                    <p
+                      class="card-text"
+                      style={{ fontSize: "1.5rem", textAlign: "center" }}
+                    >
+                      Adidas 8681 Shoe Shoe
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </Col>
           </Row>
         </Row>
@@ -167,56 +192,80 @@ const Homepage = () => {
           <h1 className="text-center">Best Product</h1>
           <Row>
             <Col md={3}>
-              <div class="card" style={{ width: "18rem" }}>
-                <img src={shoe} class="card-img-top" alt="../assets/images/" />
-                <div class="card-body">
-                  <p
-                    class="card-text"
-                    style={{ fontSize: "1.5rem", textAlign: "center" }}
-                  >
-                    Adidas 8681 Shoe Shoe
-                  </p>
+              <Link to={"/detail"} style={{ textDecoration: "none" }}>
+                <div class="card" style={{ width: "18rem" }}>
+                  <img
+                    src={shoe}
+                    class="card-img-top"
+                    alt="../assets/images/"
+                  />
+                  <div class="card-body">
+                    <p
+                      class="card-text"
+                      style={{ fontSize: "1.5rem", textAlign: "center" }}
+                    >
+                      Adidas 8681 Shoe Shoe
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </Col>
             <Col md={3}>
-              <div class="card" style={{ width: "18rem" }}>
-                <img src={shoe} class="card-img-top" alt="../assets/images/" />
-                <div class="card-body">
-                  <p
-                    class="card-text"
-                    style={{ fontSize: "1.5rem", textAlign: "center" }}
-                  >
-                    Adidas 8681 Shoe Shoe
-                  </p>
+              <Link to={"/detail"} style={{ textDecoration: "none" }}>
+                <div class="card" style={{ width: "18rem" }}>
+                  <img
+                    src={shoe}
+                    class="card-img-top"
+                    alt="../assets/images/"
+                  />
+                  <div class="card-body">
+                    <p
+                      class="card-text"
+                      style={{ fontSize: "1.5rem", textAlign: "center" }}
+                    >
+                      Adidas 8681 Shoe Shoe
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </Col>
             <Col md={3}>
-              <div class="card" style={{ width: "18rem" }}>
-                <img src={shoe} class="card-img-top" alt="../assets/images/" />
-                <div class="card-body">
-                  <p
-                    class="card-text"
-                    style={{ fontSize: "1.5rem", textAlign: "center" }}
-                  >
-                    Adidas 8681 Shoe Shoe
-                  </p>
+              <Link to={"/detail"} style={{ textDecoration: "none" }}>
+                <div class="card" style={{ width: "18rem" }}>
+                  <img
+                    src={shoe}
+                    class="card-img-top"
+                    alt="../assets/images/"
+                  />
+                  <div class="card-body">
+                    <p
+                      class="card-text"
+                      style={{ fontSize: "1.5rem", textAlign: "center" }}
+                    >
+                      Adidas 8681 Shoe Shoe
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </Col>
             <Col md={3}>
-              <div class="card" style={{ width: "18rem" }}>
-                <img src={shoe} class="card-img-top" alt="../assets/images/" />
-                <div class="card-body">
-                  <p
-                    class="card-text"
-                    style={{ fontSize: "1.5rem", textAlign: "center" }}
-                  >
-                    Adidas 8681 Shoe Shoe
-                  </p>
+              <Link to={"/detail"} style={{ textDecoration: "none" }}>
+                <div class="card" style={{ width: "18rem" }}>
+                  <img
+                    src={shoe}
+                    class="card-img-top"
+                    alt="../assets/images/"
+                  />
+                  <div class="card-body">
+                    <p
+                      class="card-text"
+                      style={{ fontSize: "1.5rem", textAlign: "center" }}
+                    >
+                      Adidas 8681 Shoe Shoe
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </Col>
           </Row>
         </Row>
