@@ -1,0 +1,8 @@
+.list-product table tr th{
+    border: solid 1px rgb(181, 179, 179);
+    background-color: #483D8B;
+    color: white;
+
+}.list-product table tr td{
+    border: solid 1px rgb(181, 179, 179);
+}
