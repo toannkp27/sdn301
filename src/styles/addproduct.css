@@ -1,0 +1,116 @@
+.add-product{
+    background-color: #f2f2f2;
+}
+.basic-infor{
+    border: solid 1px rgb(208, 200, 200);
+    border-radius: 10px;
+    margin: 10px;
+}
+.basic-infor input{
+    margin-left: 10px;
+    border: solid 2px #ccc8c8;
+    border-radius: 10px ;
+
+}
+.basic-infor textarea{
+    margin-left: 10px;
+    border: solid 2px #ccc8c8;
+    border-radius: 10px ;
+    margin-bottom: 10px;
+}
+.product-info{
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.product-image{
+    background-color: white;
+    border-radius: 10px;
+
+}
+.product-image-item {
+    border: solid 1px rgb(208, 200, 200);
+    border-radius: 10px;
+    margin: 10px;
+
+}
+.product-image-item input{
+    margin-left: 10px;
+    border: solid 2px #ccc8c8;
+    border-radius: 10px ;
+}
+
+
+
+
+
+.product-price {
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 10px;
+
+}
+
+.product-size-item{
+    border: solid 1px rgb(208, 200, 200);
+    border-radius: 10px;
+    margin: 10px;
+}
+.product-size-item-content{
+    border: solid 1px rgb(208, 200, 200);
+    border-radius: 10px;
+    margin: 10px;
+
+}
+
+
+
+
+
+
+
+
+
+.product-size{
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 10px;
+
+
+     
+
+}
+.brand-item{
+    border: solid 1px rgb(208, 200, 200);
+    border-radius: 10px;
+    margin: auto;
+}
+.checkBrand {
+    border: solid 1px rgb(208, 200, 200);
+    border-radius: 10px;
+}
+
+
+
+
+
+
+.product-price{
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.product-price-item{
+    border: solid 1px rgb(208, 200, 200);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.product-price-item input{
+    margin-left: 10px;
+    border: solid 2px #ccc8c8;
+    border-radius: 10px ;
+
+}
