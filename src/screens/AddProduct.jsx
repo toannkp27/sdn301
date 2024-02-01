@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Col, Container, Image, Row, Table } from "react-bootstrap";
-import { Heart } from "react-bootstrap-icons";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 const AddProduct = () => {
   return (
