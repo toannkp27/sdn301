@@ -122,7 +122,7 @@ const Detail = () => {
             <Galleria
               value={images}
               responsiveOptions={responsiveOptions}
-              numVisible={5}
+              numVisible={4}
               style={{ maxWidth: "640px" }}
               item={itemTemplate}
               thumbnail={thumbnailTemplate}
@@ -234,9 +234,7 @@ const Detail = () => {
                 width="210"
                 preview
               />
-              <div className="font-bold text-base">
-                GIÀY ULTRABOOST 22
-              </div>
+              <div className="font-bold text-base">GIÀY ULTRABOOST 22</div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
               </div>{" "}
@@ -252,9 +250,7 @@ const Detail = () => {
                 width="210"
                 preview
               />
-              <div className="font-bold text-base">
-                GIÀY ULTRABOOST 22
-              </div>
+              <div className="font-bold text-base">GIÀY ULTRABOOST 22</div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
               </div>{" "}
@@ -270,9 +266,7 @@ const Detail = () => {
                 width="210"
                 preview
               />
-              <div className="font-bold text-base">
-                GIÀY ULTRABOOST 22
-              </div>
+              <div className="font-bold text-base">GIÀY ULTRABOOST 22</div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
               </div>{" "}
@@ -288,9 +282,7 @@ const Detail = () => {
                 width="210"
                 preview
               />
-              <div className="font-bold text-base">
-                GIÀY ULTRABOOST 22
-              </div>
+              <div className="font-bold text-base">GIÀY ULTRABOOST 22</div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
               </div>{" "}
