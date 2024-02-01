@@ -4,6 +4,7 @@ import Category from "../screens/Category";
 import Contact from "../screens/Contact";
 import Detail from "../screens/Detail";
 import Homepage from "../screens/Homepage";
+import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
 import UpdateProduct from "../screens/UpdateProduct";
 import OrderManagement from "../screens/OrderManagement";
@@ -57,5 +58,14 @@ export const routers = [
   },{ path: "/userprofile/editprofile",  
   page: EditProfile,
   isShowHeader: true
-}
+},
+
+ 
+    {
+        path: '/listP',
+        page: ListProduct,
+        isShowHeader: false
+    }
+    
 ];
+

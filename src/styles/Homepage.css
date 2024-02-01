@@ -1,0 +1,7 @@
+.content_blog {
+    display: none;
+  }
+  
+  .img_blog:hover + .content_blog {
+    display: block;
+  }
