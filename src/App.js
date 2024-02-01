@@ -3,6 +3,8 @@ import './App.css';
 import { routers } from './routers/routers'
 import DefaultLayout from './layout/DefaultLayout';
 import { Fragment } from 'react';
+import Contact from './screens/Contact';
+import Payment from './screens/Payment';
 function App() {
   return (
     <div>
@@ -19,6 +21,8 @@ function App() {
               } />
             )
           })}
+          <Route path="/payment" element={<Payment />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
