@@ -1,5 +1,4 @@
 import { Button, Card, styled } from "@mui/material";
-import { convertHexToRGB } from "../../utils/utils";
 
 const CardRoot = styled(Card)(({ theme }) => ({
   marginBottom: "24px",
@@ -12,9 +11,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   textAlign: "center",
   position: "relative",
   padding: "24px !important",
-  background: `rgb(${convertHexToRGB(
-    theme.palette.primary.main
-  )}, 0.15) !important`,
+  background: "grey",
   [theme.breakpoints.down("sm")]: { padding: "16px !important" },
 }));
 
@@ -30,11 +27,9 @@ const UpgradeCard = () => {
     <CardRoot>
       <StyledCard elevation={0}>
         <img src="/assets/images/illustrations/upgrade.svg" alt="upgrade" />
-
         <Paragraph>
           Upgrade to <b>MatX PRO</b> for <br /> more resources
         </Paragraph>
-
         <Button
           size="large"
           color="primary"

@@ -8,7 +8,7 @@ import './styles/product.css';
 import { Fragment } from 'react';
 import DefaultLayout from './layout/DefaultLayout';
 import { routers } from './routers/routers';
-import Dashboard from './screens/abc';
+import Dashboard from './screens/DashBoard';
 function App() {
   return (
     <div>
@@ -27,8 +27,7 @@ function App() {
           })}
           <Route path='/dashboard' element={
             <>
-            
-            <Dashboard />
+              <Dashboard />
             </>
           } />
         </Routes>
