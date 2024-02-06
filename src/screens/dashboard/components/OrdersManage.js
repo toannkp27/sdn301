@@ -150,11 +150,7 @@ const OrderManage = () => {
         const year = dateObject.getFullYear();
 
         const formattedDate = `${day}-${month}-${year}`;
-        return (
-            <>
-                {formattedDate}
-            </>
-        )
+        return formattedDate
     }
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -189,7 +185,7 @@ const OrderManage = () => {
                 )}
                 <InputText
                     id={id}
-                    className={classNames(' mt-2', { 'p-invalid': required }, className)}
+                    className={classNames(' mt-2 w-full', { 'p-invalid': required }, className)}
                     // placeholder={placeholder || (label && `Nhập ${label.toLowerCase()}`)}
                     value={value}
                     type={type}
@@ -211,56 +207,63 @@ const OrderManage = () => {
             <Button icon="pi pi-refresh" rounded raised />
         </div>
     );
-    const statusBodyTemplate = (product) => {
-        return <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>;
-    };
-
-    const getSeverity = (product) => {
-        switch (product.inventoryStatus) {
-            case 'Complete':
-                return 'success';
-
-            case 'Processing':
-                return 'pending';
-
-            case 'Cancel':
-                return 'danger';
-
-            default:
-                return null;
-        }
+    const statusBodyTemplate = (status) => {
+        return (
+            status === 'Processing' ? (
+                <Tag className=' mt-2 w-5rem h-2rem' severity="info" value="Processing"></Tag>
+            ) : status === 'Complete' ? (
+                <Tag className=' mt-2 w-5rem h-2rem' severity="success" value="Complete"></Tag>
+            ) : status === 'Cancel' ? (
+                <Tag className=' mt-2 w-5rem h-2rem' severity="danger" value="Cancel"></Tag>
+            ) : null
+        )
     };
     const OrderDetail = (obj) => {
-        const product = obj && obj.product ? obj.product : null
+        const product = obj && obj.products ? obj.products : null
         return (
-            <div className="card bg-color mt-4 ">
-                <div class="formgrid grid">
+            <div className="card bg-color m-4 ">
+                <div class="formgrid grid m-3">
                     <div class="field col">
                         <InputForm
                             id="id"
                             value={obj.id}
                             label="ID"
-
                         />
-                        <div>Order Date: {TimeBody(obj.order_date)}</div>
+                        <InputForm
+                            id="customer_name"
+                            value={obj.customer_name}
+                            label="Order Date"
+                        />
+                        <InputForm
+                            id="order_date"
+                            value={TimeBody(obj.order_date)}
+                            label="Order Date"
+                        />
                         <InputForm
                             id="customer_name"
                             value={obj.customer_name}
                             label="Customer Name"
-
                         />
                         <InputForm
                             id="total_cost"
                             value={priceBodyTemplate(obj.total_cost)}
                             label="Total Cost"
                         />
-                        <div>Status: {obj.status}</div>
-                        {statusBodyTemplate(obj.status)}
                         <InputForm
                             id="payment_method"
                             value={priceBodyTemplate(obj.payment_method)}
                             label="Payment Method"
                         />
+                        <div className="mb-3 px-2 change-disabled">
+                            <div className="w-full flex justify-content-between">
+                                <label className="font-medium w-full">
+                                    Status
+                                </label>
+                            </div>
+                            <div >
+                                {statusBodyTemplate(obj.status)}
+                            </div>
+                        </div>
                     </div>
                     <div class="field col">
                         {/* <div>Shipping Information: {obj.shipping_info}</div> */}
@@ -289,7 +292,38 @@ const OrderManage = () => {
                             value={obj.discount}
                             label="Discount"
                         />
-                        <div>Estimated Delivery Date: {TimeBody(obj.estimated_delivery_date)}</div>
+                        <InputForm
+                            id="estimated_delivery_date"
+                            value={TimeBody(obj.estimated_delivery_date)}
+                            label="Estimated Delivery Date"
+                        />
+                    </div>
+                </div>
+                <hr />
+                <div className="m-3 mt-2 px-2 change-disabled">
+                    <div className="w-full flex justify-content-between">
+                        <label className="text-5xl w-full mb-2">
+                            Cart
+                        </label>
+                    </div>
+                    <div className="w-full border-round border-solid border-1 surface-border">
+                        <DataTable
+                            className='m-2'
+                            value={product}
+                            first={first}
+                            rows={rows}
+                            onPage={(e) => setFirst(e.first)}
+                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                            paginator
+                            currentPageReportTemplate={`In total there are ${product ? product.length : 0} orders.`}
+                        >
+                            <Column field="product_id" header="Product ID"></Column>
+                            <Column field="product_name" header="Product Name"></Column>
+                            <Column field="quantity" header="Quantity"></Column>
+                            <Column field='unit_price' header="Unit Price" body={(rowData) => priceBodyTemplate(rowData.unit_price)} />
+                            <Column header="Total Cost" body={(rowData) => priceBodyTemplate(rowData.unit_price * rowData.quantity)} />
+
+                        </DataTable>
                     </div>
                 </div>
             </div>
