@@ -1,5 +1,4 @@
 
-import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React, { useState } from 'react';
@@ -118,13 +117,14 @@ const UserManage = () => {
     const header = (
         <div className="flex flex-wrap align-items-center justify-content-between gap-2">
             <span className="text-xl text-900 font-bold">Users Manage</span>
-            <Button icon="pi pi-refresh" rounded raised />
+            {/* <Button icon="pi pi-refresh" rounded raised /> */}
         </div>
     );
 
     return (
-        <div className="w-full">
+        <div className="w-full border-round border-solid border-1 surface-border">
             <DataTable
+                className='m-2'
                 value={sampleData}
                 header={header}
                 first={first}

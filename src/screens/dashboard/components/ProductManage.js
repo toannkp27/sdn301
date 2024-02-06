@@ -1,5 +1,4 @@
 
-import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Rating } from 'primereact/rating';
@@ -242,13 +241,14 @@ const ProductManage = () => {
     const header = (
         <div className="flex flex-wrap align-items-center justify-content-between gap-2">
             <span className="text-xl text-900 font-bold">Products Manage</span>
-            <Button icon="pi pi-refresh" rounded raised />
+            {/* <Button icon="pi pi-refresh" rounded raised /> */}
         </div>
     );
 
     return (
-        <div className="w-full">
+        <div className="w-full border-round border-solid border-1 surface-border">
             <DataTable
+                className='m-2'
                 value={products}
                 header={header}
                 first={first}
@@ -258,7 +258,7 @@ const ProductManage = () => {
                 paginator
                 currentPageReportTemplate={`In total there are ${products ? products.length : 0} products.`}
             >
-                <Column field="name" header="Name"></Column>
+                <Column field="name" header="Name" style={{minWidth: "15rem"}}></Column>
                 <Column header="Image" body={imageBodyTemplate}></Column>
                 <Column field="price" header="Price" body={priceBodyTemplate}></Column>
                 <Column field="category" header="Category"></Column>
