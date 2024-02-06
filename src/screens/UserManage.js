@@ -2,246 +2,122 @@
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import { Rating } from 'primereact/rating';
-import { Tag } from 'primereact/tag';
 import React, { useState } from 'react';
 
 const UserManage = () => {
     const [first, setFirst] = useState(0);
     const [rows, setRows] = useState(10);
-    const products = [
+    const sampleData = [
         {
-            id: 1,
-            name: 'Ultraboost Light',
-            image: 'https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4eb226710c1d4baab6256b741b7d0be7_9366/gi%C3%A0y-ultraboost-light.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'LOWSTOCK',
-            unitInStock: 10
+            "id": 1,
+            "fullName": "User 1",
+            "age": 47,
+            "address": "Houston, TX",
+            "birthday": "2000-07-18T18:33:04.697Z",
+            "phone": "(282) 244-6732",
+            "email": "user_1@yahoo.com"
         },
         {
-            id: 2,
-            name: 'Superstar Slip-On',
-            image: 'https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/67e3732b3fee450092aae2724526d569_9366/gi%C3%A0y-superstar-slip-on.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 2,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
+            "id": 2,
+            "fullName": "User 2",
+            "age": 58,
+            "address": "Houston, TX",
+            "birthday": "1989-01-06T09:05:19.666Z",
+            "phone": "(600) 957-2593",
+            "email": "user_2@gmail.com"
         },
         {
-            id: 3,
-            name: 'Superstar',
-            image: 'https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4e5f3f5011d04322a1914a8aa7fd670d_9366/gi%C3%A0y-superstar.jpg',
-            price: 65,
-            category: 'Fitness',
-            rating: 1,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
+            "id": 3,
+            "fullName": "User 3",
+            "age": 28,
+            "address": "San Jose, CA",
+            "birthday": "1994-01-22T17:54:08.833Z",
+            "phone": "(898) 954-6949",
+            "email": "user_3@gmail.com"
         },
         {
-            id: 4,
-            name: 'Stan Smith PF W',
-            image: 'https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/6bf90d60370e41df970a2a8b920aad5f_9366/stan-smith-pf-w.jpg',
-            price: 65,
-            category: 'Clothing',
-            rating: 5,
-            inventoryStatus: 'LOWSTOCK',
-            unitInStock: 10
+            "id": 4,
+            "fullName": "User 4",
+            "age": 58,
+            "address": "New York, NY",
+            "birthday": "1999-01-15T00:46:43.880Z",
+            "phone": "(649) 264-6408",
+            "email": "user_4@hotmail.com"
         },
         {
-            id: 5,
-            name: 'TRAINER TRAE YOUNG 3 LOW',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b856ac34516a4de39450d1ab2b95f867_9366/Giay_Trainer_Trae_Young_3_Low_trang_IE2704_02_standard_hover.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 3,
-            inventoryStatus: 'LOWSTOCK',
-            unitInStock: 10
+            "id": 5,
+            "fullName": "User 5",
+            "age": 31,
+            "address": "San Diego, CA",
+            "birthday": "1996-07-17T06:45:41.670Z",
+            "phone": "(292) 673-5563",
+            "email": "user_5@hotmail.com"
         },
         {
-            id: 6,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
+            "id": 6,
+            "fullName": "User 6",
+            "age": 20,
+            "address": "Philadelphia, PA",
+            "birthday": "1999-01-08T17:20:53.350Z",
+            "phone": "(361) 528-1123",
+            "email": "user_6@hotmail.com"
         },
         {
-            id: 7,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
+            "id": 7,
+            "fullName": "User 7",
+            "age": 35,
+            "address": "San Diego, CA",
+            "birthday": "1993-11-23T04:33:37.344Z",
+            "phone": "(470) 311-6395",
+            "email": "user_7@yahoo.com"
         },
         {
-            id: 8,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
+            "id": 8,
+            "fullName": "User 8",
+            "age": 58,
+            "address": "San Jose, CA",
+            "birthday": "1994-11-17T03:51:48.506Z",
+            "phone": "(257) 720-5826",
+            "email": "user_8@yahoo.com"
         },
         {
-            id: 9,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
+            "id": 9,
+            "fullName": "User 9",
+            "age": 56,
+            "address": "New York, NY",
+            "birthday": "1996-06-05T09:37:10.293Z",
+            "phone": "(627) 574-1750",
+            "email": "user_9@yahoo.com"
         },
         {
-            id: 10,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 11,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-
-        {
-            id: 12,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 13,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 14,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 15,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 16,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 17,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 18,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 19,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-    ]
-
-    const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    };
-
-    const imageBodyTemplate = (product) => {
-        return <img src={product.image} alt={product.image} className="w-6rem shadow-2 border-round" />;
-    };
-
-    const priceBodyTemplate = (product) => {
-        return formatCurrency(product.price);
-    };
-
-    const ratingBodyTemplate = (product) => {
-        return <Rating value={product.rating} readOnly cancel={false} />;
-    };
-
-    const statusBodyTemplate = (product) => {
-        return <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>;
-    };
-
-    const getSeverity = (product) => {
-        switch (product.inventoryStatus) {
-            case 'INSTOCK':
-                return 'success';
-
-            case 'LOWSTOCK':
-                return 'warning';
-
-            case 'OUTOFSTOCK':
-                return 'danger';
-
-            default:
-                return null;
+            "id": 10,
+            "fullName": "User 10",
+            "age": 20,
+            "address": "San Diego, CA",
+            "birthday": "1980-07-19T08:13:38.604Z",
+            "phone": "(256) 845-3030",
+            "email": "user_10@yahoo.com"
         }
-    };
+    ]
+    const TimeBody = (inputDate) => {
+
+        const dateObject = new Date(inputDate);
+
+        const day = dateObject.getDate().toString().padStart(2, '0');
+        const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
+        const year = dateObject.getFullYear();
+
+        const formattedDate = `${day}-${month}-${year}`;
+        return (
+            <>
+                {formattedDate}
+            </>
+        )
+    }
 
     const header = (
         <div className="flex flex-wrap align-items-center justify-content-between gap-2">
-            <span className="text-xl text-900 font-bold">Products Manage</span>
+            <span className="text-xl text-900 font-bold">Users Manage</span>
             <Button icon="pi pi-refresh" rounded raised />
         </div>
     );
@@ -249,22 +125,21 @@ const UserManage = () => {
     return (
         <div className="w-full">
             <DataTable
-                value={products}
+                value={sampleData}
                 header={header}
                 first={first}
                 rows={rows}
                 onPage={(e) => setFirst(e.first)}
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                 paginator
-                currentPageReportTemplate={`In total there are ${products ? products.length : 0} products.`}
+                currentPageReportTemplate={`In total there are ${sampleData ? sampleData.length : 0} products.`}
             >
-                <Column field="name" header="Name"></Column>
-                <Column header="Image" body={imageBodyTemplate}></Column>
-                <Column field="price" header="Price" body={priceBodyTemplate}></Column>
-                <Column field="category" header="Category"></Column>
-                <Column field="rating" header="Reviews" body={ratingBodyTemplate}></Column>
-                <Column header="Units in Stock" field="unitInStock"></Column>
-                <Column header="Status" body={statusBodyTemplate}></Column>
+                <Column field="fullName" header="Full Name"></Column>
+                <Column field="age" header="Age" ></Column>
+                <Column field="address" header="Address"></Column>
+                <Column field="birthday" header="Birthday" body={(rowData) => TimeBody(rowData.birthday)} ></Column>
+                <Column header="Phone" field="phone"></Column>
+                <Column header="Email" field='email'></Column>
             </DataTable>
 
         </div>

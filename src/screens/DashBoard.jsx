@@ -12,6 +12,7 @@ import TopSellingTable from "./dashboard/shared/TopSellingTable";
 import UpgradeCard from "./dashboard/shared/UpgradeCard";
 import ProductManage from "./ProductManage";
 import TemplateDemo from "./TopSeller";
+import UserManage from "./UserManage";
 const ContentBox = styled("div")(({ theme }) => ({
   margin: "30px",
   [theme.breakpoints.down("sm")]: { margin: "16px" },
@@ -129,7 +130,7 @@ const Dashboard = () => {
             <ProductManage />
           </TabPanel>
           <TabPanel header="User Manage">
-            <ProductManage />
+            <UserManage />
           </TabPanel>
         </TabView>
       </div>
