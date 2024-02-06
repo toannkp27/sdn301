@@ -112,7 +112,10 @@ const Detail = () => {
   };
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ paddingTop: "113px", paddingBottom: "20px" }}
+    >
       <div className="m-2 w-full">
         <BreadCrumb model={items} home={home} />
       </div>
@@ -234,9 +237,7 @@ const Detail = () => {
                 width="210"
                 preview
               />
-              <div className="font-bold text-base">
-                GIÀY ULTRABOOST 22
-              </div>
+              <div className="font-bold text-base">GIÀY ULTRABOOST 22</div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
               </div>{" "}
@@ -252,9 +253,7 @@ const Detail = () => {
                 width="210"
                 preview
               />
-              <div className="font-bold text-base">
-                GIÀY ULTRABOOST 22
-              </div>
+              <div className="font-bold text-base">GIÀY ULTRABOOST 22</div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
               </div>{" "}
@@ -270,9 +269,7 @@ const Detail = () => {
                 width="210"
                 preview
               />
-              <div className="font-bold text-base">
-                GIÀY ULTRABOOST 22
-              </div>
+              <div className="font-bold text-base">GIÀY ULTRABOOST 22</div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
               </div>{" "}
@@ -288,9 +285,7 @@ const Detail = () => {
                 width="210"
                 preview
               />
-              <div className="font-bold text-base">
-                GIÀY ULTRABOOST 22
-              </div>
+              <div className="font-bold text-base">GIÀY ULTRABOOST 22</div>
               <div className="text-xl text-red-400 inline-block font-bold">
                 2.600.000₫
               </div>{" "}

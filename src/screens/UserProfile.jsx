@@ -9,7 +9,7 @@ const UserProfile = () => {
   return (
     <Container
       className="modal show"
-      style={{ display: "block", position: "initial" }}
+      style={{ display: "block", position: "initial", paddingTop:'113px' }}
     >
       <Modal.Dialog>
         <Modal.Header style={{ background: "#eee" }}>
