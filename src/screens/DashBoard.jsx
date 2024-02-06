@@ -128,6 +128,9 @@ const Dashboard = () => {
           <TabPanel header="Product Manage">
             <ProductManage />
           </TabPanel>
+          <TabPanel header="User Manage">
+            <ProductManage />
+          </TabPanel>
         </TabView>
       </div>
     </>
