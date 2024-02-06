@@ -1,5 +1,6 @@
 
 import { Button } from 'primereact/button';
+import { Card } from 'primereact/card';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Dialog } from 'primereact/dialog';
@@ -125,7 +126,8 @@ const OrderManage = () => {
         "payment_info": {
             "card_number": "**** **** **** 1234",
             "expiration_date": "12/26",
-            "cvv": "123"
+            "cvv": "123",
+            "cardholder_name": "DOAN DAC HAU",
         },
         "description": "Urgent delivery requested",
         "estimated_delivery_date": "2024-02-15T12:00:00.000Z",
@@ -218,6 +220,16 @@ const OrderManage = () => {
             ) : null
         )
     };
+    // const headerCard = (
+    //     <img alt="Card" src="path_to_your_card_image" style={{ width: '100%' }} />
+    // );
+
+    const footerCard = (
+        <span>
+            <Button label="Action 1" className="p-button-text" />
+            <Button label="Action 2" className="p-button-text" />
+        </span>
+    );
     const OrderDetail = (obj) => {
         const product = obj && obj.products ? obj.products : null
         return (
@@ -302,7 +314,7 @@ const OrderManage = () => {
                 <hr />
                 <div className="m-3 mt-2 px-2 change-disabled">
                     <div className="w-full flex justify-content-between">
-                        <label className="text-5xl w-full mb-2">
+                        <label className="text-4xl w-full mb-2">
                             Cart
                         </label>
                     </div>
@@ -325,6 +337,57 @@ const OrderManage = () => {
 
                         </DataTable>
                     </div>
+                </div>
+                <hr />
+                <div className="m-3 mt-2 px-2 change-disabled">
+                    <div className="w-full flex justify-content-between">
+                        <label className="text-4xl w-full mb-2">
+                            Shipping Information
+                        </label>
+                        <div className="w-full ">
+                            <div>
+                                Address : <strong>{obj.shipping_info.address}</strong>
+                            </div>
+                            <div>
+                                Carrier : <strong>{obj.shipping_info.carrier}</strong>
+                            </div>
+                            <div>
+                                Tracking Number : <strong>{obj.shipping_info.tracking_number}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div className="m-3 mt-2 px-2 change-disabled">
+                    <div className="w-full flex justify-content-between">
+                        <label className="text-4xl w-full mb-2">
+                            Payment Information
+                        </label>
+
+                        {/* <div className="w-full ">
+                            <div>
+                                Address : <strong>{obj.shipping_info.address}</strong>
+                            </div>
+                            <div>
+                                Carrier : <strong>{obj.shipping_info.carrier}</strong>
+                            </div>
+                            <div>
+                                Tracking Number : <strong>{obj.shipping_info.tracking_number}</strong>
+                            </div>
+                        </div> */}
+                    </div>
+                    <Card
+                        title="VISA CARD"
+                        // subTitle={footerCard}
+                        style={{ width: '30rem' }}
+                        className="ui-card-shadow"
+                    // footer={footerCard}
+                    // header={headerCard}
+                    >
+                        <p style={{ fontFamily: "Lucida Console", fontSize: "25px" }}>{obj.payment_info.card_number}</p>
+                        <div>VALID THRU <p style={{ display: "inline-block", fontSize: "22px", fontFamily: "Lucida Console" }}>{obj.payment_info.expiration_date}</p></div>
+                        <div style={{ fontSize: "25px", fontFamily: "Lucida Console" }}>{obj.payment_info.cardholder_name}</div>
+                    </Card>
                 </div>
             </div>
         )
