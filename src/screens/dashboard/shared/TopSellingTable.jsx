@@ -143,32 +143,32 @@ const TopSellingTable = () => {
 
 const productList = [
   {
-    imgUrl: "/assets/images/products/headphone-2.jpg",
-    name: "earphone",
+    imgUrl: "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4eb226710c1d4baab6256b741b7d0be7_9366/gi%C3%A0y-ultraboost-light.jpg",
+    name: "Ultraboost Light",
     price: 100,
     available: 15,
   },
   {
-    imgUrl: "/assets/images/products/headphone-3.jpg",
-    name: "earphone",
+    imgUrl: "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/67e3732b3fee450092aae2724526d569_9366/gi%C3%A0y-superstar-slip-on.jpg",
+    name: "Superstar Slip-On",
     price: 1500,
     available: 30,
   },
   {
-    imgUrl: "/assets/images/products/iphone-2.jpg",
-    name: "iPhone x",
+    imgUrl: "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4e5f3f5011d04322a1914a8aa7fd670d_9366/gi%C3%A0y-superstar.jpg",
+    name: "Superstar",
     price: 1900,
     available: 35,
   },
   {
-    imgUrl: "/assets/images/products/iphone-1.jpg",
-    name: "iPhone x",
+    imgUrl: "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/6bf90d60370e41df970a2a8b920aad5f_9366/stan-smith-pf-w.jpg",
+    name: "Stan Smith PF W",
     price: 100,
     available: 0,
   },
   {
-    imgUrl: "/assets/images/products/headphone-3.jpg",
-    name: "Head phone",
+    imgUrl: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg",
+    name: "TRAINER TRAE YOUNG 3 LOW",
     price: 1190,
     available: 5,
   },
