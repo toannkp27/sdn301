@@ -4,12 +4,12 @@ import React, { Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { PersonFill, Search } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/logoooo.png";
-import DoughnutChart from "./dashboard/shared/Doughnut";
-import StatCards from "./dashboard/shared/StatCards";
-import StatCards2 from "./dashboard/shared/StatCards2";
-import TopSellingTable from "./dashboard/shared/TopSellingTable";
-import UpgradeCard from "./dashboard/shared/UpgradeCard";
+import logo from "../../../assets/images/logoooo.png";
+import DoughnutChart from "../shared/Doughnut";
+import StatCards from "../shared/StatCards";
+import StatCards2 from "../shared/StatCards2";
+import TopSellingTable from "../shared/TopSellingTable";
+import UpgradeCard from "../shared/UpgradeCard";
 import OrderManage from "./OrdersManage";
 import ProductManage from "./ProductManage";
 import TemplateDemo from "./TopSeller";
@@ -134,7 +134,7 @@ const Dashboard = () => {
             <UserManage />
           </TabPanel>
           <TabPanel header="Order Manage">
-            <OrderManage />
+            <OrderManage/>
           </TabPanel>
         </TabView>
       </div>

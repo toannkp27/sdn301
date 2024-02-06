@@ -8,7 +8,7 @@ import './styles/product.css';
 import { Fragment } from 'react';
 import DefaultLayout from './layout/DefaultLayout';
 import { routers } from './routers/routers';
-import Dashboard from './screens/DashBoard';
+import Dashboard from './screens/dashboard/components/DashBoard';
 function App() {
   return (
     <div>
