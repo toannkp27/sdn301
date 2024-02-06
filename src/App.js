@@ -1,13 +1,14 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import './styles/product.css';
-import './styles/editprofile.css';
 import './styles/addproduct.css';
+import './styles/editprofile.css';
+import './styles/product.css';
 
-import { routers } from './routers/routers'
-import DefaultLayout from './layout/DefaultLayout';
 import { Fragment } from 'react';
+import DefaultLayout from './layout/DefaultLayout';
+import { routers } from './routers/routers';
+import Dashboard from './screens/DashBoard';
 function App() {
   return (
     <div>
@@ -24,6 +25,11 @@ function App() {
               } />
             )
           })}
+          <Route path='/dashboard' element={
+            <>
+              <Dashboard />
+            </>
+          } />
         </Routes>
       </BrowserRouter>
     </div>
