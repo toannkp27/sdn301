@@ -10,23 +10,8 @@ import StatCards from "./dashboard/shared/StatCards";
 import StatCards2 from "./dashboard/shared/StatCards2";
 import TopSellingTable from "./dashboard/shared/TopSellingTable";
 import UpgradeCard from "./dashboard/shared/UpgradeCard";
+import ProductManage from "./ProductManage";
 import TemplateDemo from "./TopSeller";
-// import React from 'react';
-
-// export default function BasicDemo() {
-//     const items = [
-//         { label: 'Dashboard', icon: 'pi pi-home' },
-//         { label: 'Transactions', icon: 'pi pi-chart-line' },
-//         { label: 'Products', icon: 'pi pi-list' },
-//         { label: 'Messages', icon: 'pi pi-inbox' }
-//     ];
-
-//     return (
-//         <div className="card">
-//             <TabMenu model={items} />
-//         </div>
-//     )
-// }
 const ContentBox = styled("div")(({ theme }) => ({
   margin: "30px",
   [theme.breakpoints.down("sm")]: { margin: "16px" },
@@ -139,6 +124,9 @@ const Dashboard = () => {
           </TabPanel>
           <TabPanel header="Top Seller">
             <TemplateDemo />
+          </TabPanel>
+          <TabPanel header="Product Manage">
+            <ProductManage />
           </TabPanel>
         </TabView>
       </div>
