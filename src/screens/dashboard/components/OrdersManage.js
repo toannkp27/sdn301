@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 
 const OrderManage = () => {
     const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(10);
+    const rows = 10
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [visible, setVisible] = useState(false);
     const sampleData = [
@@ -220,16 +220,6 @@ const OrderManage = () => {
             ) : null
         )
     };
-    // const headerCard = (
-    //     <img alt="Card" src="path_to_your_card_image" style={{ width: '100%' }} />
-    // );
-
-    const footerCard = (
-        <span>
-            <Button label="Action 1" className="p-button-text" />
-            <Button label="Action 2" className="p-button-text" />
-        </span>
-    );
     const OrderDetail = (obj) => {
         const product = obj && obj.products ? obj.products : null
         return (
@@ -378,11 +368,8 @@ const OrderManage = () => {
                     </div>
                     <Card
                         title="VISA CARD"
-                        // subTitle={footerCard}
                         style={{ width: '30rem' }}
                         className="ui-card-shadow"
-                    // footer={footerCard}
-                    // header={headerCard}
                     >
                         <p style={{ fontFamily: "Lucida Console", fontSize: "25px" }}>{obj.payment_info.card_number}</p>
                         <div>VALID THRU <p style={{ display: "inline-block", fontSize: "22px", fontFamily: "Lucida Console" }}>{obj.payment_info.expiration_date}</p></div>
