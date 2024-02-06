@@ -4,14 +4,11 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function TemplateDemo() {
-    // const [products, setProducts] = useState([]);
-
-    // useEffect(() => {
-    //     ProductService.getProductsMini().then((data) => setProducts(data));
-    // }, []);
+    const [first, setFirst] = useState(0);
+    const [rows, setRows] = useState(10);
     const products = [
         {
             id: 1,
@@ -111,11 +108,19 @@ export default function TemplateDemo() {
             <Button icon="pi pi-refresh" rounded raised />
         </div>
     );
-    const footer = `In total there are ${products ? products.length : 0} products.`;
 
     return (
         <div className="w-full">
-            <DataTable value={products} header={header} footer={footer} >
+            <DataTable
+                value={products}
+                header={header}
+                first={first}
+                rows={rows}
+                onPage={(e) => setFirst(e.first)}
+                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                paginator
+                currentPageReportTemplate={`In total there are ${products ? products.length : 0} users.`}
+            >
                 <Column field="name" header="Name"></Column>
                 <Column header="Image" body={imageBodyTemplate}></Column>
                 <Column field="price" header="Price" body={priceBodyTemplate}></Column>

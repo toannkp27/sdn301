@@ -10,6 +10,7 @@ import StatCards from "./dashboard/shared/StatCards";
 import StatCards2 from "./dashboard/shared/StatCards2";
 import TopSellingTable from "./dashboard/shared/TopSellingTable";
 import UpgradeCard from "./dashboard/shared/UpgradeCard";
+import OrderManage from "./OrdersManage";
 import ProductManage from "./ProductManage";
 import TemplateDemo from "./TopSeller";
 import UserManage from "./UserManage";
@@ -131,6 +132,9 @@ const Dashboard = () => {
           </TabPanel>
           <TabPanel header="User Manage">
             <UserManage />
+          </TabPanel>
+          <TabPanel header="Order Manage">
+            <OrderManage />
           </TabPanel>
         </TabView>
       </div>

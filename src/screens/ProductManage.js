@@ -266,7 +266,6 @@ const ProductManage = () => {
                 <Column header="Units in Stock" field="unitInStock"></Column>
                 <Column header="Status" body={statusBodyTemplate}></Column>
             </DataTable>
-
         </div>
     );
 }
