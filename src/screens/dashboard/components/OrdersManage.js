@@ -217,7 +217,9 @@ const OrderManage = () => {
                 <Tag className=' mt-2 w-5rem h-2rem' severity="success" value="Complete"></Tag>
             ) : status === 'Cancel' ? (
                 <Tag className=' mt-2 w-5rem h-2rem' severity="danger" value="Cancel"></Tag>
-            ) : null
+            ) : (
+                <Tag className=' mt-2 w-5rem h-2rem' severity="warning" value="Shipping"></Tag>
+            )
         )
     };
     const OrderDetail = (obj) => {
@@ -353,18 +355,6 @@ const OrderManage = () => {
                         <label className="text-4xl w-full mb-2">
                             Payment Information
                         </label>
-
-                        {/* <div className="w-full ">
-                            <div>
-                                Address : <strong>{obj.shipping_info.address}</strong>
-                            </div>
-                            <div>
-                                Carrier : <strong>{obj.shipping_info.carrier}</strong>
-                            </div>
-                            <div>
-                                Tracking Number : <strong>{obj.shipping_info.tracking_number}</strong>
-                            </div>
-                        </div> */}
                     </div>
                     <Card
                         title="VISA CARD"
@@ -396,7 +386,7 @@ const OrderManage = () => {
                 <Column field="order_date" header="Order date" body={(rowData) => TimeBody(rowData.order_date)}></Column>
                 <Column field="customer_name" header="Customer Name"></Column>
                 <Column field="total_cost" header="Total Cost" body={(rowData) => priceBodyTemplate(rowData.total_cost)}></Column>
-                <Column field="status" header="Status" ></Column>
+                <Column field="status" header="Status" body={(rowData) => statusBodyTemplate(rowData.status)}></Column>
                 <Column field="payment_method" header="Payment Method"></Column>
                 <Column field="description" header="Description"></Column>
                 <Column field="estimated_delivery_date" header="Estimated Delivery Date" body={(rowData) => TimeBody(rowData.estimated_delivery_date)} ></Column>
