@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 
 const ProductManage = () => {
     const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(10);
+    const rows = 10
     const products = [
         {
             id: 1,
