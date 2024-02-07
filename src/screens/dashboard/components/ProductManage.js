@@ -4,10 +4,45 @@ import { DataTable } from 'primereact/datatable';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import React, { useState } from 'react';
+import { useGetParams } from '../../hooks';
+import { Dropdownz, GridForm, Inputz } from './forrm/ForrmList';
+const Header = ({ setParams }) => {
+    const [filter, setFilter] = useState({ key_search: '', floor: '' })
 
+    return (
+        <>
+            <div className="flex flex-wrap align-items-center justify-content-between gap-2 m-2">
+                <span className="text-3xl text-900 font-bold">Products Manage</span>
+            </div>
+            <div className='m-3'>
+                <GridForm setParams={setParams} filter={filter} setFilter={setFilter} >
+                    <div class="formgrid grid m-3">
+                        <div class="field col">
+                            <Inputz
+                                value={filter.key_search}
+                                placeholder="Find by name"
+                                onChange={(e) => setFilter({ ...filter, key_search: e.target.value })}
+                            />
+                        </div>
+                        <div class="field col">
+                            <Dropdownz
+                                value={filter.status}
+                                // options={status}
+                                onChange={(e) => setFilter({ ...filter, status: e.target.value })}
+                                placeholder="Status"
+                            />
+                        </div>
+                    </div>
+                </GridForm>
+            </div>
+        </>
+    )
+}
 const ProductManage = () => {
     const [first, setFirst] = useState(0);
     const rows = 10;
+    const initParam = useGetParams()
+    const [params, setParams] = useState(initParam)
     const products = [
         {
             id: 1,
@@ -201,7 +236,7 @@ const ProductManage = () => {
             unitInStock: 10
         },
     ]
-
+    console.log(params);
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
@@ -237,20 +272,13 @@ const ProductManage = () => {
                 return null;
         }
     };
-
-    const header = (
-        <div className="flex flex-wrap align-items-center justify-content-between gap-2">
-            <span className="text-xl text-900 font-bold">Products Manage</span>
-            {/* <Button icon="pi pi-refresh" rounded raised /> */}
-        </div>
-    );
-
     return (
         <div className="w-full border-round border-solid border-1 surface-border">
+            <Header setParams={setParams} />
             <DataTable
                 className='m-2'
                 value={products}
-                header={header}
+                // header={header}
                 first={first}
                 rows={rows}
                 onPage={(e) => setFirst(e.first)}
