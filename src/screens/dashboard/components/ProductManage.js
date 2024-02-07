@@ -243,7 +243,6 @@ const ProductManage = () => {
             unitInStock: 10
         },
     ]
-    console.log(params);
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };

@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 export default function MenuBar() {
     const [anchorEl, setAnchorEl] = useState(null)
     const itemRenderer = (item, options) => {
-        console.log(item);
         if (item.root) {
             return (
                 <Link to={item.route} className="flex align-items-center cursor-pointer px-3 py-2 overflow-hidden relative font-semibold text-lg uppercase p-ripple hover:surface-ground" style={{ borderRadius: '2rem' }}>
