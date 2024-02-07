@@ -2,9 +2,9 @@ import { Card, Grid, styled, useTheme } from "@mui/material";
 import { TabPanel, TabView } from "primereact/tabview";
 import React, { Fragment } from "react";
 import { Container } from "react-bootstrap";
-import { PersonFill, Search } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logoooo.png";
+import MenuBar from "../../../components/MenuBar";
 import DoughnutChart from "../shared/Doughnut";
 import StatCards from "../shared/StatCards";
 import StatCards2 from "../shared/StatCards2";
@@ -44,7 +44,7 @@ const Dashboard = () => {
   return (
     <>
       <Container fluid>
-        <div class="grid mt-2 surface-ground">
+        <div class="grid mt-2 surface-ground p-3 surface-0 shadow-2">
           <div class="col-3 flex align-items-center justify-content-center">
             <Link to={"/"}>
               <img
@@ -55,16 +55,8 @@ const Dashboard = () => {
               />
             </Link>
           </div>
-          <div class="col-6"></div>
-          <div class="col-3">
-            <div className="grid justify-content-end m-5">
-              <div className="ml-5">
-                <Search size={25} />
-              </div>
-              <div className="ml-5">
-                <PersonFill size={25} />
-              </div>
-            </div>
+          <div class="col-9">
+            <MenuBar />
           </div>
         </div>
       </Container>
