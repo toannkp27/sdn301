@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 
 const ProductManage = () => {
     const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(10);
+    const rows = 10;
     const products = [
         {
             id: 1,
@@ -258,7 +258,7 @@ const ProductManage = () => {
                 paginator
                 currentPageReportTemplate={`In total there are ${products ? products.length : 0} products.`}
             >
-                <Column field="name" header="Name" style={{minWidth: "15rem"}}></Column>
+                <Column field="name" header="Name" style={{ minWidth: "15rem" }}></Column>
                 <Column header="Image" body={imageBodyTemplate}></Column>
                 <Column field="price" header="Price" body={priceBodyTemplate}></Column>
                 <Column field="category" header="Category"></Column>

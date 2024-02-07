@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 const UserManage = () => {
     const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(10);
+    const rows = 10;
     const sampleData = [
         {
             "id": 1,
