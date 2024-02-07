@@ -180,18 +180,18 @@ const Detail = () => {
             <div className="mt-2">Số lượng:</div>
             <div className="mt-2">
               <Button
-                className=" bg-white text-green-600 h-2rem w-4rem border-round border-2 border-green-600"
+                className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
                 label="-"
                 onClick={decreaseQuantity}
               />
               <InputText
-                className="h-2rem w-4rem border-round border-2 border-green-600"
+                className="h-4rem w-4rem border-round border-2 border-green-600"
                 style={{ textAlign: "center" }}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
               />
               <Button
-                className=" bg-white text-green-600 h-2rem w-4rem border-round border-2 border-green-600"
+                className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
                 label="+"
                 onClick={increaseQuantity}
               />

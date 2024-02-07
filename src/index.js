@@ -4,10 +4,11 @@ import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import 'primeflex/primeflex.css';
+import 'primeicons/primeicons.css'; // icons
+import 'primereact/resources/primereact.min.css'; // core css
+import 'primereact/resources/themes/saga-blue/theme.css'; // theme
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

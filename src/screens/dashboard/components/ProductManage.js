@@ -14,25 +14,32 @@ const Header = ({ setParams }) => {
             <div className="flex flex-wrap align-items-center justify-content-between gap-2 m-2">
                 <span className="text-3xl text-900 font-bold">Products Manage</span>
             </div>
+            <hr />
             <div className='m-3'>
-                <GridForm setParams={setParams} filter={filter} setFilter={setFilter} >
-                    <div class="formgrid grid m-3">
-                        <div class="field col">
-                            <Inputz
-                                value={filter.key_search}
-                                placeholder="Find by name"
-                                onChange={(e) => setFilter({ ...filter, key_search: e.target.value })}
-                            />
-                        </div>
-                        <div class="field col">
-                            <Dropdownz
-                                value={filter.status}
-                                // options={status}
-                                onChange={(e) => setFilter({ ...filter, status: e.target.value })}
-                                placeholder="Status"
-                            />
-                        </div>
-                    </div>
+                <GridForm setParams={setParams} filter={filter} setFilter={setFilter} className="lg:col-12">
+                    <Inputz
+                        value={filter.key_search}
+                        placeholder="Find by name"
+                        onChange={(e) => setFilter({ ...filter, key_search: e.target.value })}
+                    />
+                    <Dropdownz
+                        value={filter.status}
+                        // options={status}
+                        onChange={(e) => setFilter({ ...filter, status: e.target.value })}
+                        placeholder="Status"
+                    />
+                    <Dropdownz
+                        value={filter.status}
+                        // options={status}
+                        onChange={(e) => setFilter({ ...filter, status: e.target.value })}
+                        placeholder="Category"
+                    />
+                    <Dropdownz
+                        value={filter.status}
+                        // options={status}
+                        onChange={(e) => setFilter({ ...filter, status: e.target.value })}
+                        placeholder="Reviews"
+                    />
                 </GridForm>
             </div>
         </>
@@ -275,6 +282,7 @@ const ProductManage = () => {
     return (
         <div className="w-full border-round border-solid border-1 surface-border">
             <Header setParams={setParams} />
+            <hr />
             <DataTable
                 className='m-2'
                 value={products}

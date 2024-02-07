@@ -1,29 +1,13 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { Search, PersonFill, Cart4 } from "react-bootstrap-icons";
-import logo from "../assets/images/logoooo.png";
+import { Container } from "react-bootstrap";
+import { PersonFill, Search } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logoooo.png";
 const HeaderBar = () => {
   return (
     <Container fluid>
-      <Row
-        className="py-2 "
-        style={{
-          backgroundColor: "white",
-          padding: "15px" /* Khoảng cách giữa nội dung và viền của header */,
-          textAlign: "center",
-          width: "100%",
-          position: "fixed" /* Đặt header ở vị trí cố định */,
-          top: "0" /* Đặt header ở đỉnh của trang */,
-          zIndex: "1000",
-          boxShadow:
-            "0 4px 8px rgba(0, 0, 0, 0.1)" /* Thêm box shadow dưới header */,
-        }}
-      >
-        <Col
-          md={4}
-          className="d-flex align-items-center justify-content-center  "
-        >
+      <div class="grid mt-2 surface-ground">
+        <div class="col-3 flex align-items-center justify-content-center">
           <Link to={"/"}>
             <img
               src={logo}
@@ -32,40 +16,36 @@ const HeaderBar = () => {
               style={{ objectFit: "contain" }}
             />
           </Link>
-        </Col>
-        <Col md={4} className="d-flex  align-items-center">
-          <Row>
-            <Col md={3}>
-              <h6>PAGES</h6>
-            </Col>
-            <Col md={3} className="px-5">
-              <h6>PROMOTION</h6>
-            </Col>
-            <Col md={3} className="px-5">
-              <h6>BLOG</h6>
-            </Col>
-            <Col md={3}>
-              <h6>CONTACT</h6>
-            </Col>
-          </Row>
-        </Col>
-        <Col
-          md={4}
-          className="d-flex justify-content-end align-items-center pe-5"
-        >
-          <Row>
-            <Col md={4}>
+        </div>
+        <div class="col-6">
+          <div className="max-w-30rem">
+            <div className="grid">
+              <div className="col-3 flex align-items-center justify-content-center">
+                <h3>PAGES</h3>
+              </div>
+              <div className="col-3 flex align-items-center justify-content-center">
+                <h3>PROMOTION</h3>
+              </div>
+              <div className="col-3 flex align-items-center justify-content-center">
+                <h3>BLOG</h3>
+              </div>
+              <div className="col-3 flex align-items-center justify-content-center">
+                <h3>CONTACT</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div className="grid justify-content-end m-5">
+            <div className="ml-5">
               <Search size={25} />
-            </Col>
-            <Col md={4}>
+            </div>
+            <div className="ml-5">
               <PersonFill size={25} />
-            </Col>
-            <Col md={4}>
-              <Cart4 size={25} />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+            </div>
+          </div>
+        </div>
+      </div>
     </Container>
   );
 };
