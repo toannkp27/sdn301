@@ -1,3 +1,4 @@
+import { Button } from "primereact/button";
 import React from "react";
 import { Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -16,7 +17,7 @@ import "../styles/Homepage.css";
 
 const Homepage = () => {
   return (
-    <Container fluid style={{ paddingTop: "96px", marginRight: "0" }}>
+    <Container fluid style={{ paddingTop: "15px", marginRight: "0" }}>
       <BannerComponent
         arrImages={[banner3, banner4, banner5, banner2, banner1]}
       />
@@ -25,86 +26,47 @@ const Homepage = () => {
           className="grid mt-2 surface-ground p-3 surface-0 shadow-2"
           style={{ margin: 0 }}
         >
-          <div className="col-3 flex align-items-center justify-content-center">
+          <div className="col-4 flex flex-column align-items-center justify-content-center">
             <Image
+              className="border-round-md"
               src={filter1}
-              style={{ objectFit: "contain", height: "250px" }}
-              alt="filter"
+              alt="man"
+              height="300"
             />
-            <button
-              style={{
-                position: "absolute",
-                top: "40%",
-                left: "30%",
-                padding: "0.3em 1.5em",
-                fontSize: "1.3em",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              <h4>
-                <a
-                  href="./listP"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  MEN'S
-                </a>
-              </h4>
-            </button>
+
+            <Button
+              className="mt-3 surface-0 text-2xl text-blue-700 w-8rem"
+              label="Man"
+              rounded
+            />
           </div>
-          <div className="col-3 flex align-items-center justify-content-center">
+          <div className="col-4 flex flex-column align-items-center justify-content-center">
             <Image
+              className="border-round-md"
               src={filter2}
-              style={{ objectFit: "contain", height: "250px" }}
-              alt="filter"
+              alt="women"
+              height="300"
             />
-            <button
-              style={{
-                position: "absolute",
-                top: "40%",
-                left: "30%",
-                padding: "0.3em 1.5em",
-                fontSize: "1.3em",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              <h4>
-                <a
-                  href="./listP"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  WOMEN'S
-                </a>
-              </h4>
-            </button>
+
+            <Button
+              className="mt-3 surface-0 text-2xl text-blue-700 w-8rem"
+              label="Woman"
+              rounded
+            />
           </div>
-          <div className="col-3 flex align-items-center justify-content-center">
+          <div className="col-4 flex flex-column align-items-center justify-content-center">
             <Image
+              className="border-round-md"
               src={filter3}
-              style={{ objectFit: "cover", height: "250px", width: "377px" }}
-              alt="filter"
+              alt="kid"
+              height="300"
             />
-            <button
-              style={{
-                position: "absolute",
-                top: "40%",
-                left: "30%",
-                padding: "0.3em 2em",
-                fontSize: "1.3em",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              <h4>
-                <a
-                  href="./listP"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  KID'S
-                </a>
-              </h4>
-            </button>
+
+            <Button
+              className="mt-3 surface-0 text-2xl text-blue-700 w-8rem"
+              label="Kid"
+              rounded
+            />
           </div>
         </div>
         <div className="pt-5 pb-5">
