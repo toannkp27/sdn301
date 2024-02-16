@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 import React from "react";
 import { Container, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import banner1 from "../assets/images/banner1.png";
 import banner2 from "../assets/images/banner2.png";
 import banner3 from "../assets/images/banner3.png";
@@ -16,6 +16,18 @@ import BannerComponent from "../components/BannerComponent";
 import "../styles/Homepage.css";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+  const onClick = (category) => {
+    if ((category = "man")) {
+      navigate("/listproduct");
+    }
+    if ((category = "women")) {
+      navigate("/listproduct");
+    }
+    if ((category = "kid")) {
+      navigate("/listproduct");
+    }
+  };
   return (
     <Container fluid style={{ paddingTop: "15px", marginRight: "0" }}>
       <BannerComponent
@@ -38,6 +50,7 @@ const Homepage = () => {
               className="mt-3 surface-0 text-2xl text-blue-700 w-8rem"
               label="Man"
               rounded
+              onClick={onClick}
             />
           </div>
           <div className="col-4 flex flex-column align-items-center justify-content-center">
@@ -52,6 +65,7 @@ const Homepage = () => {
               className="mt-3 surface-0 text-2xl text-blue-700 w-8rem"
               label="Woman"
               rounded
+              onClick={onClick}
             />
           </div>
           <div className="col-4 flex flex-column align-items-center justify-content-center">
@@ -66,6 +80,7 @@ const Homepage = () => {
               className="mt-3 surface-0 text-2xl text-blue-700 w-8rem"
               label="Kid"
               rounded
+              onClick={onClick}
             />
           </div>
         </div>
