@@ -28,6 +28,9 @@ const Homepage = () => {
       navigate("/listproduct");
     }
   };
+  const onToggle = (id) => {
+    
+  };
   return (
     <Container fluid style={{ paddingTop: "15px", marginRight: "0" }}>
       <BannerComponent
