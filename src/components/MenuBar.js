@@ -50,6 +50,7 @@ export default function MenuBar() {
         {
             label: 'List Product',
             root: true,
+            route: "/listproduct",
             template: itemRenderer
         },
         {

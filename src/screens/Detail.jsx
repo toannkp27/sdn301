@@ -8,9 +8,9 @@ import { useState } from "react";
 const Detail = () => {
   const [value, setValue] = useState(1);
   const items = [
-    { label: "Nữ" },
-    { label: "Chạy" },
-    { label: "GIÀY ULTRABOOST 22" },
+    { label: "Women" },
+    { label: "Run" },
+    { label: "ULTRABOOST 22" },
   ];
   const home = { icon: "pi pi-home", url: "http://localhost:3000/" };
   const responsiveOptions = [
