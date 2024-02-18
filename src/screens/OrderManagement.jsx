@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Container, Image, Table } from "react-bootstrap";
-import { PenFill, Trash3Fill } from "react-bootstrap-icons";
+import { Container, Image, Table } from "react-bootstrap";
 import nike from "../assets/images/nike.jpg";
 
 const OrderManagement = () => {
