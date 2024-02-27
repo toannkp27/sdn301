@@ -1,6 +1,6 @@
 import React from 'react'
-import HeaderBar from '../components/HeaderBar'
 import Footer from '../components/Footer'
+import HeaderBar from '../components/HeaderBar'
 
 const DefaultLayout = ({children}) => {
   return (

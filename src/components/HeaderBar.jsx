@@ -1,51 +1,33 @@
-import React from 'react'
-import { Col, Row} from 'react-bootstrap'
-import {Search,PersonFill, Cart4} from 'react-bootstrap-icons'
+import React, { useState } from "react";
+import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import logo from "../assets/images/logoooo.png";
+import MenuBar from "./MenuBar";
 const HeaderBar = () => {
-  return (
-    <div>
-      <Row className='py-5'>
-        <Col col={4} className='d-flex align-items-center justify-content-center  '>
-          COLOSHOP
-        </Col>
-        <Col col={4}>
-          <Row>
-            <Col col={2}>
-              HOME
-            </Col>
-            <Col col={2}>
-              SHOP
-            </Col>
-            <Col col={2}>
-              PROMOTION
-            </Col>
-            <Col col={2}>
-              PAGES
-            </Col>
-            <Col col={2}>
-              BLOG
-            </Col>
-            <Col col={2}>
-              CONTACT
-            </Col>
-          </Row>
-        </Col>
-        <Col col={4} className='d-flex justify-content-between'>
-          <Row>
-            <Col col={4}>
-              <Search/>
-            </Col>
-            <Col col={4}>
-            <PersonFill/>
-            </Col>
-            <Col col={4}>
-                <Cart4/>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </div>
-  )
-}
+  const [menuVisible, setMenuVisible] = useState(false);
 
-export default HeaderBar
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+  return (
+    <Container fluid>
+      <div class="grid mt-2 surface-ground p-3 surface-0 shadow-2">
+        <div class="col-3 flex align-items-center justify-content-center">
+          <Link to={"/"}>
+            <img
+              src={logo}
+              height={80}
+              alt="logo"
+              style={{ objectFit: "contain" }}
+            />
+          </Link>
+        </div>
+        <div class="col-9">
+          <MenuBar />
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+export default HeaderBar;

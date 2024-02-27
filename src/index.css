@@ -1,6 +1,174 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
+@import "../node_modules/primereact/resources/themes/mdc-light-indigo/theme.css";
+@import "../node_modules/primereact/resources/primereact.min.css";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeflex/primeflex.css";
+
+/* @import '~bootstrap/dist/css/bootstrap.min.css'; */
+
+a {
+  text-decoration: none !important;
+}
 body {
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  --primary-color: rgb(60, 141, 188);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3c8dbc !important;
+  border-radius: 0 !important;
+  width: 12px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 0 !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.card {
+  padding: 1rem !important;
+  border-radius: 0 !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.card .card {
+  box-shadow: none;
+}
+
+.p-dialog-content .card {
+  box-shadow: none !important;
+}
+
+.p-button-sm {
+  min-height: 40px !important;
+  min-width: 100px !important;
+  font-weight: 600;
+}
+
+.p-tree {
+  padding: 1rem 0.5rem 1rem 0;
+}
+
+.p-tree .p-treenode-children {
+  padding: 0 0 0 0.2rem;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.75rem !important;
+  width: 8rem;
+  max-width: 20rem;
+}
+.p-datatable .p-datatable-thead > tr > th {
+  padding: 0.75rem !important;
+  min-width: 8rem;
+}
+.p-datatable .p-datatable-thead > tr > th {
+  text-align: center !important;
+}
+
+.p-datatable .p-column-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center !important;
+}
+
+.p-datatable td {
+  text-align: center !important;
+  word-wrap: break-word;
+}
+
+.p-tabview .p-tabview-panels {
+  padding: 1rem 0;
+}
+
+.bg-color {
+  background-color: #f8f9fa !important;
+}
+
+.p-dialog-title {
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+}
+
+.p-splitbutton {
+  min-height: 40px !important;
+  min-width: 200px;
+}
+
+.p-button-label {
+  font-weight: 600 !important;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: #0288d1 !important;
+  border-color: #0288d1 !important;
+}
+
+.p-tabview-title {
+  font-weight: 600 !important;
+}
+
+.p-dialog-header {
+  background-color: #f8f9fa !important;
+}
+
+.p-button {
+  background-color: #0288d1;
+  border-color: #0288d1;
+}
+
+.p-inputtext {
+  min-height: 50px !important;
+}
+
+.card .card .header__list-form .text-xl {
+  font-size: 1.1rem !important;
+}
+
+.tox-tinymce {
+  border-radius: 0px !important;
+  border: 1px solid #ced4da !important;
+}
+
+.change-disabled .p-disabled,
+.change-disabled .p-component:disabled {
+  background-color: #f2f2f2 !important;
+  opacity: 1 !important;
+  cursor: crosshair;
+}
+
+.p-component .p-dropdown-filter-container .p-dropdown-filter {
+  max-height: 40px !important;
+}
+.deleted-row {
+  text-decoration: line-through;
+  background-color: #ebcccc !important;
+}
+.adjustmentVoucher-row {
+  background-color: #b5b3b3 !important;
+}
