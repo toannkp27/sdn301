@@ -65,15 +65,16 @@ export default function MenuBar() {
             root: true,
             template: itemRenderer
         },
-        {
-            label: 'Dashboard',
-            root: true,
-            route: "/dashboard",
-            template: itemRenderer
-        },
     ];
-
-
+    const newItem = {
+        label: 'Dashboard',
+        root: true,
+        route: "/dashboard",
+        template: itemRenderer
+    };
+    if ((1 + 1) === 2) {
+        items.push(newItem);
+    }
     const end = (props) => {
         const { setVisible } = props
 
