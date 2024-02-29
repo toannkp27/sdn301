@@ -1,4 +1,5 @@
 import AddProduct from "../screens/AddProduct";
+import Blog from "../screens/Blog";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
 import Detail from "../screens/Detail";
@@ -50,6 +51,11 @@ export const routers = [
   {
     path: "/listproduct",
     page: ListProducts,
+    isShowHeader: true,
+  },
+  {
+    path: "/blog",
+    page: Blog,
     isShowHeader: true,
   },
   {
