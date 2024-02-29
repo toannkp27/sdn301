@@ -7,7 +7,7 @@ import Homepage from "../screens/Homepage";
 import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
 import OrderManagement from "../screens/OrderManagement";
-import Product from "../screens/Product";
+import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
 import UserProfile from "../screens/UserProfile";
 
@@ -48,8 +48,8 @@ export const routers = [
     isShowHeader: true,
   },
   {
-    path: "/product",
-    page: Product,
+    path: "/listproduct",
+    page: ListProducts,
     isShowHeader: true,
   },
   {

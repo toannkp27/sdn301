@@ -8,9 +8,9 @@ import { useState } from "react";
 const Detail = () => {
   const [value, setValue] = useState(1);
   const items = [
-    { label: "Nữ" },
-    { label: "Chạy" },
-    { label: "GIÀY ULTRABOOST 22" },
+    { label: "Women" },
+    { label: "Run" },
+    { label: "ULTRABOOST 22" },
   ];
   const home = { icon: "pi pi-home", url: "http://localhost:3000/" };
   const responsiveOptions = [
@@ -180,18 +180,18 @@ const Detail = () => {
             <div className="mt-2">Số lượng:</div>
             <div className="mt-2">
               <Button
-                className=" bg-white text-green-600 h-2rem w-4rem border-round border-2 border-green-600"
+                className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
                 label="-"
                 onClick={decreaseQuantity}
               />
               <InputText
-                className="h-2rem w-4rem border-round border-2 border-green-600"
+                className="h-4rem w-4rem border-round border-2 border-green-600"
                 style={{ textAlign: "center" }}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
               />
               <Button
-                className=" bg-white text-green-600 h-2rem w-4rem border-round border-2 border-green-600"
+                className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
                 label="+"
                 onClick={increaseQuantity}
               />

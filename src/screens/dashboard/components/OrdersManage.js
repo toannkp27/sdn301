@@ -28,7 +28,6 @@ const OrderManage = () => {
             "transport_fee": 10,
             "tax": 5,
             "discount": 15
-
         },
         {
             "id": 2,
@@ -166,6 +165,7 @@ const OrderManage = () => {
                 <Button
                     type="button"
                     icon="pi pi-eye"
+                    className='bg-white'
                     rounded
                     outlined
                     onClick={() => handleEyeClick(rowData)}
