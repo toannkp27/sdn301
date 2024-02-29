@@ -52,6 +52,7 @@ const Header = ({ setParams }) => {
 }
 const ProductManage = () => {
     const [first, setFirst] = useState(0);
+    const [visibledDialog, setVisibledDialog] = useState(false);
     const rows = 10;
     const initParam = useGetParams()
     const [params, setParams] = useState(initParam)
@@ -495,6 +496,16 @@ const ProductManage = () => {
         <div className="w-full border-round border-solid border-1 surface-border">
             <Header setParams={setParams} />
             <hr />
+            {/* <Button
+                onClick={() => setVisibledDialog(true)}
+                icon="pi pi-plus"
+                label="Add new"
+                size="small"
+                severity="info"
+                raised
+                type="button"
+                className='m-2'
+            /> */}
             <DataTable
                 className='m-2'
                 value={products}

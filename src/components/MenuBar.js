@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function MenuBar() {
+
   const [anchorEl, setAnchorEl] = useState(null);
   const itemRenderer = (item, options) => {
     if (item.root) {
@@ -87,6 +88,7 @@ export default function MenuBar() {
 
   const end = (props) => {
     const { setVisible } = props;
+
 
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
