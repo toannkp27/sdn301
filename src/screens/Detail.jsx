@@ -112,7 +112,10 @@ const Detail = () => {
   };
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ paddingTop: "113px", paddingBottom: "20px" }}
+    >
       <div className="m-2 w-full">
         <BreadCrumb model={items} home={home} />
       </div>
