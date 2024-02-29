@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 
 const AddProduct = () => {
   return (
-    <Container className="add-product">
+    <Container className="add-product" style={{paddingTop:'113px'}}>
       <Row>
         <h5>Add Product</h5>
         <p>Add your product for customer</p>

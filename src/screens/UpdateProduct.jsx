@@ -3,7 +3,7 @@ import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
 const UpdateProduct = () => {
   return (
-    <Container>
+    <Container style={{paddingTop:'113px'}}>
         <h3 className="text-center">UPDATE SHOES</h3>
       <Row className="justify-content-center mb-4">
         <Col md={9}>
