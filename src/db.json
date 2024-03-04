@@ -1,0 +1,53 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "brand": "Adidas",
+        "model": "Ultraboost 21",
+        "options": [
+          {
+            "color": "Black",
+            "size": "US 8",
+            "price": 2500000
+          },
+          {
+            "color": "White",
+            "size": "US 9",
+            "price": 2700000
+          },
+          {
+            "color": "Blue",
+            "size": "US 10",
+            "price": 2900000
+          }
+        ],
+        "description": "The Adidas Ultraboost 21 with the latest cushioning technology, designed for running enthusiasts.",
+        "specs": {
+          "upperMaterial": "Primeknit",
+          "midsole": "Boost",
+          "outsole": "Continental Rubber",
+          "closure": "Lace-up",
+          "weight": "Approximately 340g (Size 8)",
+          "gender": "Unisex"
+        },
+        "images": [
+          {
+            "imageUrl": "https://cdn.example.com/shoes/ultraboost-21-black.jpg",
+            "alt": "Ultraboost 21 Black",
+            "thumbnailUrl": "https://cdn.example.com/thumbnails/ultraboost-21-black-thumbnail.jpg"
+          },
+          {
+            "imageUrl": "https://cdn.example.com/shoes/ultraboost-21-white.jpg",
+            "alt": "Ultraboost 21 White",
+            "thumbnailUrl": "https://cdn.example.com/thumbnails/ultraboost-21-white-thumbnail.jpg"
+          },
+          {
+            "imageUrl": "https://cdn.example.com/shoes/ultraboost-21-blue.jpg",
+            "alt": "Ultraboost 21 Blue",
+            "thumbnailUrl": "https://cdn.example.com/thumbnails/ultraboost-21-blue-thumbnail.jpg"
+          }
+        ]
+      }
+    ]
+  }
+  
