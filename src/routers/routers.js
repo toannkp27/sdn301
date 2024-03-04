@@ -1,3 +1,4 @@
+
 import AddProduct from "../screens/AddProduct";
 import Blog from "../screens/Blog";
 import Category from "../screens/Category";
@@ -7,6 +8,7 @@ import EditProfile from "../screens/EditProfile";
 import Homepage from "../screens/Homepage";
 import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
+import UserList from "../screens/UserList";
 import OrderManagement from "../screens/OrderManagement";
 import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
@@ -67,6 +69,14 @@ export const routers = [
     path: "/ordermanagement",
     page: OrderManagement,
     isShowHeader: true,
+  },
+  {
+    path: '/blog',
+    page: Blog
+  },
+  {
+    path: '/user',
+    page: UserList
   },
   {
     path: "/userprofile",
