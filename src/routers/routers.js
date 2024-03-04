@@ -1,4 +1,5 @@
 import AddProduct from "../screens/AddProduct";
+import Blog from "../screens/Blog";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
 import Detail from "../screens/Detail";
@@ -36,6 +37,12 @@ export const routers = [
     path: "*",
     page: NotFoundPage,
   },
+
+  {
+    path: "/listP",
+    page: ListProduct,
+    isShowHeader: false,
+  },
   {
     path: "/addproduct",
     page: AddProduct,
@@ -47,6 +54,11 @@ export const routers = [
     isShowHeader: true,
   },
   {
+    path: "/blog",
+    page: Blog,
+    isShowHeader: true,
+  },
+  {
     path: "/updateproduct",
     page: UpdateProduct,
     isShowHeader: true,
@@ -54,24 +66,16 @@ export const routers = [
   {
     path: "/ordermanagement",
     page: OrderManagement,
-    isShowHeader: true
+    isShowHeader: true,
   },
   {
     path: "/userprofile",
     page: UserProfile,
-    isShowHeader: true
-  }, {
+    isShowHeader: true,
+  },
+  {
     path: "/userprofile/editprofile",
     page: EditProfile,
-    isShowHeader: true
-  },
-
-
-  {
-    path: '/listP',
-    page: ListProduct,
-    isShowHeader: false
+    isShowHeader: true,
   }
-
 ];
-
