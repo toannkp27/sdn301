@@ -12,6 +12,7 @@ import UpdateProduct from "../screens/UpdateProduct";
 import UserProfile from "../screens/UserProfile";
 import LoginForm from "../screens/LoginForm";
 import RegisterForm from "../screens/RegisterForm";
+import CartShop from "../screens/Cart_Shop";
 export const routers = [
   {
     path: "/login",
@@ -21,6 +22,11 @@ export const routers = [
   {
     path: "/register",
     page: RegisterForm,
+    isShowHeader: false,
+  },
+  {
+    path: "/cart",
+    page: CartShop,
     isShowHeader: false,
   },
   {
