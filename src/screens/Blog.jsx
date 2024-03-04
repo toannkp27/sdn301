@@ -1,176 +1,112 @@
-// Blog.jsx
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, InputGroup, FormControl } from 'react-bootstrap';
-
-//Daay la file blog
+import { Card } from 'primereact/card';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 
 // Component Header
-const Header = () => {
-    return (
-       
-       <div style={{ marginLeft: '20px', paddingTop: '20px' }}>
-            <h1>Shoe Blog</h1>
-        </div>
-    );
-};
+const Header = () => <div style={{ marginLeft: '20px', paddingRight: '25px' }}><h1>Shoe Blog</h1></div>;
+
 
 //Component Footer
-const Footer = () => {
-    return (
-        <Container fluid className="footer-container" style={{ position: 'fixed', bottom: 0, width: '100%', zIndex: 100, display: 'flex', justifyContent: 'center' }}>
-            <p className="m-0">© 2024 Shoe Blog. All rights reserved.</p>
-        </Container>
-    );
-};
+const Footer = () => (
+    <div className="footer-container" style={{ position: 'fixed', bottom: 0, width: '100%', zIndex: 100, display: 'flex', justifyContent: 'center' }}>
+        <p className="m-0">© 2024 Shoe Blog. All rights reserved.</p>
+    </div>
+);
 
 // Component Blog
-
 const Blog = () => {
-    const [showFullContentConverse, setShowFullContentConverse] = useState(false);
-    const [showFullContentAdidas, setShowFullContentAdidas] = useState(false);
-    const [showFullContentVans, setShowFullContentVans] = useState(false);
-    const [showFullContentNike, setShowFullContentNike] = useState(false);
+    const [showFullContent, setShowFullContent] = useState({
+        Converse: false,
+        Adidas: false,
+        Vans: false,
+        Nike: false,
+    });
 
-
-    const toggleContentConverse = () => {
-        setShowFullContentConverse(!showFullContentConverse);
+    const shoeImages = {
+        Converse: 'https://hanoi26sneaker.com/wp-content/uploads/2023/06/Giay-Converse-Chuck-70-Club-House-HI-Utility-5.jpg',
+        Adidas: 'https://hanoi26sneaker.com/wp-content/uploads/2023/07/Giay-Adidas-Originals-Centennial-85-Low-White-Brown-IE2369.jpg   ',
+        Vans: 'https://ordixi.com/wp-content/uploads/2019/10/giay-vans-forgotten-bones-sk8-high-black-true-white-vnoa4bv6v8v2-1.jpg',
+        Nike: 'https://trungsneaker.com/wp-content/uploads/2022/12/giay-nike-court-vision-mid-smoke-grey-dn3577-002-3-1020x680.jpg',
     };
 
-    const toggleContentAdidas = () => {
-        setShowFullContentAdidas(!showFullContentAdidas);
+    const descriptions = {
+        Converse: {
+            short: "Giày Converse là...",
+            full: "Giày Converse là một trong những thương hiệu giày lâu đời và nổi tiếng bậc nhất trên thế giới. Với thiết kế đẹp, chất lượng tuyệt vời cùng khả năng marketing tốt, thương hiệu giày “Converse” đã thu hút được một lượng fans khổng lồ trên thế giới, trở thành 1 trong 5 thương hiệu giày được yêu thích nhất hiện tại."
+        },
+        Adidas: {
+            short: "Giày Adidas là...",
+            full: "Adidas (tiếng Đức: [ˈʔadiˌdas] ⓘ; cách điệu thành adidas từ năm 1949)là một tập đoàn đa quốc gia của Đức, được thành lập và có trụ sở tại Herzogenaurach, Bavaria, chuyên thiết kế và sản xuất giày dép, quần áo và phụ kiện. Đây là nhà sản xuất đồ thể thao lớn nhất ở châu Âu và lớn thứ hai trên thế giới, sau Nike. Đây là công ty cổ phần của Tập đoàn Adidas, bao gồm 8,33% cổ phần của câu lạc bộ bóng đá Bayern München,[7] và Runtastic, một công ty công nghệ thể dục của Áo. Doanh thu của Adidas cho năm 2018 được liệt kê là 21,915 tỷ euro."
+        },
+        Vans: {
+            short: "Giày Vans là...",
+            full: "Vans là một thương hiệu sản xuất giày, thời trang và phụ kiện nổi tiếng của Mỹ Công ty được thành lập năm 1966 bởi Paul và Jim Van Doren cùng đối tác là Gordon Lee và Serge Delia. Thương hiệu nổi tiếng toàn cầu và được xem là biểu tượng gắn liền với phong cách trượt ván đường phố. Ban đầu là một doanh nghiệp sản xuất giày và bán trực tiếp cho công chúng. Cái tên Vans đã sống qua gần 1 thế kỷ và vượt xa hơn trên toàn thế giới. Cho đến nay, Vans đã vươn mình thành thương hiệu được săn đón hàng đầu."
+        },
+        Nike: {
+            short: "Giày Nike là...",
+            full: "Nike là một trong những thương hiệu thể thao nổi tiếng nhất trên thế giới. Từ học sinh tiểu học cho đến các vận động viên chuyên nghiệp, không ai có thể phủ nhận sức hấp dẫn của Nike. Nếu bạn khảo sát xem có bao nhiêu người đã hoặc đang sở hữu các sản phẩm của Nike, thì con số này sẽ khiến bạn bất ngờ."
+        },
     };
-    const toggleContentVans = () => {
-        setShowFullContentVans(!showFullContentVans);
-    };
-    const toggleContentNike = () => {
-        setShowFullContentNike(!showFullContentNike);
+
+    const toggleContent = (brand) => {
+        setShowFullContent((prev) => ({ ...prev, [brand]: !prev[brand] }));
     };
 
     return (
-        <div style={{ paddingBottom: '60px' }}>
-            {/* Header Component */}
-            <Header />
-
-            {/* Main Content */}
-            <Container className="mt-5 pt-3">
-                <Row>
-                    <Col md={2}>
-                        {/* Left column */}
-                        <div>
-                            <h2>Categories</h2>
-                            <p>Fashion</p>
-                            <p>Style</p>
-                            <p>Season</p>
-                            <p>Other</p>
+        <div>
+            <div style={{ paddingBottom: '60px', display: 'flex', flexDirection: 'row', paddingTop: '50px' }}>
+                <div style={{ width: '67%', paddingRight: '5px', display: 'flex' }}> {/* Phần bên trái */}
+                    <Header />
+                    <Card title={`Giày Converse`} onClick={() => toggleContent('Converse')} style={{ marginBottom: '20px', flex: 1, paddingLeft: '5px' }}>
+                        <div style={{flexDirection: 'column' }}>
+                            <img src={shoeImages['Converse']} alt={'Converse'} style={{ width: '95%', marginBottom: '1rem', border: 'none', display:'flex' }} />
+                            <div style={{ maxWidth: '100%', paddingTop:'20px' }}>
+                                <p>{showFullContent['Converse'] ? descriptions['Converse'].full : descriptions['Converse'].short}</p>
+                            </div>
+                            <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer', padding: '5px 10px', borderRadius: '5px' }}>{showFullContent['Converse'] ? 'Thu gọn' : 'Đọc thêm'}</button>
                         </div>
-                    </Col>
-                    <Col md={5}>
-                        {/* Middle column */}
-                        <Row>
-                            <Col>
-                                <Card>
-                                {/* Card for Converse */}
-                                <Card className="custom-card">
-                                    <Card.Title className="custom-title">1. Giày CONVERSE</Card.Title>
-                                    <Card.Img
-                                        variant="top"
-                                        src="https://gcs.tripi.vn/public-tripi/tripi-feed/img/473702aSd/giay-converse-1148332.jpg"
-                                        className="custom-image"
-                                    />
-                                    <Card.Body>
-                                        <Card.Text>
-                                            {showFullContentConverse
-                                                ? `Là một trong những thương hiệu giày hot nhất, Converse đã cực kỳ khẳng định vị thế và uy tín của mình qua thời gian. Ra đời từ năm 1917, nhưng cho đến ngày nay, Converse vẫn không ngừng làm mê đắm giới trẻ Việt. ...`
-                                                : `Là một trong những thương hiệu giày hot nhất, Converse đã cực kỳ khẳng định ... `}
-                                        </Card.Text>
-                                        <span className={`read-more ${showFullContentConverse ? 'collapse' : ''}`} onClick={toggleContentConverse}>
-                                            {showFullContentConverse ? 'Thu gọn' : 'Đọc thêm'}
-                                        </span>
-                                    </Card.Body>
-                                </Card>
-                                </Card>
+                    </Card>
+                </div>
+                <div style={{ width: '50%', paddingLeft: '10px', display: 'flex', marginLeft:'50px' }}> 
+                    <Card title={`Giày Adidas`} onClick={() => toggleContent('Adidas')} style={{ marginBottom: '20px', flex: 1 }}>
+                        <div style={{ flexDirection: 'column' }}>
+                            <img src={shoeImages['Adidas']} alt={'Adidas'} style={{ width: '100%', marginBottom: '1rem', border: 'none' }} />
+                            <div style={{ maxWidth: '100%' }}>
+                                <p>{showFullContent['Adidas'] ? descriptions['Adidas'].full : descriptions['Adidas'].short}</p>
+                            </div>
+                            <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer', padding: '5px 5px', borderRadius: '5px' }}>{showFullContent['Adidas'] ? 'Thu gọn' : 'Đọc thêm'}</button>
+                        </div>
+                    </Card>
+                </div>
+            </div>
 
-                               {/* Add new product below Adidas */}
-                               <Card className="custom-card mt-3">
-                                <Card.Title className="custom-title">3. Giày Vans </Card.Title>
-                                    <Card.Img
-                                        variant="top"
-                                        src="https://drake.vn/image/catalog/H%C3%ACnh%20content/gi%C3%A0y-vans-nam-%C4%91%E1%BA%B9p/giay-vans-nam-dep-06.jpg"
-                                        // className="custom-image"
-                                        className="custom-image image-container"
-                                    />
-                                    <Card.Body>
-                                        <Card.Text>
-                                            {showFullContentVans
-                                                ? `Giày Vans vốn được biết đến là đôi giày dành cho bộ môn lướt ván - trào lưu mới thời bấy giờ. Dần dần, Vans được giới trẻ cực kỳ ưa chuộng và sử dụng như những đôi giày thể thao khác. 
-
-                                                Vans ra đời ngày 16 tháng 3 năm 1966 tại California, Mỹ do Paul Van Doren cùng các cộng sự của mình thành lập. Ngay từ phòng cách, thiết kế sản phẩm cũng có thể thấy được hình ảnh của những anh chàng Mỹ trẻ tuổi năng động, phá cách và khoẻ khoắn.`
-                                                : `Giày Vans vốn được biết đến là đôi giày dành cho bộ môn lướt ván - ... `}
-                                        </Card.Text>
-                                        <span className={`read-more ${showFullContentVans ? 'collapse' : ''}`} onClick={toggleContentVans}>
-                                            {showFullContentVans ? 'Thu gọn' : 'Đọc thêm'}
-                                        </span>
-                                    </Card.Body>
-                                    {/* Add product content here */}
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col md={5}>
-                        {/* Right column */}
-                        <Row>
-                            <Col>
-                                {/* Card for Adidas */}
-                                <Card>
-                                <Card className="custom-card">
-                                    <Card.Title className="custom-title">2. Giày ADIDAS</Card.Title>
-                                    <Card.Img
-                                        variant="top"
-                                        src="https://gcs.tripi.vn/public-tripi/tripi-feed/img/473702abm/4-adidas-18059.jpg"
-                                        className="custom-image"
-                                    />
-                                    <Card.Body>
-                                        <Card.Text>
-                                            {showFullContentAdidas
-                                                ? `Adidas là biểu tượng thời trang giày với doanh số bán hàng ấn tượng hàng năm. Với thiết kế truyền thống của mình với những 'vạch' nổi tiếng, Adidas thu hút người tiêu dùng bởi sự giản dị và tinh tế. ...`
-                                                : `Adidas là biểu tượng thời trang giày với doanh số bán hàng ấn tượng hàng năm. ... `}
-                                        </Card.Text>
-                                        <span className={`read-more ${showFullContentAdidas ? 'collapse' : ''}`} onClick={toggleContentAdidas}>
-                                            {showFullContentAdidas ? 'Thu gọn' : 'Đọc thêm'}
-                                        </span>
-                                    </Card.Body>
-                                </Card>
-
-                                {/* Add new product below Adidas */}
-                                <Card className="custom-card mt-3">
-                                <Card.Title className="custom-title">4. Giày Nike </Card.Title>
-                                    <Card.Img
-                                        variant="top"
-                                        src="https://hanoi26sneaker.com/wp-content/uploads/2023/03/Giay-Nike-Air-Force-1-Low-College-Pack-Midnight-Navy-SH6928-698.jpg"
-                                        // className="custom-image"
-                                        className="custom-image image-container"
-                                    />
-                                    <Card.Body>
-                                        <Card.Text>
-                                            {showFullContentNike
-                                                ? `Nike là một trong những thương hiệu thể thao nổi tiếng nhất trên thế giới. Từ học sinh tiểu học cho đến các vận động viên chuyên nghiệp, không ai có thể phủ nhận sức hấp dẫn của Nike. Nếu bạn khảo sát xem có bao nhiêu người đã hoặc đang sở hữu các sản phẩm của Nike, thì con số này sẽ khiến bạn bất ngờ.`
-                                                : `Nike là một trong những thương hiệu thể thao nổi tiếng nhất trên thế giới.  ... `}
-                                        </Card.Text>
-                                        <span className={`read-more ${showFullContentNike ? 'collapse' : ''}`} onClick={toggleContentNike}>
-                                            {showFullContentNike ? 'Thu gọn' : 'Đọc thêm'}
-                                        </span>
-                                    </Card.Body>
-                                    {/* Add product content here */}
-                                </Card>
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-                
-            </Container>
-
-            {/* Footer Component */}
+            <div style={{ paddingBottom: '60px', display: 'flex', flexDirection: 'row', paddingTop: '30px' , paddingLeft:'130px'}}>
+              
+                <div style={{ width: '50%', paddingLeft: '10px', display: 'flex', marginLeft:'50px' }}> {/* Phần bên phải */}
+                    <Card title={`Giày Vans`} onClick={() => toggleContent('Vans')} style={{ marginBottom: '20px', flex: 1 }}>
+                        <div style={{ flexDirection: 'column' }}>
+                            <img src={shoeImages['Vans']} alt={'Vans'} style={{ width: '100%', marginBottom: '1rem', border: 'none' }} />
+                            <div style={{ maxWidth: '100%' }}>
+                                <p>{showFullContent['Vans'] ? descriptions['Vans'].full : descriptions['Vans'].short}</p>
+                            </div>
+                            <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer', padding: '5px 10px', borderRadius: '5px' }}>{showFullContent['Vans'] ? 'Thu gọn' : 'Đọc thêm'}</button>
+                        </div>
+                    </Card>
+                </div>
+                <div style={{ width: '50%', paddingLeft: '10px', display: 'flex', marginLeft:'50px' }}> 
+                    <Card title={`Giày Nike`} onClick={() => toggleContent('Nike')} style={{ marginBottom: '20px', flex: 1 }}>
+                        <div style={{ flexDirection: 'column' }}>
+                            <img src={shoeImages['Nike']} alt={'Nike'} style={{ width: '100%', marginBottom: '1rem', border: 'none' }} />
+                            <div style={{ maxWidth: '100%' }}>
+                                <p>{showFullContent['Nike'] ? descriptions['Nike'].full : descriptions['Nike'].short}</p>
+                            </div>
+                            <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer', padding: '5px 10px', borderRadius: '5px' }}>{showFullContent['Nike'] ? 'Thu gọn' : 'Đọc thêm'}</button>
+                        </div>
+                    </Card>
+                </div>
+            </div>
             <Footer />
         </div>
     );
