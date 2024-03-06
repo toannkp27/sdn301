@@ -1,4 +1,7 @@
+
 import AddProduct from "../screens/AddProduct";
+import Login from "../screens/auth/Login";
+import Register from "../screens/auth/Register";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
 import Detail from "../screens/Detail";
@@ -6,29 +9,14 @@ import EditProfile from "../screens/EditProfile";
 import Homepage from "../screens/Homepage";
 import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
+import UserList from "../screens/UserList";
 import OrderManagement from "../screens/OrderManagement";
+import Payment from "../screens/Payment";
 import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
 import UserProfile from "../screens/UserProfile";
-import LoginForm from "../screens/LoginForm";
-import RegisterForm from "../screens/RegisterForm";
-import CartShop from "../screens/Cart_Shop";
+
 export const routers = [
-  {
-    path: "/login",
-    page: LoginForm,
-    isShowHeader: false,
-  },
-  {
-    path: "/register",
-    page: RegisterForm,
-    isShowHeader: false,
-  },
-  {
-    path: "/cart",
-    page: CartShop,
-    isShowHeader: false,
-  },
   {
     path: "/",
     page: Homepage,
@@ -49,10 +37,15 @@ export const routers = [
     page: Contact,
     isShowHeader: true,
   },
-
   {
     path: "*",
     page: NotFoundPage,
+  },
+
+  {
+    path: "/listP",
+    page: ListProduct,
+    isShowHeader: false,
   },
   {
     path: "/addproduct",
@@ -62,6 +55,11 @@ export const routers = [
   {
     path: "/listproduct",
     page: ListProducts,
+    isShowHeader: true,
+  },
+  {
+    path: "/blog",
+    page: Blog,
     isShowHeader: true,
   },
   {
@@ -75,6 +73,14 @@ export const routers = [
     isShowHeader: true,
   },
   {
+    path: '/blog',
+    page: Blog
+  },
+  {
+    path: '/user',
+    page: UserList
+  },
+  {
     path: "/userprofile",
     page: UserProfile,
     isShowHeader: true,
@@ -82,12 +88,26 @@ export const routers = [
   {
     path: "/userprofile/editprofile",
     page: EditProfile,
-    isShowHeader: true,
+    isShowHeader: true
   },
-
   {
-    path: "/listP",
+    path: '/listP',
     page: ListProduct,
-    isShowHeader: false,
+    isShowHeader: false
   },
+  {
+    path: '/payment',
+    page: Payment,
+    isShowHeader: false
+  },
+  {
+    path: '/login',
+    page: Login,
+    isShowHeader: false
+  },
+  {
+    path: '/register',
+    page: Register,
+    isShowHeader: false
+  }
 ];

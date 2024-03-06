@@ -6,6 +6,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function MenuBar() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 90ebc3cfe0af73829d225e41b291bdd52b1d7a3d
   const [anchorEl, setAnchorEl] = useState(null);
   const itemRenderer = (item, options) => {
     if (item.root) {
@@ -68,11 +72,16 @@ export default function MenuBar() {
     {
       label: "Blog",
       root: true,
+<<<<<<< HEAD
+=======
+      route: "/blog",
+>>>>>>> 90ebc3cfe0af73829d225e41b291bdd52b1d7a3d
       template: itemRenderer,
     },
     {
       label: "Contact",
       root: true,
+<<<<<<< HEAD
       template: itemRenderer,
     },
   ];
@@ -88,6 +97,23 @@ export default function MenuBar() {
   const end = (props) => {
     const { setVisible } = props;
 
+=======
+      route: "/contact",
+      template: itemRenderer,
+    },
+    {
+      label: "Dashboard",
+      root: true,
+      route: "/dashboard",
+      template: itemRenderer,
+    },
+  ];
+
+  const end = (props) => {
+    const { setVisible } = props;
+
+
+>>>>>>> 90ebc3cfe0af73829d225e41b291bdd52b1d7a3d
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -141,6 +167,7 @@ export default function MenuBar() {
               Đổi mật khẩu
             </div>
           </MenuItem>
+<<<<<<< HEAD
           <MenuItem className="m-2" component={Link} to="/cart">
             <div style={{ minWidth: "12rem", lineHeight: "32px" }}>
               <i
@@ -150,6 +177,8 @@ export default function MenuBar() {
               Shopping Cart
             </div>
           </MenuItem>
+=======
+>>>>>>> 90ebc3cfe0af73829d225e41b291bdd52b1d7a3d
           <MenuItem className="m-2" onClick={handleLogout}>
             <div style={{ minWidth: "12rem", lineHeight: "32px" }}>
               <i
