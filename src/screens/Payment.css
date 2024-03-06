@@ -1,5 +1,27 @@
+<<<<<<< HEAD
 /* @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
+=======
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Montserrat', sans-serif
+}
+
+body {
+    background-color: #3ecc6d;
+}
+
+.container {
+    margin: 20px auto;
+    width: 800px;
+    padding: 30px
+}
+>>>>>>> 72e031bc7fa8bbef817c040a7fe54aaac613c185
 
 .card.box1 {
     width: 350px;
@@ -185,4 +207,8 @@ form .btn.btn-primary:hover {
     .nav.nav-tabs .nav-item .nav-link {
         font-size: 12px
     }
+<<<<<<< HEAD
 } */
+=======
+}
+>>>>>>> 72e031bc7fa8bbef817c040a7fe54aaac613c185

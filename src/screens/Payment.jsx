@@ -1,6 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Calendar2Check, ChatDotsFill, CurrencyDollar, FileEarmarkText } from 'react-bootstrap-icons';
 import './Payment.css';
+=======
+import './Payment.css';
+import { Calendar2Check, ChatDotsFill, CurrencyDollar, FileEarmarkText } from 'react-bootstrap-icons';
+>>>>>>> 72e031bc7fa8bbef817c040a7fe54aaac613c185
 
 const Payment = () => {
   return (

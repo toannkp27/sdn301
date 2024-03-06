@@ -4,7 +4,7 @@ import { PenFill, Trash3Fill } from "react-bootstrap-icons";
 import nike from "../assets/images/nike.jpg";
 const Product = () => {
   return (
-    <Container className="list-product">
+    <Container className="list-product" style={{paddingTop:'113px'}}>
       <Table className="text-center">
         <tr>
           <th>ProductID</th>
