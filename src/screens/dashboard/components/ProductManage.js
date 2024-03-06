@@ -1,9 +1,11 @@
 
+import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import React, { useState } from 'react';
+import AddProduct from '../../AddProduct';
 import { useGetParams } from '../../hooks';
 import { Dropdownz, GridForm, Inputz } from './forrm/ForrmList';
 const Header = ({ setParams }) => {
@@ -51,6 +53,10 @@ const ProductManage = () => {
     const rows = 10;
     const initParam = useGetParams()
     const [params, setParams] = useState(initParam)
+    const [visible, setVisible] = useState(false);
+    const onHide = () => {
+        setVisible(false);
+    };
     const products = [
         {
             id: 1,
@@ -283,16 +289,26 @@ const ProductManage = () => {
         <div className="w-full border-round border-solid border-1 surface-border">
             <Header setParams={setParams} />
             <hr />
-            {/* <Button
+            <Button
+                onClick={() => setVisible(true)}
+                icon="pi pi-plus"
+                label="Add New Product"
+                size="small"
+                severity="info"
+                raised
+                type="button"
+                className='m-2 ml-4'
+            />
+            <Button
                 onClick={() => setVisibledDialog(true)}
                 icon="pi pi-plus"
-                label="Add new"
+                label="Add New Brand"
                 size="small"
                 severity="info"
                 raised
                 type="button"
                 className='m-2'
-            /> */}
+            />
             <DataTable
                 className='m-2'
                 value={products}
@@ -312,6 +328,9 @@ const ProductManage = () => {
                 <Column header="Units in Stock" field="unitInStock"></Column>
                 <Column header="Status" body={statusBodyTemplate}></Column>
             </DataTable>
+            {visible === true && (
+                <AddProduct visible={visible} setVisible={setVisible} />
+            )}
         </div>
     );
 }

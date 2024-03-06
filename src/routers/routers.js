@@ -1,4 +1,6 @@
 import AddProduct from "../screens/AddProduct";
+import Login from "../screens/auth/Login";
+import Register from "../screens/auth/Register";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
 import Detail from "../screens/Detail";
@@ -7,6 +9,7 @@ import Homepage from "../screens/Homepage";
 import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
 import OrderManagement from "../screens/OrderManagement";
+import Payment from "../screens/Payment";
 import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
 import UserProfile from "../screens/UserProfile";
@@ -65,11 +68,24 @@ export const routers = [
     page: EditProfile,
     isShowHeader: true
   },
-
-
   {
     path: '/listP',
     page: ListProduct,
+    isShowHeader: false
+  },
+  {
+    path: '/payment',
+    page: Payment,
+    isShowHeader: false
+  },
+  {
+    path: '/login',
+    page: Login,
+    isShowHeader: false
+  },
+  {
+    path: '/register',
+    page: Register,
     isShowHeader: false
   }
 
