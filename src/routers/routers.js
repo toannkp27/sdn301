@@ -9,6 +9,7 @@ import Homepage from "../screens/Homepage";
 import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
 import OrderManagement from "../screens/OrderManagement";
+import Payment from "../screens/Payment";
 import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
 import UserList from "../screens/UserList";
@@ -68,6 +69,11 @@ export const routers = [
   {
     path: "/ordermanagement",
     page: OrderManagement,
+    isShowHeader: true,
+  },
+  {
+    path: "/payment",
+    page: Payment,
     isShowHeader: true,
   },
   {
