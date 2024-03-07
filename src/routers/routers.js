@@ -13,8 +13,25 @@ import OrderManagement from "../screens/OrderManagement";
 import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
 import UserProfile from "../screens/UserProfile";
-
+import LoginForm from "../screens/LoginForm";
+import RegisterForm from "../screens/RegisterForm";
+import CartShop from "../screens/Cart_Shop";
 export const routers = [
+  {
+    path: "/login",
+    page: LoginForm,
+    isShowHeader: false,
+  },
+  {
+    path: "/register",
+    page: RegisterForm,
+    isShowHeader: false,
+  },
+  {
+    path: "/cart",
+    page: CartShop,
+    isShowHeader: false,
+  },
   {
     path: "/",
     page: Homepage,
@@ -35,6 +52,7 @@ export const routers = [
     page: Contact,
     isShowHeader: true,
   },
+
   {
     path: "*",
     page: NotFoundPage,
@@ -71,14 +89,6 @@ export const routers = [
     isShowHeader: true,
   },
   {
-    path: '/blog',
-    page: Blog
-  },
-  {
-    path: '/user',
-    page: UserList
-  },
-  {
     path: "/userprofile",
     page: UserProfile,
     isShowHeader: true,
@@ -87,5 +97,11 @@ export const routers = [
     path: "/userprofile/editprofile",
     page: EditProfile,
     isShowHeader: true,
-  }
+  },
+
+  {
+    path: "/listP",
+    page: ListProduct,
+    isShowHeader: false,
+  },
 ];

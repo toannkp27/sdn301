@@ -18,9 +18,9 @@ const Comments = () => {
             <div className="col-md-12 col-lg-10 col-xl-8">
               <div className="card">
                 <div className="card-body">
-                  <div className="d-flex flex-start align-items-center">
+                  <div className="d-flex flex-start align-items-center" style={{marginLeft:'20px'}}>
                     <img
-                      className="rounded-circle shadow-1-strong me-3"
+                      className="rounded-circle shadow-1-strong me-3" 
                       src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
                       alt="avatar"
                       width="60"
@@ -30,12 +30,10 @@ const Comments = () => {
                       <h6 className="fw-bold text-primary mb-1">
                         Lily Coleman
                       </h6>
-                      <p className="text-muted small mb-0">
-                        Shared publicly - Jan 2020
-                      </p>
+                      
                     </div>
                   </div>
-                  <p className="mt-3 mb-4 pb-2">
+                  <p className="mt-3 mb-4 pb-2 text-center">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -48,6 +46,7 @@ const Comments = () => {
                       display: "flex",
                       flexDirection: "row",
                       alignItems: "center",
+                      marginLeft:'30px'
                     }}
                   >
                     <Link
@@ -61,7 +60,7 @@ const Comments = () => {
                       }}
                     >
                       <HandThumbsUp
-                        style={{ fontSize: "26px", marginTop: "3px" }}
+                        style={{ fontSize: "26px", marginTop: "0px" }}
                       />{" "}
                       <h5 style={{ fontSize: "20px" }}>Like</h5>
                     </Link>
