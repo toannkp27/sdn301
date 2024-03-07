@@ -1,8 +1,7 @@
-import React from "react";
 import { Button } from "primereact/button";
-import { ChatDots, HandThumbsUp, Share } from "react-bootstrap-icons";
-import ReactStars from "react-rating-stars-component";
+import React from "react";
 import { Container } from "react-bootstrap";
+import { ChatDots, HandThumbsUp } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
 const Comments = () => {

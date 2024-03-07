@@ -2,16 +2,14 @@
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
+import { InputText } from 'primereact/inputtext';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
+import { classNames } from 'primereact/utils';
 import React, { useState } from 'react';
 import AddProduct from '../../AddProduct';
 import { useGetParams } from '../../hooks';
 import { Dropdownz, GridForm, Inputz } from './forrm/ForrmList';
-import { Button } from 'primereact/button';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
-import { classNames } from 'primereact/utils';
 
 const Header = ({ setParams }) => {
     const [filter, setFilter] = useState({ key_search: '', floor: '' })
@@ -58,15 +56,10 @@ const ProductManage = () => {
     const rows = 10;
     const initParam = useGetParams()
     const [params, setParams] = useState(initParam)
-<<<<<<< HEAD
     const [visible, setVisible] = useState(false);
     const onHide = () => {
         setVisible(false);
     };
-=======
-    const [selectedOrder, setSelectedOrder] = useState(null);
-    const [visible, setVisible] = useState(false);
->>>>>>> 72e031bc7fa8bbef817c040a7fe54aaac613c185
     const products = [
         {
             id: 1,
@@ -294,11 +287,8 @@ const ProductManage = () => {
     //     return <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>;
     // };
     const handleEyeClick = (rowData) => {
-        setSelectedOrder(rowData);
+        // setSelectedOrder(rowData);
         setVisible(true);
-    };
-    const onHide = () => {
-        setVisible(false);
     };
    
     const dialogFooter = (
@@ -545,24 +535,9 @@ const ProductManage = () => {
                 <Column header="Status" body={statusBodyTemplate}></Column>
                 <Column header="Operation" body={ActionBody}></Column>
             </DataTable>
-<<<<<<< HEAD
             {visible === true && (
                 <AddProduct visible={visible} setVisible={setVisible} />
             )}
-=======
-            <Dialog
-                header="Order Details"
-                visible={visible}
-                style={{ width: '70vw' }}
-                modal
-                onHide={onHide}
-                footer={dialogFooter}
-            >
-                {selectedOrder && (
-                    OrderDetail(orderDetail)
-                )}
-            </Dialog>
->>>>>>> 72e031bc7fa8bbef817c040a7fe54aaac613c185
         </div>
     );
 }
