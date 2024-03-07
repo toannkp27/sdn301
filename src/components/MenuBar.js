@@ -149,6 +149,15 @@ export default function MenuBar() {
                   Profile
                 </div>
               </MenuItem>
+              <MenuItem className="m-2" >
+                <div style={{ minWidth: "12rem", lineHeight: "32px" }}>
+                  <i
+                    className="pi pi-shopping-cart"
+                    style={{ fontSize: "16px", marginRight: "16px" }}
+                  />
+                  My Order
+                </div>
+              </MenuItem>
               <MenuItem className="m-2" component={Link} to="/auth/change_password">
                 <div style={{ minWidth: "12rem", lineHeight: "32px" }}>
                   <i

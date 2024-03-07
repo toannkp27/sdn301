@@ -19,7 +19,7 @@ export const CalendarForm = (props) => {
                 showIcon
                 className={classNames('w-full mt-2', className)}
                 hourFormat="24"
-                placeholder={label && `Chọn ${label.toLowerCase()}`}
+                placeholder={label && `Select ${label.toLowerCase()}`}
                 style={{ minHeight: '50px' }}
                 {...inputprop}
             />
