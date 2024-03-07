@@ -2,13 +2,10 @@ import axios from "axios";
 import { React, useState } from "react";
 import { Button, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../redux/userSlice";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleLogin = () => {
@@ -20,8 +17,10 @@ const Login = () => {
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data.user);
-                    dispatch(login(response.data.user));
                     console.log("Đăng nhập thành công");
+                    // Lưu thông tin người dùng vào local storage
+                    localStorage.setItem('user', JSON.stringify(response.data.user));
+                    // Chuyển hướng người dùng đến trang chính
                     navigate("/")
                 } else {
                     console.log("Đăng nhập thất bại");
@@ -31,6 +30,7 @@ const Login = () => {
                 console.error("Lỗi khi gửi yêu cầu đăng nhập: ", error);
             });
     };
+
 
     return (
         <div className="h-screen">
