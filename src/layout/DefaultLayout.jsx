@@ -4,7 +4,7 @@ import HeaderBar from '../components/HeaderBar'
 
 const DefaultLayout = ({children}) => {
   return (
-    <div>
+    <div >
         <HeaderBar/>
         {children}
         <Footer/>

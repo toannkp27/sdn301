@@ -1,6 +1,6 @@
 import React from 'react';
-import './Payment.css';
 import { Calendar2Check, ChatDotsFill, CurrencyDollar, FileEarmarkText } from 'react-bootstrap-icons';
+import './Payment.css';
 
 const Payment = () => {
   return (

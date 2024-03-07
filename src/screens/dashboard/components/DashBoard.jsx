@@ -11,6 +11,7 @@ import StatCards2 from "../shared/StatCards2";
 import TopSellingTable from "../shared/TopSellingTable";
 import RevenueChart from "./Chart/RevenueChart.js";
 import OrderManage from "./OrdersManage";
+import Product from "./Product";
 import ProductManage from "./ProductManage";
 import TemplateDemo from "./TopSeller";
 import UserManage from "./UserManage";
@@ -111,7 +112,7 @@ const Dashboard = () => {
             <OrderManage />
           </TabPanel>
           <TabPanel header="Cash Flow Management">
-            <OrderManage />
+            <Product />
           </TabPanel>
         </TabView>
       </div>
