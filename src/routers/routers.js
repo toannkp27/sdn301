@@ -1,5 +1,7 @@
 
 import AddProduct from "../screens/AddProduct";
+import Login from "../screens/auth/Login";
+import Register from "../screens/auth/Register";
 import Blog from "../screens/Blog";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
@@ -89,5 +91,15 @@ export const routers = [
     path: "/userprofile/editprofile",
     page: EditProfile,
     isShowHeader: true,
+  },
+  {
+    path: '/login',
+    page: Login,
+    isShowHeader: false
+  },
+  {
+    path: '/register',
+    page: Register,
+    isShowHeader: false
   }
 ];

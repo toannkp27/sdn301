@@ -72,7 +72,7 @@ const Payment = () => {
                                 <div className='m-2'>
                                     <div style={{ fontFamily: "Garamond" }} className='text-lg'>Credit Card</div>
                                     <div className="">
-                                        <input className="form-control m-2" type="text" value="5136 1845 5468 3894" />
+                                        <input className="form-control m-2 text-lg"  style={{fontFamily: "Garamond"}} type="text" value="5136 1845 5468 3894" />
                                         <div style={{
                                             position: "absolute",
                                             top: 0,
@@ -90,13 +90,13 @@ const Payment = () => {
                                     <div className='col'>
                                         <div style={{ fontFamily: "Garamond" }} className='text-lg'>Expiration Date</div>
                                         <div className="">
-                                            <input type="text" className="form-control m-2" value="05/20" />
+                                            <input type="text" className="form-control m-2 text-lg" style={{fontFamily: "Garamond"}} value="05/20" />
                                         </div>
                                     </div>
                                     <div className='col'>
                                         <div style={{ fontFamily: "Garamond" }} className='text-lg'>Code CVV</div>
                                         <div className="">
-                                            <input type="password" className="form-control m-2" value="123" />
+                                            <input type="password" className="form-control m-2 text-lg" style={{fontFamily: "Garamond"}} value="123" />
                                             <div className="fas fa-lock"></div>
                                         </div>
                                     </div>
@@ -104,9 +104,17 @@ const Payment = () => {
                                 <div className='m-2'>
                                     <div style={{ fontFamily: "Garamond" }} className='text-lg'>Name</div>
                                     <div className="">
-                                        <input className="form-control m-2 text-uppercase" type="text" value="Vladimir Berezovkiy" />
+                                        <input className="form-control m-2 uppercase text-lg" style={{fontFamily: "Garamond"}} type="text" value="Vladimir Berezovkiy" />
                                         <div className="far fa-user"></div>
                                     </div>
+                                </div>
+                                <div className="flex flex-row flex-wrap">
+                                    <input
+                                        type="submit"
+                                        value="Pay"
+                                        className='flex align-items-center justify-content-center border-round-sm w-8rem h-3rem mx-auto text-white text-xl'
+                                        style={{ backgroundColor: "#3fcc6c", borderColor: "#3fcc6c", fontFamily: "Garamond" }}
+                                    />
                                 </div>
                             </TabPanel>
                             <TabPanel header="Mobile Payment">
