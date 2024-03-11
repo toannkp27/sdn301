@@ -30,7 +30,7 @@ const Blog = () => {
         Vans: 'https://ordixi.com/wp-content/uploads/2019/10/giay-vans-forgotten-bones-sk8-high-black-true-white-vnoa4bv6v8v2-1.jpg',
         Nike: 'https://trungsneaker.com/wp-content/uploads/2022/12/giay-nike-court-vision-mid-smoke-grey-dn3577-002-3-1020x680.jpg',
     };
-
+// aa
     const descriptions = {
         Converse: {
             short: "Giày Converse là...",
