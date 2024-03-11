@@ -17,6 +17,7 @@ import UserProfile from "../screens/UserProfile";
 
 import CartShop from "../screens/Cart_Shop";
 import Login from "../screens/auth/Login";
+import ChangePassWord from "../screens/auth/ChangePassWord";
 export const routers = [
   {
     path: "/login",
@@ -121,6 +122,11 @@ export const routers = [
   {
     path: '/cart',
     page: CartShop,
+    isShowHeader: true
+  },
+  {
+    path: '/auth/change_password',
+    page: ChangePassWord,
     isShowHeader: true
   }
 ];
