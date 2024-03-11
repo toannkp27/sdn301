@@ -3,6 +3,7 @@ import AddProduct from "../screens/AddProduct";
 import Login from "../screens/auth/Login";
 import Register from "../screens/auth/Register";
 import Blog from "../screens/Blog";
+import CartShop from "../screens/Cart_Shop";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
 import Detail from "../screens/Detail";
@@ -101,5 +102,10 @@ export const routers = [
     path: '/register',
     page: Register,
     isShowHeader: false
+  },
+  {
+    path: '/cart',
+    page: CartShop,
+    isShowHeader: true
   }
 ];
