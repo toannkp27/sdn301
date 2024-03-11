@@ -21,6 +21,11 @@ const Profile = (props) => {
                 onClick={onHide}
                 className="bg-red-600 border-red-600"
             />
+            <Button
+                label="Edit"
+                icon="pi pi-spin pi-cog"
+                className="bg-blue-600 border-red-600"
+            />
         </div>
     );
     const icon = (<i className="pi pi-search"></i>)
