@@ -10,6 +10,10 @@ import 'primeicons/primeicons.css'; // icons
 import 'primereact/resources/primereact.min.css'; // core css
 import 'primereact/resources/themes/saga-blue/theme.css'; // theme
 // import "bootstrap/dist/css/bootstrap.min.css";
+import "primeflex/primeflex.css";
+import "primeicons/primeicons.css"; // icons
+import "primereact/resources/primereact.min.css"; // core css
+import "primereact/resources/themes/saga-blue/theme.css"; // theme
 
 
 ReactDOM.render(
