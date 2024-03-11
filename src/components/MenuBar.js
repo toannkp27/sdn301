@@ -149,7 +149,7 @@ export default function MenuBar() {
                   Profile
                 </div>
               </MenuItem>
-              <MenuItem className="m-2" >
+              <MenuItem className="m-2" component={Link} to="/cart" >
                 <div style={{ minWidth: "12rem", lineHeight: "32px" }}>
                   <i
                     className="pi pi-shopping-cart"

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 const CartShop = () => {
   const [totalPrice, setTotalPrice] = useState(0);

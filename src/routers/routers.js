@@ -1,4 +1,5 @@
 import AddProduct from "../screens/AddProduct";
+import Register from "../screens/auth/Register";
 import Blog from "../screens/Blog";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
@@ -8,6 +9,7 @@ import Homepage from "../screens/Homepage";
 import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
 import OrderManagement from "../screens/OrderManagement";
+import Payment from "../screens/Payment";
 import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
 import UserList from "../screens/UserList";
@@ -15,7 +17,6 @@ import UserProfile from "../screens/UserProfile";
 
 import CartShop from "../screens/Cart_Shop";
 import Login from "../screens/auth/Login";
-import Register from "../screens/auth/Register";
 export const routers = [
   {
     path: "/login",
@@ -89,8 +90,13 @@ export const routers = [
     isShowHeader: true,
   },
   {
-    path: "/user",
-    page: UserList,
+    path: "/payment",
+    page: Payment,
+    isShowHeader: true,
+  },
+  {
+    path: '/user',
+    page: UserList
   },
   {
     path: "/userprofile",
@@ -102,10 +108,19 @@ export const routers = [
     page: EditProfile,
     isShowHeader: true,
   },
-
   {
-    path: "/listP",
-    page: ListProduct,
-    isShowHeader: false,
+    path: '/login',
+    page: Login,
+    isShowHeader: false
   },
+  {
+    path: '/register',
+    page: Register,
+    isShowHeader: false
+  },
+  {
+    path: '/cart',
+    page: CartShop,
+    isShowHeader: true
+  }
 ];

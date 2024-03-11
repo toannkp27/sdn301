@@ -1,9 +1,18 @@
 import React from "react";
 import { GeoAlt, Globe, Send, Telephone } from "react-bootstrap-icons";
+import { BreadCrumb } from "../uiCore";
 import "./Contact.css";
 const Contact = () => {
+  const items = [{ label: "Contact" }];
+  const home = { icon: "pi pi-home", url: "http://localhost:3000/" };
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ paddingTop: "15px", paddingBottom: "20px" }}
+    >
+      <div className="m-2 w-full">
+        <BreadCrumb model={items} home={home} />
+      </div>
       <div className="flex justify-content-center align-items-center">
         <div className="text-center mb-5">
           <h2 className="heading-section" style={{ textAlign: "center" }}>
