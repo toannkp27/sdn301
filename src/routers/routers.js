@@ -1,4 +1,3 @@
-
 import AddProduct from "../screens/AddProduct";
 import Blog from "../screens/Blog";
 import Category from "../screens/Category";
@@ -8,23 +7,24 @@ import EditProfile from "../screens/EditProfile";
 import Homepage from "../screens/Homepage";
 import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
-import UserList from "../screens/UserList";
 import OrderManagement from "../screens/OrderManagement";
 import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
+import UserList from "../screens/UserList";
 import UserProfile from "../screens/UserProfile";
-import LoginForm from "../screens/LoginForm";
-import RegisterForm from "../screens/RegisterForm";
+
 import CartShop from "../screens/Cart_Shop";
+import Login from "../screens/auth/Login";
+import Register from "../screens/auth/Register";
 export const routers = [
   {
     path: "/login",
-    page: LoginForm,
+    page: Login,
     isShowHeader: false,
   },
   {
     path: "/register",
-    page: RegisterForm,
+    page: Register,
     isShowHeader: false,
   },
   {
@@ -87,6 +87,10 @@ export const routers = [
     path: "/ordermanagement",
     page: OrderManagement,
     isShowHeader: true,
+  },
+  {
+    path: "/user",
+    page: UserList,
   },
   {
     path: "/userprofile",
