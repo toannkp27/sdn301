@@ -49,7 +49,7 @@ const Blog = () => {
             full: "Nike là một trong những thương hiệu thể thao nổi tiếng nhất trên thế giới. Từ học sinh tiểu học cho đến các vận động viên chuyên nghiệp, không ai có thể phủ nhận sức hấp dẫn của Nike. Nếu bạn khảo sát xem có bao nhiêu người đã hoặc đang sở hữu các sản phẩm của Nike, thì con số này sẽ khiến bạn bất ngờ."
         },
     };
-// .
+// ....
     const toggleContent = (brand) => {
         setShowFullContent((prev) => ({ ...prev, [brand]: !prev[brand] }));
     };
