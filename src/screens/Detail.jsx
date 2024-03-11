@@ -4,6 +4,7 @@ import { Galleria } from "primereact/galleria";
 import { Image } from "primereact/image";
 import { InputText } from "primereact/inputtext";
 import { useState } from "react";
+import Comments from "./Comments";
 
 const Detail = () => {
   const [value, setValue] = useState(1);
@@ -125,7 +126,7 @@ const Detail = () => {
             <Galleria
               value={images}
               responsiveOptions={responsiveOptions}
-              numVisible={5}
+              numVisible={4}
               style={{ maxWidth: "640px" }}
               item={itemTemplate}
               thumbnail={thumbnailTemplate}
@@ -224,6 +225,9 @@ const Detail = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="comments ">
+        <Comments />
       </div>
       <div className="card">
         <div className="text-4xl font-bold mt-2">Sản phẩm tương tự</div>

@@ -1,4 +1,6 @@
 import AddProduct from "../screens/AddProduct";
+import Register from "../screens/auth/Register";
+import Blog from "../screens/Blog";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
 import Detail from "../screens/Detail";
@@ -7,11 +9,31 @@ import Homepage from "../screens/Homepage";
 import ListProduct from "../screens/ListProduct";
 import NotFoundPage from "../screens/NotFoundPage";
 import OrderManagement from "../screens/OrderManagement";
+import Payment from "../screens/Payment";
 import ListProducts from "../screens/products/ListProducts";
 import UpdateProduct from "../screens/UpdateProduct";
+import UserList from "../screens/UserList";
 import UserProfile from "../screens/UserProfile";
 
+import CartShop from "../screens/Cart_Shop";
+import Login from "../screens/auth/Login";
+import ChangePassWord from "../screens/auth/ChangePassWord";
 export const routers = [
+  {
+    path: "/login",
+    page: Login,
+    isShowHeader: false,
+  },
+  {
+    path: "/register",
+    page: Register,
+    isShowHeader: false,
+  },
+  {
+    path: "/cart",
+    page: CartShop,
+    isShowHeader: false,
+  },
   {
     path: "/",
     page: Homepage,
@@ -32,9 +54,16 @@ export const routers = [
     page: Contact,
     isShowHeader: true,
   },
+
   {
     path: "*",
     page: NotFoundPage,
+  },
+
+  {
+    path: "/listP",
+    page: ListProduct,
+    isShowHeader: false,
   },
   {
     path: "/addproduct",
@@ -47,6 +76,11 @@ export const routers = [
     isShowHeader: true,
   },
   {
+    path: "/blog",
+    page: Blog,
+    isShowHeader: true,
+  },
+  {
     path: "/updateproduct",
     page: UpdateProduct,
     isShowHeader: true,
@@ -54,24 +88,45 @@ export const routers = [
   {
     path: "/ordermanagement",
     page: OrderManagement,
-    isShowHeader: true
+    isShowHeader: true,
+  },
+  {
+    path: "/payment",
+    page: Payment,
+    isShowHeader: true,
+  },
+  {
+    path: '/user',
+    page: UserList
   },
   {
     path: "/userprofile",
     page: UserProfile,
-    isShowHeader: true
-  }, {
+    isShowHeader: true,
+  },
+  {
     path: "/userprofile/editprofile",
     page: EditProfile,
+    isShowHeader: true,
+  },
+  {
+    path: '/login',
+    page: Login,
+    isShowHeader: false
+  },
+  {
+    path: '/register',
+    page: Register,
+    isShowHeader: false
+  },
+  {
+    path: '/cart',
+    page: CartShop,
     isShowHeader: true
   },
-
-
   {
-    path: '/listP',
-    page: ListProduct,
-    isShowHeader: false
+    path: '/auth/change_password',
+    page: ChangePassWord,
+    isShowHeader: true
   }
-
 ];
-
