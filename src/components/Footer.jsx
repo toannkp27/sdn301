@@ -1,27 +1,23 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import logo from "../assets/images/logoooo.png";
+import { Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logoooo.png";
 
 const Footer = () => {
   return (
     <Container fluid>
-      <Row style={{ backgroundColor: "#F2F2F2", paddingTop: "2rem" }}>
-        <Col md={3}>
-          <Row className="text-center">
-            <Link to={"/"}>
-              <img
-                src={logo}
-                height={100}
-                alt="logo"
-                style={{ objectFit: "contain" }}
-              />
-            </Link>
-          </Row>
-          <h5 className="text-center pt-5">Hotline: 022222222</h5>
-          <h5 className="text-center">StoreAddress: HaNoi</h5>
-        </Col>
-        <Col md={3}>
+      <div class="grid mt-2 surface-ground p-3 surface-0 shadow-2">
+        <div class="col-3 flex align-items-center justify-content-center">
+          <Link to={"/"}>
+            <img
+              src={logo}
+              height={80}
+              alt="logo"
+              style={{ objectFit: "contain" }}
+            />
+          </Link>
+        </div>
+        <div class="col-3">
           <Row>
             <h3>Help</h3>
           </Row>
@@ -47,8 +43,8 @@ const Footer = () => {
           >
             Payment Option
           </a>
-        </Col>
-        <Col md={3}>
+        </div>
+        <div class="col-3">
           <Row>
             <h3>Company</h3>
           </Row>
@@ -64,8 +60,8 @@ const Footer = () => {
               Contact Us
             </a>
           </Row>
-        </Col>
-        <Col md={3}>
+        </div>
+        <div class="col-3">
           <Row>
             <h3>Fanpage</h3>
           </Row>
@@ -81,8 +77,8 @@ const Footer = () => {
               FB LINK
             </a>
           </Row>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </Container>
   );
 };

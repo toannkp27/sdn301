@@ -4,10 +4,52 @@ import { DataTable } from 'primereact/datatable';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import React, { useState } from 'react';
+import { useGetParams } from '../../hooks';
+import { Dropdownz, GridForm, Inputz } from './forrm/ForrmList';
+const Header = ({ setParams }) => {
+    const [filter, setFilter] = useState({ key_search: '', floor: '' })
 
+    return (
+        <>
+            <div className="flex flex-wrap align-items-center justify-content-between gap-2 m-2">
+                <span className="text-3xl text-900 font-bold">Products Manage</span>
+            </div>
+            <hr />
+            <div className='m-3'>
+                <GridForm setParams={setParams} filter={filter} setFilter={setFilter} className="lg:col-12">
+                    <Inputz
+                        value={filter.key_search}
+                        placeholder="Find by name"
+                        onChange={(e) => setFilter({ ...filter, key_search: e.target.value })}
+                    />
+                    <Dropdownz
+                        value={filter.status}
+                        // options={status}
+                        onChange={(e) => setFilter({ ...filter, status: e.target.value })}
+                        placeholder="Status"
+                    />
+                    <Dropdownz
+                        value={filter.status}
+                        // options={status}
+                        onChange={(e) => setFilter({ ...filter, status: e.target.value })}
+                        placeholder="Category"
+                    />
+                    <Dropdownz
+                        value={filter.status}
+                        // options={status}
+                        onChange={(e) => setFilter({ ...filter, status: e.target.value })}
+                        placeholder="Reviews"
+                    />
+                </GridForm>
+            </div>
+        </>
+    )
+}
 const ProductManage = () => {
     const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(10);
+    const rows = 10;
+    const initParam = useGetParams()
+    const [params, setParams] = useState(initParam)
     const products = [
         {
             id: 1,
@@ -201,7 +243,6 @@ const ProductManage = () => {
             unitInStock: 10
         },
     ]
-
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
@@ -237,20 +278,14 @@ const ProductManage = () => {
                 return null;
         }
     };
-
-    const header = (
-        <div className="flex flex-wrap align-items-center justify-content-between gap-2">
-            <span className="text-xl text-900 font-bold">Products Manage</span>
-            {/* <Button icon="pi pi-refresh" rounded raised /> */}
-        </div>
-    );
-
     return (
         <div className="w-full border-round border-solid border-1 surface-border">
+            <Header setParams={setParams} />
+            <hr />
             <DataTable
                 className='m-2'
                 value={products}
-                header={header}
+                // header={header}
                 first={first}
                 rows={rows}
                 onPage={(e) => setFirst(e.first)}
@@ -258,7 +293,7 @@ const ProductManage = () => {
                 paginator
                 currentPageReportTemplate={`In total there are ${products ? products.length : 0} products.`}
             >
-                <Column field="name" header="Name" style={{minWidth: "15rem"}}></Column>
+                <Column field="name" header="Name" style={{ minWidth: "15rem" }}></Column>
                 <Column header="Image" body={imageBodyTemplate}></Column>
                 <Column field="price" header="Price" body={priceBodyTemplate}></Column>
                 <Column field="category" header="Category"></Column>
