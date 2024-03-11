@@ -1,11 +1,13 @@
 import { TabPanel, TabView } from 'primereact/tabview';
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar2Check, ChatDotsFill, FileEarmarkText } from 'react-bootstrap-icons';
 import { BreadCrumb } from '../uiCore';
 
 const Payment = () => {
     const items = [{ label: "Payment" }];
     const home = { icon: "pi pi-home", url: "http://localhost:3000/" };
+    const [expiration,setExpiration] = useState('')
+    
     return (
         <div className="container"
             style={{ paddingTop: "15px", paddingBottom: "20px" }}
@@ -72,39 +74,68 @@ const Payment = () => {
                                 <div className='m-2'>
                                     <div style={{ fontFamily: "Garamond" }} className='text-lg'>Credit Card</div>
                                     <div className="">
-                                        <input className="form-control m-2 text-lg"  style={{fontFamily: "Garamond"}} type="text" value="5136 1845 5468 3894" />
-                                        <div style={{
-                                            position: "absolute",
-                                            top: 0,
-                                            right: 0,
-                                            height: "100%",
-                                            display: "flex",
-                                            alignItems: "center",
-
-                                        }}>
-                                            {/* <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" /> */}
+                                        <div className='relative'>
+                                            <input className="form-control m-2 text-lg relative" style={{ fontFamily: "Garamond" }} type="text" value="5136 1845 5468 3894" ></input>
+                                            <img
+                                                style={{
+                                                    position: "absolute",
+                                                    height: "40px",
+                                                    top: "10px",
+                                                    right: 0,
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                }}
+                                                src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className='grid m-1'>
                                     <div className='col'>
                                         <div style={{ fontFamily: "Garamond" }} className='text-lg'>Expiration Date</div>
-                                        <div className="">
-                                            <input type="text" className="form-control m-2 text-lg" style={{fontFamily: "Garamond"}} value="05/20" />
+                                        <div className="relative">
+                                            <input 
+                                            type="month" 
+                                            className="form-control m-2 text-lg" 
+                                            style={{ fontFamily: "Garamond" }} 
+                                            value={expiration}
+                                            onChange={e => setExpiration(e.target.value)} />
+                                            {/* <i
+                                                className="pi pi-calendar"
+                                                style={{
+                                                    fontSize: '1.5rem',
+                                                    position: "absolute",
+                                                    height: "40px",
+                                                    top: "10px",
+                                                    right: 0,
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                }}>
+                                            </i> */}
                                         </div>
                                     </div>
                                     <div className='col'>
                                         <div style={{ fontFamily: "Garamond" }} className='text-lg'>Code CVV</div>
-                                        <div className="">
-                                            <input type="password" className="form-control m-2 text-lg" style={{fontFamily: "Garamond"}} value="123" />
-                                            <div className="fas fa-lock"></div>
+                                        <div className="relative">
+                                            <input type="password" className="form-control m-2 text-lg" style={{ fontFamily: "Garamond" }} value="123" />
+                                            <i
+                                                className="pi pi-lock"
+                                                style={{
+                                                    fontSize: '1.5rem',
+                                                    position: "absolute",
+                                                    height: "40px",
+                                                    top: "10px",
+                                                    right: 0,
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                }}>
+                                            </i>
                                         </div>
                                     </div>
                                 </div>
                                 <div className='m-2'>
                                     <div style={{ fontFamily: "Garamond" }} className='text-lg'>Name</div>
                                     <div className="">
-                                        <input className="form-control m-2 uppercase text-lg" style={{fontFamily: "Garamond"}} type="text" value="Vladimir Berezovkiy" />
+                                        <input className="form-control m-2 uppercase text-lg" style={{ fontFamily: "Garamond" }} type="text" value="Vladimir Berezovkiy" />
                                         <div className="far fa-user"></div>
                                     </div>
                                 </div>
