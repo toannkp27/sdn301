@@ -25,19 +25,19 @@ const ChangePassWord = () => {
           <span className="p-inputgroup-addon">
             <i className="pi pi-lock"></i>
           </span>
-          <InputText placeholder="Old PassWord" style={{ width: "50px" }} />
+          <InputText placeholder="Old PassWord" type="password" style={{ width: "50px" }} />
         </div>
         <div className="p-inputgroup flex-1" style={{ marginBottom: 10 }}>
           <span className="p-inputgroup-addon">
             <i className="pi pi-unlock"></i>
           </span>
-          <InputText placeholder="New PassWord" style={{ width: "50px" }} />
+          <InputText placeholder="New PassWord" type="password" style={{ width: "50px" }} />
         </div>
         <div className="p-inputgroup flex-1" style={{ marginBottom: 10 }}>
           <span className="p-inputgroup-addon">
             <i className="pi pi-lock-open"></i>
           </span>
-          <InputText placeholder="Re-NewPassWord" style={{ width: "50px" }} />
+          <InputText placeholder="Re-NewPassWord" type="password" style={{ width: "50px" }} />
         </div>
         <div style={{ width: "100%", textAlign: "center" }}>
           <Button label="Change Password" icon="pi pi-check" />

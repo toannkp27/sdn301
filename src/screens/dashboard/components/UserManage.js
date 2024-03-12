@@ -58,6 +58,7 @@ const UserManage = () => {
                 <Column field="birthday" header="Birthday" body={(rowData) => TimeBody(rowData.birthday)} ></Column>
                 <Column header="Phone" field="phone"></Column>
                 <Column header="Email" field='Email'></Column>
+                <Column header="UserName" field='username'></Column>
             </DataTable>
 
         </div>
