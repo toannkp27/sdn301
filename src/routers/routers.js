@@ -40,7 +40,7 @@ export const routers = [
     isShowHeader: true,
   },
   {
-    path: "/detail",
+    path: "/detail/:pid",
     page: Detail,
     isShowHeader: true,
   },
