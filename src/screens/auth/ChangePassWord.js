@@ -17,6 +17,20 @@ const ChangePassWord = () => {
     marginBottom: 10,
   };
 
+
+  const handleChange = () => {
+    const userDataString = localStorage.getItem("user");
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+      console.log("User ID:", userData._id);
+      console.log("Username:", userData.username);
+    } else {
+      console.log("User data not found in localStorage");
+    }
+  }
+  
+ 
+
   return (
     <div style={containerStyle}>
         
@@ -40,7 +54,7 @@ const ChangePassWord = () => {
           <InputText placeholder="Re-NewPassWord" type="password" style={{ width: "50px" }} />
         </div>
         <div style={{ width: "100%", textAlign: "center" }}>
-          <Button label="Change Password" icon="pi pi-check" />
+          <Button label="Change Password" icon="pi pi-check"  onClick={handleChange}/>
         </div>
       </div>
     </div>
