@@ -54,7 +54,7 @@ export default function MenuBar() {
       );
     }
   };
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
   const items = [
     {
       label: "Home",
@@ -93,8 +93,7 @@ export default function MenuBar() {
   }
   const [visible, setVisible] = useState(false);
   const end = (props) => {
-    const { } = props;
-
+    const {} = props;
 
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -103,7 +102,7 @@ export default function MenuBar() {
       setAnchorEl(null);
     };
     const handleLogout = () => {
-      localStorage.removeItem('user');
+      localStorage.removeItem("user");
       navigate("/");
     };
     const handleLogin = () => {
@@ -113,7 +112,7 @@ export default function MenuBar() {
       navigate("/register");
     };
     const handleShowProfile = () => {
-      setVisible(true)
+      setVisible(true);
       setAnchorEl(null);
     };
     return (
@@ -149,7 +148,7 @@ export default function MenuBar() {
                   Profile
                 </div>
               </MenuItem>
-              <MenuItem className="m-2" component={Link} to="/cart" >
+              <MenuItem className="m-2" component={Link} to="/cart">
                 <div style={{ minWidth: "12rem", lineHeight: "32px" }}>
                   <i
                     className="pi pi-shopping-cart"
@@ -158,7 +157,11 @@ export default function MenuBar() {
                   My Order
                 </div>
               </MenuItem>
-              <MenuItem className="m-2" component={Link} to="/auth/change_password">
+              <MenuItem
+                className="m-2"
+                component={Link}
+                to="/auth/change_password"
+              >
                 <div style={{ minWidth: "12rem", lineHeight: "32px" }}>
                   <i
                     className="pi pi-sync"
@@ -184,7 +187,21 @@ export default function MenuBar() {
           </>
         ) : (
           <div className="mr-4 text-xl">
-            <span className="login-link" style={{ cursor: "pointer", textDecoration: "none" }} onClick={handleLogin}>Login</span> | <span className="login-link" style={{ cursor: "pointer", textDecoration: "none" }} onClick={handleRegister}>Register</span>
+            <span
+              className="login-link"
+              style={{ cursor: "pointer", textDecoration: "none" }}
+              onClick={handleLogin}
+            >
+              Login
+            </span>{" "}
+            |{" "}
+            <span
+              className="login-link"
+              style={{ cursor: "pointer", textDecoration: "none" }}
+              onClick={handleRegister}
+            >
+              Register
+            </span>
           </div>
         )}
       </>

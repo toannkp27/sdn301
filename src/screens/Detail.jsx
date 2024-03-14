@@ -18,10 +18,28 @@ const Detail = () => {
 
   useEffect(() => {
     fetch("http://localhost:9999/products/" + pid)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setProducts(data);
-      });
+        .then((resp) => resp.json())
+        .then((data) => {
+            setProducts(data);
+        });
+}, [pid]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch("http://localhost:9999/images/" + pid);
+          const data = await response.json();
+          console.log(data);
+
+          setImages(data); 
+          console.log(images);
+
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
   }, [pid]);
 
   useEffect(() => {
