@@ -27,7 +27,7 @@ const Detail = () => {
           const data = await response.json();
           console.log(data);
 
-          setImages(data); // Lưu trữ dữ liệu hình ảnh vào state
+          setImages(data); 
           console.log(images);
 
       } catch (error) {
