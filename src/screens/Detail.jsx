@@ -6,12 +6,16 @@ import { InputText } from "primereact/inputtext";
 import { useEffect, useState } from "react";
 import Comments from "./Comments";
 import { useParams } from "react-router";
+import axios from "axios";
 
 const Detail = () => {
   const [value, setValue] = useState(1);
   const [images, setImages] = useState([]);
   const [products, setProducts] = useState([]);
   const { pid } = useParams();
+
+  console.log(pid);
+
   useEffect(() => {
     fetch("http://localhost:9999/products/" + pid)
         .then((resp) => resp.json())
@@ -38,6 +42,15 @@ const Detail = () => {
     fetchImages();
   }, [pid]);
 
+  useEffect(() => {
+    axios.get(`http://localhost:9999/images/${pid}`)
+    .then((res) => {
+      setImages(res.data);
+      console.log(res);
+    })
+  }, [pid]);
+
+  console.log(images);
   const items = [
     { label: "Women" },
     { label: "Run" },
@@ -65,57 +78,6 @@ const Detail = () => {
   };
 
   const buttons = ["3.5 UK", "4 UK", "4.5 UK", "5 UK"];
-  // const images = [
-  //   {
-  //     itemImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/798d3061f5934cd1983bade800a7f2dd_9366/GIAY_ULTRABOOST_22_trang_GX5595_01_standard.jpg",
-  //     alt: "Image 1",
-  //     thumbnailImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/798d3061f5934cd1983bade800a7f2dd_9366/GIAY_ULTRABOOST_22_trang_GX5595_01_standard.jpg",
-  //   },
-  //   {
-  //     itemImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b14ab283e8664331ac44ade800a804d3_9366/GIAY_ULTRABOOST_22_trang_GX5595_02_standard_hover.jpg",
-  //     alt: "Image 2",
-  //     thumbnailImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b14ab283e8664331ac44ade800a804d3_9366/GIAY_ULTRABOOST_22_trang_GX5595_02_standard_hover.jpg",
-  //   },
-  //   {
-  //     itemImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6e135a7cfd7c490a8ac4ade800a80d4e_9366/GIAY_ULTRABOOST_22_trang_GX5595_03_standard.jpg",
-  //     alt: "Image 3",
-  //     thumbnailImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6e135a7cfd7c490a8ac4ade800a80d4e_9366/GIAY_ULTRABOOST_22_trang_GX5595_03_standard.jpg",
-  //   },
-  //   {
-  //     itemImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/616ba20c88d742909a7dade500f6a6fb_9366/GIAY_ULTRABOOST_22_trang_GX5595_04_standard.jpg",
-  //     alt: "Image 4",
-  //     thumbnailImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/616ba20c88d742909a7dade500f6a6fb_9366/GIAY_ULTRABOOST_22_trang_GX5595_04_standard.jpg",
-  //   },
-  //   {
-  //     itemImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7c6fde21e28743818a74ade800a81553_9366/GIAY_ULTRABOOST_22_trang_GX5595_05_standard.jpg",
-  //     alt: "Image 4",
-  //     thumbnailImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7c6fde21e28743818a74ade800a81553_9366/GIAY_ULTRABOOST_22_trang_GX5595_05_standard.jpg",
-  //   },
-  //   {
-  //     itemImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d81bb06294b440379161ade800a82c41_9366/GIAY_ULTRABOOST_22_trang_GX5595_09_standard.jpg",
-  //     alt: "Image 4",
-  //     thumbnailImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d81bb06294b440379161ade800a82c41_9366/GIAY_ULTRABOOST_22_trang_GX5595_09_standard.jpg",
-  //   },
-  //   {
-  //     itemImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/12fdec9a222f4226bea2ade800a7fc46_9366/GIAY_ULTRABOOST_22_trang_GX5595_06_standard.jpg",
-  //     alt: "Image 4",
-  //     thumbnailImageSrc:
-  //       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/12fdec9a222f4226bea2ade800a7fc46_9366/GIAY_ULTRABOOST_22_trang_GX5595_06_standard.jpg",
-  //   },
-  // ];
 
   const itemTemplate = (item) => {
     return (
@@ -147,7 +109,7 @@ const Detail = () => {
   return (
     <div
       className="container"
-      style={{ paddingTop: "113px", paddingBottom: "20px", width:"95%",margin:"0 auto" }}
+      style={{ paddingTop: "113px", paddingBottom: "20px", width: "95%", margin: "0 auto" }}
     >
       <div className="m-2 w-full">
         <BreadCrumb model={items} home={home} />
@@ -164,21 +126,21 @@ const Detail = () => {
               thumbnail={thumbnailTemplate}
             />
           </div>
-          {products.map(product=>(
+          {products.map(product => (
             <div className="col-6 lg:col-6  ">
-            <h2 key={product._id}>{product.name}</h2>
-            <div className=" ">
-              <div className="text-4xl text-red-400 inline-block font-bold">
-                {product.price}$
-              </div>{" "}
-              {/* <span className="line-through text-xl text-color inline-block">
+              <h2 key={product._id}>{product.name}</h2>
+              <div className=" ">
+                <div className="text-4xl text-red-400 inline-block font-bold">
+                  {product.price}$
+                </div>{" "}
+                {/* <span className="line-through text-xl text-color inline-block">
                 5.200.000₫
               </span>{" "}
               <div className=" font-bold text-white border-round w-4rem h-2rem m-2 bg-red-400 flex align-items-center justify-content-center">
                 Sale
               </div> */}
-            </div>
-            {/* <div>
+              </div>
+              {/* <div>
               <div className="grid grid-form">
                 <div className="col-2 lg:col-2  ">
                   <img
@@ -193,7 +155,7 @@ const Detail = () => {
                 </div>
               </div>
             </div> */}
-            {/* <div>
+              {/* <div>
               <div className="grid grid-form">
                 <div className="col-2 lg:col-2  ">
                   <img
@@ -210,56 +172,56 @@ const Detail = () => {
                 </div>
               </div>
             </div> */}
-            <div className="mt-2">Số lượng:</div>
-            <div className="mt-2">
-              <Button
-                className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
-                label="-"
-                onClick={decreaseQuantity}
-              />
-              <InputText
-                className="h-4rem w-4rem border-round border-2 border-green-600"
-                style={{ textAlign: "center" }}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-              />
-              <Button
-                className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
-                label="+"
-                onClick={increaseQuantity}
-              />
-            </div>
-            <div className="mt-2">Kích cỡ:</div>
-            <div className="mt-2">
-              {buttons.map((button, index) => (
-                <div key={index} className="mr-2 inline-block">
-                  <Button
-                    className={` ${selectedButton === index
+              <div className="mt-2">Số lượng:</div>
+              <div className="mt-2">
+                <Button
+                  className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
+                  label="-"
+                  onClick={decreaseQuantity}
+                />
+                <InputText
+                  className="h-4rem w-4rem border-round border-2 border-green-600"
+                  style={{ textAlign: "center" }}
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                />
+                <Button
+                  className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
+                  label="+"
+                  onClick={increaseQuantity}
+                />
+              </div>
+              <div className="mt-2">Kích cỡ:</div>
+              <div className="mt-2">
+                {buttons.map((button, index) => (
+                  <div key={index} className="mr-2 inline-block">
+                    <Button
+                      className={` ${selectedButton === index
                         ? "bg-green-600 text-white"
                         : "bg-white text-green-600 border-round border-1"
-                      }`}
-                    onClick={() => handleButtonClick(index)}
-                  >
-                    <span>{button}</span>
-                  </Button>
-                </div>
-              ))}
+                        }`}
+                      onClick={() => handleButtonClick(index)}
+                    >
+                      <span>{button}</span>
+                    </Button>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-2">
+                <Button className="w-full bg-green-600" label="Mua ngay" />
+              </div>
+              <div className="mt-2">
+                <Button
+                  className="w-full border-round border-2 bg-white text-green-600 border-green-600"
+                  label="Thêm vào giỏ hàng"
+                />
+              </div>
+              <div className="mt-2">
+                <p style={{ fontSize: '25px' }}>{product.description}</p>
+              </div>
             </div>
-            <div className="mt-2">
-              <Button className="w-full bg-green-600" label="Mua ngay" />
-            </div>
-            <div className="mt-2">
-              <Button
-                className="w-full border-round border-2 bg-white text-green-600 border-green-600"
-                label="Thêm vào giỏ hàng"
-              />
-            </div>
-            <div className="mt-2">
-              <p style={{fontSize:'25px'}}>{product.description}</p>
-            </div>
-          </div>
           ))}
-          
+
         </div>
       </div>
       <div className="comments ">
