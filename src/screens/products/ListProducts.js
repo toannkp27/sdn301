@@ -5,12 +5,13 @@ import React, { useEffect, useState } from 'react';
 import { Dropdownz, GridForm, Inputz } from '../dashboard/components/forrm/ForrmList';
 import { useGetParams } from '../hooks';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Header = ({ setParams }) => {
     const [filter, setFilter] = useState({ key_search: '', floor: '' })
     const [brands, setBrands] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:9999//brands') 
+        fetch('http://localhost:9999//brands')
             .then(response => response.json())
             .then(data => setBrands(data))
             .catch(error => console.error('Error fetching brands:', error));
@@ -53,12 +54,13 @@ const Header = ({ setParams }) => {
 const ListProducts = () => {
     const initParam = useGetParams()
     const [params, setParams] = useState(initParam)
-    const [products,setProducts]=useState([])
+    const [products, setProducts] = useState([])
     useEffect(() => {
-        fetch('http://localhost:9999/products') 
-            .then(response => response.json())
-            .then(data => setProducts(data))
-            .catch(error => console.error('Error fetching products:', error));
+        axios.get('http://localhost:9999/products')
+            .then((res) => {
+                setProducts(res.data);
+                console.log(res.data);
+            })
     }, []);
 
     const items = [
@@ -275,17 +277,17 @@ const ListProducts = () => {
                     <div className="m-2 border-round-md">
                         <Image
                             className="border-round-md"
-                            src={p.images[1].url}
+                            src={p.images[0].url}
                             alt="Image"
                             width="280"
                             preview
                         />
                         <Link to={`/detail/${p._id}`} style={{ textDecoration: "none" }}>
-                        <div className="font-bold text-base" style={{color:"black"}}>{p.name}</div>
-                        <div className="text-xl text-red-400 inline-block font-bold">{(p.price) * 0.5}$</div>{" "}
-                        <span className="line-through text-base text-color inline-block">{p.price}$</span>{" "}
+                            <div className="font-bold text-base" style={{ color: "black" }}>{p.name}</div>
+                            <div className="text-xl text-red-400 inline-block font-bold">{(p.price) * 0.5}$</div>{" "}
+                            <span className="line-through text-base text-color inline-block">{p.price}$</span>{" "}
                         </Link>
-                       
+
                     </div>
                 </div>
             );
