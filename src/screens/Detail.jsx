@@ -11,50 +11,55 @@ import axios from "axios";
 const Detail = () => {
   const [value, setValue] = useState(1);
   const [images, setImages] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({});
+  const [sizes, setSizes] = useState([]);
   const { pid } = useParams();
 
-  console.log(pid);
 
   useEffect(() => {
     fetch("http://localhost:9999/products/" + pid)
-        .then((resp) => resp.json())
-        .then((data) => {
-            setProducts(data);
-        });
-}, [pid]);
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await fetch("http://localhost:9999/images/" + pid);
-          const data = await response.json();
-          console.log(data);
-
-          setImages(data); 
-          console.log(images);
-
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    };
-
-    fetchImages();
+      .then((resp) => resp.json())
+      .then((data) => {
+        setProducts(data);
+      });
   }, [pid]);
 
+  // useEffect(() => {
+  //   const fetchImages = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:9999/images/" + pid);
+  //         const data = await response.json();
+  //         console.log(data);
+
+  //         setImages(data); 
+  //         console.log(images);
+
+  //     } catch (error) {
+  //       console.error("Error fetching images:", error);
+  //     }
+  //   };
+
+  //   fetchImages();
+  // }, [pid]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:9999/sizes/${pid}`)
+      .then((res) => {
+        setSizes(res.data);
+      })
+  }, [pid]);
   useEffect(() => {
     axios.get(`http://localhost:9999/images/${pid}`)
-    .then((res) => {
-      setImages(res.data);
-      console.log(res);
-    })
+      .then((res) => {
+        setImages(res.data);
+      })
   }, [pid]);
 
-  console.log(images);
+
+
   const items = [
-    { label: "Women" },
-    { label: "Run" },
-    { label: "ULTRABOOST 22" },
+    { label: "List Products", url: "http://localhost:3000/listproduct" },
+    { label: products.name },
   ];
   const home = { icon: "pi pi-home", url: "http://localhost:3000/" };
   const responsiveOptions = [
@@ -77,7 +82,7 @@ const Detail = () => {
     setSelectedButton(index);
   };
 
-  const buttons = ["3.5 UK", "4 UK", "4.5 UK", "5 UK"];
+  // const buttons = ["3.5 UK", "4 UK", "4.5 UK", "5 UK"];
 
   const itemTemplate = (item) => {
     return (
@@ -106,12 +111,13 @@ const Detail = () => {
     }
   };
 
+  const allSize = [38, 39, 40, 41, 42, 43, 44, 45];
   return (
     <div
       className="container"
-      style={{ paddingTop: "113px", paddingBottom: "20px", width: "95%", margin: "0 auto" }}
+      style={{ width: "95%", margin: "0 auto" }}
     >
-      <div className="m-2 w-full">
+      <div className=" w-full">
         <BreadCrumb model={items} home={home} />
       </div>
       <div className="card bg-color ">
@@ -126,21 +132,20 @@ const Detail = () => {
               thumbnail={thumbnailTemplate}
             />
           </div>
-          {products.map(product => (
-            <div className="col-6 lg:col-6  ">
-              <h2 key={product._id}>{product.name}</h2>
-              <div className=" ">
-                <div className="text-4xl text-red-400 inline-block font-bold">
-                  {product.price}$
-                </div>{" "}
-                {/* <span className="line-through text-xl text-color inline-block">
+          <div className="col-6 lg:col-6  ">
+            <h2 key={products._id}>{products.name}</h2>
+            <div className=" ">
+              <div className="text-4xl text-red-400 inline-block font-bold">
+                {products.price}$
+              </div>{" "}
+              {/* <span className="line-through text-xl text-color inline-block">
                 5.200.000₫
               </span>{" "}
               <div className=" font-bold text-white border-round w-4rem h-2rem m-2 bg-red-400 flex align-items-center justify-content-center">
                 Sale
               </div> */}
-              </div>
-              {/* <div>
+            </div>
+            {/* <div>
               <div className="grid grid-form">
                 <div className="col-2 lg:col-2  ">
                   <img
@@ -155,7 +160,7 @@ const Detail = () => {
                 </div>
               </div>
             </div> */}
-              {/* <div>
+            {/* <div>
               <div className="grid grid-form">
                 <div className="col-2 lg:col-2  ">
                   <img
@@ -172,55 +177,94 @@ const Detail = () => {
                 </div>
               </div>
             </div> */}
-              <div className="mt-2">Số lượng:</div>
-              <div className="mt-2">
-                <Button
-                  className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
-                  label="-"
-                  onClick={decreaseQuantity}
-                />
-                <InputText
-                  className="h-4rem w-4rem border-round border-2 border-green-600"
-                  style={{ textAlign: "center" }}
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                />
-                <Button
-                  className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
-                  label="+"
-                  onClick={increaseQuantity}
-                />
-              </div>
-              <div className="mt-2">Kích cỡ:</div>
-              <div className="mt-2">
-                {buttons.map((button, index) => (
-                  <div key={index} className="mr-2 inline-block">
-                    <Button
-                      className={` ${selectedButton === index
-                        ? "bg-green-600 text-white"
-                        : "bg-white text-green-600 border-round border-1"
-                        }`}
-                      onClick={() => handleButtonClick(index)}
-                    >
-                      <span>{button}</span>
-                    </Button>
+            <div className="mt-2">Quantity:</div>
+            <div className="mt-2">
+              <Button
+                className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
+                label="-"
+                onClick={decreaseQuantity}
+              />
+              <InputText
+                className="h-4rem w-4rem border-round border-2 border-green-600"
+                style={{ textAlign: "center" }}
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
+              <Button
+                className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-green-600"
+                label="+"
+                onClick={increaseQuantity}
+              />
+            </div>
+            <div className="mt-2">Select Size</div>
+            {/* <div className="mt-2">
+                {sizes.map((sizes, index) => (
+                  <div key={index}>
+                    {sizes.sizes.map((sizeItem, sizeIndex) => (
+                      <div key={sizeIndex} className="mr-2 inline-block">
+                        <Button
+                          className={` ${selectedButton === sizeIndex
+                            ? "bg-green-600 text-white"
+                            : "bg-white text-green-600 border-round border-1"
+                            }`}
+                          onClick={() => handleButtonClick(sizeIndex)}
+                        >
+                          <span>{sizeItem.size}</span>
+                        </Button>
+                      </div>
+                    ))}
                   </div>
                 ))}
-              </div>
-              <div className="mt-2">
-                <Button className="w-full bg-green-600" label="Mua ngay" />
-              </div>
-              <div className="mt-2">
-                <Button
-                  className="w-full border-round border-2 bg-white text-green-600 border-green-600"
-                  label="Thêm vào giỏ hàng"
-                />
-              </div>
-              <div className="mt-2">
-                <p style={{ fontSize: '25px' }}>{product.description}</p>
-              </div>
+              </div> */}
+
+            <div className="mt-2">
+              {sizes.map((sizesGroup, index) => (
+                <div key={index}>
+                  {allSize.map((size, sizeIndex) => {
+                    // Kiểm tra nếu giá trị size tồn tại trong mảng sizeItem.size của sizesGroup
+                    const isValidSize = sizesGroup.sizes.some(sizeItem => sizeItem.size === size);
+
+                    // Xác định className dựa trên size hợp lệ
+                    const buttonClasses = isValidSize
+                      ? "bg-white text-green-600 border-round border-1"
+                      : "bg-gray-200 text-gray-500 border-round border-1"; // Class cho nút không hợp lệ/làm mờ
+
+                    return (
+                      <div key={sizeIndex} className="mr-2 inline-block">
+                        <Button
+                          className={buttonClasses}
+                          onClick={() => isValidSize && handleButtonClick(size)}
+                        // Bạn có thể thêm logic onClick chỉ khi isValidSize là true
+                        >
+                          <span>{size}</span>
+                        </Button>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
             </div>
-          ))}
+            <div className="mt-2">
+              <Button className="bg-green-600 py-3" label="Add To Cart"  
+              style={{width:"20%",fontSize:"20px"}}
+              icon="pi pi-check-square"
+              size='large'
+              />
+            </div>
+            <div className="mt-2">
+              <Button
+                className=" border-round border-2 bg-white text-green-600 border-green-600 py-3"
+                style={{width:"20%",fontSize:"20px"}}
+                label="Check Out"
+                icon="pi pi-shopping-cart"
+                size='large'
+
+              />
+            </div>
+            <div className="mt-2">
+              <p style={{ fontSize: '25px' }}>{products.description}</p>
+            </div>
+          </div>
 
         </div>
       </div>

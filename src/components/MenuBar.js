@@ -28,6 +28,7 @@ export default function MenuBar() {
         <a
           className="flex align-items-center p-3 cursor-pointer mb-2 gap-2 "
           onClick={options.onClick}
+          href="##"
         >
           <span className="inline-flex align-items-center justify-content-center border-circle bg-primary w-3rem h-3rem">
             <i className={`${item.icon} text-lg`}></i>
@@ -63,7 +64,7 @@ export default function MenuBar() {
       template: itemRenderer,
     },
     {
-      label: "List Product",
+      label: "List Products",
       root: true,
       route: "/listproduct",
       template: itemRenderer,
