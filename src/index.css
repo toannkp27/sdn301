@@ -24,7 +24,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.login-link {
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s; /* Áp dụng hiệu ứng màu chữ mềm dần trong 0.3 giây */
+}
 
+.login-link:hover {
+  color: blue; 
+  text-decoration: underline;
+}
 :root {
   --primary-color: rgb(60, 141, 188);
 }

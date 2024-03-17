@@ -1,15 +1,15 @@
 
+import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
+import { InputText } from 'primereact/inputtext';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
+import { classNames } from 'primereact/utils';
 import React, { useState } from 'react';
+import AddProduct from '../../AddProduct';
 import { useGetParams } from '../../hooks';
 import { Dropdownz, GridForm, Inputz } from './forrm/ForrmList';
-import { Button } from 'primereact/button';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
-import { classNames } from 'primereact/utils';
 
 const Header = ({ setParams }) => {
     const [filter, setFilter] = useState({ key_search: '', floor: '' })
@@ -56,8 +56,10 @@ const ProductManage = () => {
     const rows = 10;
     const initParam = useGetParams()
     const [params, setParams] = useState(initParam)
-    const [selectedOrder, setSelectedOrder] = useState(null);
     const [visible, setVisible] = useState(false);
+    const onHide = () => {
+        setVisible(false);
+    };
     const products = [
         {
             id: 1,
@@ -285,11 +287,8 @@ const ProductManage = () => {
     //     return <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>;
     // };
     const handleEyeClick = (rowData) => {
-        setSelectedOrder(rowData);
+        // setSelectedOrder(rowData);
         setVisible(true);
-    };
-    const onHide = () => {
-        setVisible(false);
     };
    
     const dialogFooter = (
@@ -496,16 +495,26 @@ const ProductManage = () => {
         <div className="w-full border-round border-solid border-1 surface-border">
             <Header setParams={setParams} />
             <hr />
-            {/* <Button
+            <Button
+                onClick={() => setVisible(true)}
+                icon="pi pi-plus"
+                label="Add New Product"
+                size="small"
+                severity="info"
+                raised
+                type="button"
+                className='m-2 ml-4'
+            />
+            <Button
                 onClick={() => setVisibledDialog(true)}
                 icon="pi pi-plus"
-                label="Add new"
+                label="Add New Brand"
                 size="small"
                 severity="info"
                 raised
                 type="button"
                 className='m-2'
-            /> */}
+            />
             <DataTable
                 className='m-2'
                 value={products}
@@ -526,18 +535,9 @@ const ProductManage = () => {
                 <Column header="Status" body={statusBodyTemplate}></Column>
                 <Column header="Operation" body={ActionBody}></Column>
             </DataTable>
-            <Dialog
-                header="Order Details"
-                visible={visible}
-                style={{ width: '70vw' }}
-                modal
-                onHide={onHide}
-                footer={dialogFooter}
-            >
-                {selectedOrder && (
-                    OrderDetail(orderDetail)
-                )}
-            </Dialog>
+            {visible === true && (
+                <AddProduct visible={visible} setVisible={setVisible} />
+            )}
         </div>
     );
 }
