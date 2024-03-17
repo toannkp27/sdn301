@@ -5,25 +5,37 @@ import { default as React, useEffect, useState } from "react";
 import { InputForm } from "../../components";
 import { format } from "date-fns";
 import axios from "axios";
+import EditProfile from "./EditProfile";
 const Profile = (props) => {
   const { visible, setVisible } = props;
+  const [editVisible, setEditVisible] = useState(false);
   const [profile, setProfile] = useState({});
   const user = JSON.parse(localStorage.getItem("user"));
   const formattedBirthday = profile.birthday
     ? format(new Date(user.birthday), "dd/MM/yyyy")
     : "";
-
   useEffect(() => {
-    axios.get("http://localhost:9999/users/" + user.username)
-      .then((res) => {
+    axios.get("http://localhost:9999/users/" + user.username).then((res) => {
       setProfile(res.data);
       console.log(res.data);
     });
   }, [user.username]);
-  console.log(profile);
+
+  const updateProfileData = () => {
+    axios.get("http://localhost:9999/users/" + user.username).then((res) => {
+      setProfile(res.data);
+      console.log(res.data);
+    });
+  };
+
+  const handleEditClick = () => {
+    setEditVisible(true);
+  };
+
   const onHide = () => {
     setVisible(false);
   };
+
   const dialogFooter = (
     <div>
       <Button
@@ -36,11 +48,13 @@ const Profile = (props) => {
         label="Edit"
         icon="pi pi-spin pi-cog"
         className="bg-blue-600 border-red-600"
+        onClick={handleEditClick}
       />
     </div>
   );
+
   const icon = <i className="pi pi-search"></i>;
-  console.log(user.username);
+
   return (
     <Dialog
       header="Profile"
@@ -50,68 +64,75 @@ const Profile = (props) => {
       onHide={onHide}
       footer={dialogFooter}
     >
-      <div className="card bg-color m-4 ">
-        <div className="grid grid-form">
-          <div className="col-12 lg:col-3">
-            <div className="card bg-color">
-              <Image
-                src="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
-                indicatorIcon={icon}
-                alt="Image"
-                preview
-                className=" m-auto"
-              />
+      {editVisible ? (
+        <EditProfile
+          visible={editVisible}
+          setVisible={setEditVisible}
+          updateProfileData={updateProfileData}
+        />
+      ) : (
+        <div className="card bg-color m-4 ">
+          <div className="grid grid-form">
+            <div className="col-12 lg:col-3">
+              <div className="card bg-color">
+                <Image
+                  src="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
+                  indicatorIcon={icon}
+                  alt="Image"
+                  preview
+                  className=" m-auto"
+                />
+              </div>
             </div>
-          </div>
-          <div className="col-12 lg:col-9 ">
-            <div className="card bg-color">
-              <div className="grid grid-form">
-                <div className="col-12 lg:col-6">
-                  <InputForm
-                    id="full_name"
-                    value={profile.full_name}
-                    label="Full Name"
-                    readOnly
-                  />
-
-                  <InputForm
-                    id="email"
-                    value={profile.Email}
-                    label="Email"
-                    readOnly
-                  />
-                  <InputForm
-                    id="phone"
-                    value={profile.phone}
-                    label="Phone"
-                    readOnly
-                  />
-                </div>
-                <div className="col-12 lg:col-6">
-                  <InputForm
-                    id="birthday"
-                    label="Date of birth"
-                    readOnly
-                    value={formattedBirthday}
-                  />
-                  <InputForm
-                    id="address"
-                    value={profile.address}
-                    label="Address"
-                    readOnly
-                  />
-                  <InputForm
-                    id="gender"
-                    value={profile.gender}
-                    label="Gender"
-                    readOnly
-                  />
+            <div className="col-12 lg:col-9 ">
+              <div className="card bg-color">
+                <div className="grid grid-form">
+                  <div className="col-12 lg:col-6">
+                    <InputForm
+                      id="full_name"
+                      value={profile.full_name}
+                      label="Full Name"
+                      readOnly
+                    />
+                    <InputForm
+                      id="email"
+                      value={profile.Email}
+                      label="Email"
+                      readOnly
+                    />
+                    <InputForm
+                      id="phone"
+                      value={profile.phone}
+                      label="Phone"
+                      readOnly
+                    />
+                  </div>
+                  <div className="col-12 lg:col-6">
+                    <InputForm
+                      id="birthday"
+                      label="Date of birth"
+                      readOnly
+                      value={formattedBirthday}
+                    />
+                    <InputForm
+                      id="address"
+                      value={profile.address}
+                      label="Address"
+                      readOnly
+                    />
+                    <InputForm
+                      id="gender"
+                      value={profile.gender}
+                      label="Gender"
+                      readOnly
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </Dialog>
   );
 };

@@ -1,60 +1,108 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import axios from "axios";
 
 const ChangePassWord = () => {
   const containerStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop:'30px',
-    marginBottom:'30px'
+    marginTop: "30px",
+    marginBottom: "30px",
   };
 
   const formStyle = {
     width: "60%",
     marginBottom: 10,
   };
+  const [oldPass, setOldPass] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [reNewPass, setReNewPass] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
 
-
-  const handleChange = () => {
-    const userDataString = localStorage.getItem("user");
-    if (userDataString) {
-      const userData = JSON.parse(userDataString);
-      console.log("User ID:", userData._id);
-      console.log("Username:", userData.username);
-    } else {
-      console.log("User data not found in localStorage");
+  const handleUpdate = () => {
+    if (!oldPass || !newPass || !reNewPass) {
+      alert("Please fill in all fields!");
+      return;
     }
-  }
-  
- 
+    if (newPass !== reNewPass) {
+      alert("New passwords do not match!");
+      return;
+    }
+    if (oldPass !== user.password) {
+      alert("Old password is incorrect!");
+      return;
+    }
+
+    axios
+      .put(`http://localhost:9999/users/${user.username}`, {
+        password: newPass,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Change password successfully!");
+          setOldPass("");
+          setNewPass("");
+          setReNewPass("");
+          const updatedUser = { ...user, password: newPass };
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          
+        } else {
+          alert("Change password failed!");
+        }
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+        alert("Change password failed!");
+      });
+  };
 
   return (
     <div style={containerStyle}>
-        
       <div className="card d-flex" style={formStyle}>
         <div className="p-inputgroup flex-1" style={{ marginBottom: 10 }}>
           <span className="p-inputgroup-addon">
             <i className="pi pi-lock"></i>
           </span>
-          <InputText placeholder="Old PassWord" type="password" style={{ width: "50px" }} />
+          <InputText
+            placeholder="Old Password"
+            type="password"
+            style={{ width: "50px" }}
+            value={oldPass}
+            onChange={(e) => setOldPass(e.target.value)}
+          />
         </div>
         <div className="p-inputgroup flex-1" style={{ marginBottom: 10 }}>
           <span className="p-inputgroup-addon">
             <i className="pi pi-unlock"></i>
           </span>
-          <InputText placeholder="New PassWord" type="password" style={{ width: "50px" }} />
+          <InputText
+            placeholder="New Password"
+            type="password"
+            style={{ width: "50px" }}
+            value={newPass}
+            onChange={(e) => setNewPass(e.target.value)}
+          />
         </div>
         <div className="p-inputgroup flex-1" style={{ marginBottom: 10 }}>
           <span className="p-inputgroup-addon">
             <i className="pi pi-lock-open"></i>
           </span>
-          <InputText placeholder="Re-NewPassWord" type="password" style={{ width: "50px" }} />
+          <InputText
+            placeholder="Re-enter New Password"
+            type="password"
+            style={{ width: "50px" }}
+            value={reNewPass}
+            onChange={(e) => setReNewPass(e.target.value)}
+          />
         </div>
         <div style={{ width: "100%", textAlign: "center" }}>
-          <Button label="Change Password" icon="pi pi-check"  onClick={handleChange}/>
+          <Button
+            label="Change Password"
+            icon="pi pi-check"
+            onClick={handleUpdate}
+          />
         </div>
       </div>
     </div>
