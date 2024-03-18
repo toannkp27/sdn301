@@ -11,9 +11,8 @@ const Header = ({ setParams }) => {
     const [filter, setFilter] = useState({ key_search: '', floor: '' })
     const [brands, setBrands] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:9999//brands')
-            .then(response => response.json())
-            .then(data => setBrands(data))
+        axios.get('http://localhost:9999/brands/listBrand')
+            .then(response => setBrands(response.data))
             .catch(error => console.error('Error fetching brands:', error));
     }, []);
 
