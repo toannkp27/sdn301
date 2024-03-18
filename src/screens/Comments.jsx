@@ -14,36 +14,19 @@ const Comments = () => {
   const [text, setText] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(() => {
-    axios.get("http://localhost:9999/comments/" + pid).then((res) => {
-      setListComments(res.data);
-      console.log(res.data);
+ useEffect(() => {
+  axios.get("http://localhost:9999/comments/" + pid)
+    .then((res) => {
+      const sortedComments = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setListComments(sortedComments);
+      console.log(sortedComments);
+    })
+    .catch((err) => {
+      console.log(err.message);
     });
-  }, []);
-  console.log(user._id);
-  // const handleCreate = () => {
-  //   axios
-  //     .post("http://localhost:9999/comments", {
-  //       text: text,
-  //       userId: user._id,
-  //       productId: pid,
-  //     })
-  //     .then((response) => {
-  //       if (response.status === 201) {
-  //         alert("Comments thành công");
-  //         const newCommentId = response.data.comment._id; // Lấy _id từ phản hồi của máy chủ
-  //         setListComments([...listComments, { _id: newCommentId, userId: user, text: text }]);
-  //         setText("");
-  //         console.log(response.data);
-  //       } else {
-  //         console.log("Comment thất bại");
-  //       }
-  //     })
+}, []);
 
-  //     .catch((error) => {
-  //       console.error("Error: ", error);
-  //     });
-  // };
+  console.log(user._id);
   const handleCreate = (e) => {
     e.preventDefault();
     axios
