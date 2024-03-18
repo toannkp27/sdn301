@@ -7,12 +7,15 @@ import axios from "axios";
 import { Image } from "primereact/image";
 import { Col } from "react-bootstrap";
 import { useParams } from "react-router";
-
+import { InputForm } from "../components";
 const Comments = () => {
   const [listComments, setListComments] = useState([]);
   const { pid } = useParams();
   const [text, setText] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
+  const [isUpdateInput, setisUpdateInput] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [editCommentText, setEditCommentText] = useState(""); // New state to store text being edited
 
   useEffect(() => {
     axios
@@ -72,6 +75,44 @@ const Comments = () => {
     }
   };
 
+  const handleEditComment = (index, currentText) => {
+    setEditCommentText(currentText); // Đặt lại trạng thái sau khi cập nhật
+    setSelectedIndex(index); 
+    setisUpdateInput(true); // Đặt isUpdateInput thành true để hiển thị trường nhập để chỉnh sửa
+  };
+
+  const handleUpdate = (index) => {
+    axios
+      .put("http://localhost:9999/comments/" + index, {
+        text: editCommentText, 
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Edit comment successfully");
+          // Refresh the comments after editing
+          axios
+            .get("http://localhost:9999/comments/" + pid)
+            .then((res) => {
+              const sortedComments = res.data.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+              );
+              setListComments(sortedComments);
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
+        } else {
+          console.log("Edit comment failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+      });
+    setEditCommentText(""); 
+    setSelectedIndex(null);
+    setisUpdateInput(false);
+  };
+
   return (
     <Panel header="Add Comment" className="mt-4">
       <div className=" flex justify-content-center">
@@ -108,19 +149,30 @@ const Comments = () => {
         </div>
       </div>
       <div>
-        <Col>
+      <Col>
           {listComments.map((l, index) => (
             <div key={index} className="mb-3">
               <div className="d-flex">
-                {/* <Image
-          src="https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg"
-          roundedCircle
-          style={{ width: "5px", height: "40px", marginRight: "10px" }}
-        /> */}
                 <div className="d-flex align-items-center">
                   <div className="bg-light p-2 rounded">
                     <strong>{l.userId?.username}</strong>
-                    <p className="mb-0 d-block">{l.text}</p>
+                    {isUpdateInput && selectedIndex === index ? (
+                      <>
+                        <InputText
+                          value={editCommentText} 
+                          rows={2}
+                          cols={30}
+                          onChange={(e) => setEditCommentText(e.target.value)}
+                        />
+                        <Button
+                          label="OK"
+                          onClick={() => handleUpdate(l._id)}
+                          className="p-button-primary"
+                        />
+                      </>
+                    ) : (
+                      <p className="mb-0 d-block">{l.text}</p>
+                    )}
                   </div>
                   {user && l.userId?._id === user._id && (
                     <>
@@ -130,7 +182,10 @@ const Comments = () => {
                       >
                         Xóa
                       </button>
-                      <button className="btn btn-sm btn-danger ml-2">
+                      <button
+                        className="btn btn-sm btn-danger ml-2"
+                        onClick={() => handleEditComment(index, l.text)}
+                      >
                         Edit
                       </button>
                     </>
