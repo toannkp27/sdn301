@@ -1,11 +1,6 @@
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import {
-  Box,
-  Card,
-  Grid, IconButton,
-  styled,
-  Tooltip
-} from "@mui/material";
+import { Box, Card, Grid, IconButton, styled, Tooltip } from "@mui/material";
+import { useEffect, useState } from "react";
 import { Small } from "../components/Typography";
 const StyledCard = styled(Card)(({ theme }) => ({
   display: "flex",
@@ -38,6 +33,28 @@ const Heading = styled("h6")(({ theme }) => ({
 }));
 
 const StatCards = () => {
+  const [sumWeekSale, setSumWeekSale] = useState(0);
+  const [order, setOrder] = useState(0);
+  useEffect(() => {
+    fetch("http://localhost:9999/receipt/sumWeekSale")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setSumWeekSale(data.total);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+  useEffect(() => {
+    fetch("http://localhost:9999/order/countOrdersToDeliver")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setOrder(data.orders_to_deliver);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
   const cardList = [
     {
       name: "New Leads",
@@ -46,7 +63,7 @@ const StatCards = () => {
     },
     {
       name: "This week Sales",
-      amount: "$80,500",
+      amount: `${sumWeekSale} $`,
       icon: "pi pi-dollar",
     },
     {
@@ -56,7 +73,7 @@ const StatCards = () => {
     },
     {
       name: "Orders to deliver",
-      amount: "305 Orders",
+      amount: `${order} Orders`,
       icon: "pi pi-shopping-cart",
     },
   ];

@@ -1,12 +1,15 @@
+import axios from "axios";
 import { BreadCrumb } from "primereact/breadcrumb";
 import { Button } from "primereact/button";
 import { Galleria } from "primereact/galleria";
 import { Image } from "primereact/image";
 import { InputText } from "primereact/inputtext";
 import { useEffect, useState } from "react";
-import Comments from "./Comments";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
-import axios from "axios";
+import { listToast } from "../constants";
+import { setToast } from "../redux/features";
+import Comments from "./Comments";
 
 const Detail = () => {
   const [value, setValue] = useState(1);
@@ -14,8 +17,9 @@ const Detail = () => {
   const [products, setProducts] = useState({});
   const [sizes, setSizes] = useState([]);
   const { pid } = useParams();
+  const dispatch = useDispatch();
 
-
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     fetch("http://localhost:9999/products/" + pid)
       .then((resp) => resp.json())
@@ -24,38 +28,17 @@ const Detail = () => {
       });
   }, [pid]);
 
-  // useEffect(() => {
-  //   const fetchImages = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:9999/images/" + pid);
-  //         const data = await response.json();
-  //         console.log(data);
-
-  //         setImages(data); 
-  //         console.log(images);
-
-  //     } catch (error) {
-  //       console.error("Error fetching images:", error);
-  //     }
-  //   };
-
-  //   fetchImages();
-  // }, [pid]);
 
   useEffect(() => {
-    axios.get(`http://localhost:9999/sizes/${pid}`)
-      .then((res) => {
-        setSizes(res.data);
-      })
+    axios.get(`http://localhost:9999/sizes/${pid}`).then((res) => {
+      setSizes(res.data);
+    });
   }, [pid]);
   useEffect(() => {
-    axios.get(`http://localhost:9999/images/${pid}`)
-      .then((res) => {
-        setImages(res.data);
-      })
+    axios.get(`http://localhost:9999/images/${pid}`).then((res) => {
+      setImages(res.data);
+    });
   }, [pid]);
-
-
 
   const items = [
     { label: "List Products", url: "http://localhost:3000/listproduct" },
@@ -81,25 +64,36 @@ const Detail = () => {
   const handleButtonClick = (index) => {
     setSelectedButton(index);
   };
-
+  const addToCart = () => {
+    axios
+      .post("http://localhost:9999/order/addToCart", {
+        productId: pid,
+        userId: user._id,
+        price: products.price,
+        quantity: value,
+      })
+      .then((response) => {
+        if (response.data.success) {
+          dispatch(
+            setToast({ ...listToast[0], detail: "Product added to cart!!" })
+          );
+          console.log("Product added to cart!!");
+        } else {
+          console.error("Failed to add product");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
   // const buttons = ["3.5 UK", "4 UK", "4.5 UK", "5 UK"];
 
   const itemTemplate = (item) => {
-    return (
-      <img src={item.url}
-        alt={item.caption}
-        style={{ width: "100%" }} />
-    );
+    return <img src={item.url} alt={item.caption} style={{ width: "100%" }} />;
   };
 
   const thumbnailTemplate = (item) => {
-    return (
-      <img
-        src={item.url}
-        alt={item.caption}
-        style={{ width: "50%" }}
-      />
-    );
+    return <img src={item.url} alt={item.caption} style={{ width: "50%" }} />;
   };
   const increaseQuantity = () => {
     setValue((prevValue) => prevValue + 1);
@@ -113,10 +107,7 @@ const Detail = () => {
 
   const allSize = [38, 39, 40, 41, 42, 43, 44, 45];
   return (
-    <div
-      className="container"
-      style={{ width: "95%", margin: "0 auto" }}
-    >
+    <div className="container" style={{ width: "95%", margin: "0 auto" }}>
       <div className=" w-full">
         <BreadCrumb model={items} home={home} />
       </div>
@@ -222,7 +213,9 @@ const Detail = () => {
                 <div key={index}>
                   {allSize.map((size, sizeIndex) => {
                     // Kiểm tra nếu giá trị size tồn tại trong mảng sizeItem.size của sizesGroup
-                    const isValidSize = sizesGroup.sizes.some(sizeItem => sizeItem.size === size);
+                    const isValidSize = sizesGroup.sizes.some(
+                      (sizeItem) => sizeItem.size === size
+                    );
 
                     // Xác định className dựa trên size hợp lệ
                     const buttonClasses = isValidSize
@@ -234,7 +227,7 @@ const Detail = () => {
                         <Button
                           className={buttonClasses}
                           onClick={() => isValidSize && handleButtonClick(size)}
-                        // Bạn có thể thêm logic onClick chỉ khi isValidSize là true
+                          // Bạn có thể thêm logic onClick chỉ khi isValidSize là true
                         >
                           <span>{size}</span>
                         </Button>
@@ -245,27 +238,28 @@ const Detail = () => {
               ))}
             </div>
             <div className="mt-2">
-              <Button className="bg-green-600 py-3" label="Add To Cart"  
-              style={{width:"20%",fontSize:"20px"}}
-              icon="pi pi-check-square"
-              size='large'
+              <Button
+                className="bg-green-600 py-3"
+                label="Add To Cart"
+                onClick={addToCart}
+                style={{ width: "20%", fontSize: "20px" }}
+                icon="pi pi-check-square"
+                size="large"
               />
             </div>
             <div className="mt-2">
               <Button
                 className=" border-round border-2 bg-white text-green-600 border-green-600 py-3"
-                style={{width:"20%",fontSize:"20px"}}
+                style={{ width: "20%", fontSize: "20px" }}
                 label="Check Out"
                 icon="pi pi-shopping-cart"
-                size='large'
-
+                size="large"
               />
             </div>
             <div className="mt-2">
-              <p style={{ fontSize: '25px' }}>{products.description}</p>
+              <p style={{ fontSize: "25px" }}>{products.description}</p>
             </div>
           </div>
-
         </div>
       </div>
       <div className="comments ">

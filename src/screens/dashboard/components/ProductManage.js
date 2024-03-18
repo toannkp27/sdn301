@@ -6,14 +6,15 @@ import { InputText } from 'primereact/inputtext';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import { classNames } from 'primereact/utils';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddProduct from '../../AddProduct';
 import { useGetParams } from '../../hooks';
 import { Dropdownz, GridForm, Inputz } from './forrm/ForrmList';
+import ImportProduct from './inventory/ImportProduct';
 
 const Header = ({ setParams }) => {
     const [filter, setFilter] = useState({ key_search: '', floor: '' })
-    
+
     return (
         <>
             <div className="flex flex-wrap align-items-center justify-content-between gap-2 m-2">
@@ -60,199 +61,19 @@ const ProductManage = () => {
     const onHide = () => {
         setVisible(false);
     };
-    const products = [
-        {
-            id: 1,
-            name: 'Ultraboost Light',
-            image: 'https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4eb226710c1d4baab6256b741b7d0be7_9366/gi%C3%A0y-ultraboost-light.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'LOWSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 2,
-            name: 'Superstar Slip-On',
-            image: 'https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/67e3732b3fee450092aae2724526d569_9366/gi%C3%A0y-superstar-slip-on.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 2,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 3,
-            name: 'Superstar',
-            image: 'https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4e5f3f5011d04322a1914a8aa7fd670d_9366/gi%C3%A0y-superstar.jpg',
-            price: 65,
-            category: 'Fitness',
-            rating: 1,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 4,
-            name: 'Stan Smith PF W',
-            image: 'https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/6bf90d60370e41df970a2a8b920aad5f_9366/stan-smith-pf-w.jpg',
-            price: 65,
-            category: 'Clothing',
-            rating: 5,
-            inventoryStatus: 'LOWSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 5,
-            name: 'TRAINER TRAE YOUNG 3 LOW',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b856ac34516a4de39450d1ab2b95f867_9366/Giay_Trainer_Trae_Young_3_Low_trang_IE2704_02_standard_hover.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 3,
-            inventoryStatus: 'LOWSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 6,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 7,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 8,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 9,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 10,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 11,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
+    const [sampleData, setSampleData] = useState([]);
 
-        {
-            id: 12,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 13,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 14,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 15,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 16,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 17,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 18,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-        {
-            id: 19,
-            name: 'SUPERSTAR XLG',
-            image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg',
-            price: 65,
-            category: 'Accessories',
-            rating: 4,
-            inventoryStatus: 'INSTOCK',
-            unitInStock: 10
-        },
-    ]
+    useEffect(() => {
+        fetch('http://localhost:9999/inventory/getAll')
+            .then((resp) => resp.json())
+            .then((data) => {
+                setSampleData(data.data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, [visible, visibledDialog]);
+    console.log(sampleData);
     const TimeBody = (inputDate) => {
 
         const dateObject = new Date(inputDate);
@@ -290,7 +111,7 @@ const ProductManage = () => {
         // setSelectedOrder(rowData);
         setVisible(true);
     };
-   
+
     const dialogFooter = (
         <div>
             <Button label="Close" icon="pi pi-times" onClick={onHide} />
@@ -319,8 +140,8 @@ const ProductManage = () => {
         "total_cost": 110,
         "status": "Processing",
         "payment_method": "Credit Card",
-        
-        
+
+
         "description": "Urgent delivery requested",
         "estimated_delivery_date": "2024-02-15T12:00:00.000Z",
         "transport_fee": 10,
@@ -426,7 +247,7 @@ const ProductManage = () => {
                             value={obj.category}
                             label="Category"
                         />
-                       
+
                         <div className="mb-3 px-2 change-disabled">
                             <div className="w-full flex justify-content-between">
                                 <label className="font-medium w-full">
@@ -450,14 +271,14 @@ const ProductManage = () => {
                             value={(obj.unitsInStock)}
                             label="Units in Stock"
                         />
-                        
-                        
-                         <InputForm
+
+
+                        <InputForm
                             id="Reviews "
                             value={priceBodyTemplate(obj.total_cost)}
                             label="Reviews "
                         />
-                       
+
                     </div>
                 </div>
                 <hr />
@@ -470,13 +291,13 @@ const ProductManage = () => {
                     <div className="w-full border-round border-solid border-1 surface-border">
                         <DataTable
                             className='m-2'
-                            value={product}
+                            value={sampleData}
                             first={first}
                             rows={rows}
                             onPage={(e) => setFirst(e.first)}
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                             paginator
-                            currentPageReportTemplate={`In total there are ${product ? product.length : 0} orders.`}
+                            currentPageReportTemplate={`In total there are ${sampleData ? sampleData.length : 0} orders.`}
                         >
                             <Column field="product_id" header="Product ID"></Column>
                             <Column field="product_name" header="Product Name"></Column>
@@ -487,7 +308,7 @@ const ProductManage = () => {
                         </DataTable>
                     </div>
                 </div>
-                
+
             </div>
         )
     }
@@ -508,7 +329,7 @@ const ProductManage = () => {
             <Button
                 onClick={() => setVisibledDialog(true)}
                 icon="pi pi-plus"
-                label="Add New Brand"
+                label="Import Product"
                 size="small"
                 severity="info"
                 raised
@@ -517,26 +338,30 @@ const ProductManage = () => {
             />
             <DataTable
                 className='m-2'
-                value={products}
+                value={sampleData}
                 // header={header}
                 first={first}
                 rows={rows}
                 onPage={(e) => setFirst(e.first)}
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                 paginator
-                currentPageReportTemplate={`In total there are ${products ? products.length : 0} products.`}
+                currentPageReportTemplate={`In total there are ${sampleData ? sampleData.length : 0} products.`}
             >
                 <Column field="name" header="Name" style={{ minWidth: "15rem" }}></Column>
                 <Column header="Image" body={imageBodyTemplate}></Column>
-                <Column field="price" header="Price" body={priceBodyTemplate}></Column>
-                <Column field="category" header="Category"></Column>
-                <Column field="rating" header="Reviews" body={ratingBodyTemplate}></Column>
-                <Column header="Units in Stock" field="unitInStock"></Column>
+                <Column field="import_price" header="Import Price" body={(rowData) => formatCurrency(rowData.import_price)}></Column>
+                <Column field="export_price" header="Export Price" body={(rowData) => formatCurrency(rowData.export_price)}></Column>
+
+                <Column field="size" header="Size"></Column>
+                <Column header="Units in Stock" field="quantity"></Column>
                 <Column header="Status" body={statusBodyTemplate}></Column>
                 <Column header="Operation" body={ActionBody}></Column>
             </DataTable>
             {visible === true && (
                 <AddProduct visible={visible} setVisible={setVisible} />
+            )}
+            {visibledDialog === true && (
+                <ImportProduct visible={visibledDialog} setVisible={setVisibledDialog} />
             )}
         </div>
     );

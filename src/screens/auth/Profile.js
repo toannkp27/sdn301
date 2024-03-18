@@ -1,10 +1,10 @@
+import axios from "axios";
+import { format } from "date-fns";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Image } from "primereact/image";
 import { default as React, useEffect, useState } from "react";
 import { InputForm } from "../../components";
-import { format } from "date-fns";
-import axios from "axios";
 const Profile = (props) => {
   const { visible, setVisible } = props;
   const [profile, setProfile] = useState({});
@@ -16,9 +16,9 @@ const Profile = (props) => {
   useEffect(() => {
     axios.get("http://localhost:9999/users/" + user.username)
       .then((res) => {
-      setProfile(res.data);
-      console.log(res.data);
-    });
+        setProfile(res.data);
+        console.log(res.data);
+      });
   }, [user.username]);
   console.log(profile);
   const onHide = () => {
@@ -40,7 +40,6 @@ const Profile = (props) => {
     </div>
   );
   const icon = <i className="pi pi-search"></i>;
-  console.log(user.username);
   return (
     <Dialog
       header="Profile"
