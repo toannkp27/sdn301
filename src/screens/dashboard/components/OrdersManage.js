@@ -1,4 +1,5 @@
 
+import axios from 'axios';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Column } from 'primereact/column';
@@ -8,19 +9,20 @@ import { InputText } from 'primereact/inputtext';
 import { Tag } from 'primereact/tag';
 import { classNames } from 'primereact/utils';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const OrderManage = () => {
     const [first, setFirst] = useState(0);
     const rows = 10
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [visible, setVisible] = useState(false);
+    const [orders, setOrders] = useState([])
     const sampleData = [
         {
             "id": 1,
             "order_date": "2024-02-10T12:30:00.000Z",
             "customer_name": "John Doe",
-            "total_cost": 110,
+            "total": 110,
             "status": "Processing",
             "payment_method": "Credit Card",
             "description": "Urgent delivery requested",
@@ -33,7 +35,7 @@ const OrderManage = () => {
             "id": 2,
             "order_date": "2024-02-11T14:45:00.000Z",
             "customer_name": "Alice Smith",
-            "total_cost": 90,
+            "total": 90,
             "status": "Shipped",
             "payment_method": "PayPal",
             "description": "Standard delivery",
@@ -46,7 +48,7 @@ const OrderManage = () => {
             "id": 3,
             "order_date": "2024-02-11T14:45:00.000Z",
             "customer_name": "Alice Smith",
-            "total_cost": 90,
+            "total": 90,
             "status": "Shipped",
             "payment_method": "PayPal",
             "description": "Standard delivery",
@@ -59,7 +61,7 @@ const OrderManage = () => {
             "id": 4,
             "order_date": "2024-02-11T14:45:00.000Z",
             "customer_name": "Alice Smith",
-            "total_cost": 90,
+            "total": 90,
             "status": "Shipped",
             "payment_method": "PayPal",
             "description": "Standard delivery",
@@ -72,7 +74,7 @@ const OrderManage = () => {
             "id": 5,
             "order_date": "2024-02-11T14:45:00.000Z",
             "customer_name": "Alice Smith",
-            "total_cost": 90,
+            "total": 90,
             "status": "Shipped",
             "payment_method": "PayPal",
             "description": "Standard delivery",
@@ -85,7 +87,7 @@ const OrderManage = () => {
             "id": 6,
             "order_date": "2024-02-11T14:45:00.000Z",
             "customer_name": "Alice Smith",
-            "total_cost": 90,
+            "total": 90,
             "status": "Shipped",
             "payment_method": "PayPal",
             "description": "Standard delivery",
@@ -114,7 +116,7 @@ const OrderManage = () => {
                 "unit_price": 50
             }
         ],
-        "total_cost": 110,
+        "total": 110,
         "status": "Processing",
         "payment_method": "Credit Card",
         "shipping_info": {
@@ -134,6 +136,17 @@ const OrderManage = () => {
         "tax": 5,
         "discount": 15
     };
+    useEffect(() => {
+        axios.get("http://localhost:9999/order/getAll")
+            .then((res) => {
+                if (res.data.status) {
+                    setOrders(res.data.data)
+                    console.log("Get data successfully!");
+                } else {
+                    console.error("Failed to get data");
+                }
+            });
+    }, []);
     const handleEyeClick = (rowData) => {
         setSelectedOrder(rowData);
         setVisible(true);
@@ -211,14 +224,14 @@ const OrderManage = () => {
     );
     const statusBodyTemplate = (status) => {
         return (
-            status === 'Processing' ? (
-                <Tag className=' mt-2 w-5rem h-2rem' severity="info" value="Processing"></Tag>
-            ) : status === 'Complete' ? (
-                <Tag className=' mt-2 w-5rem h-2rem' severity="success" value="Complete"></Tag>
+            status === 'Pending' ? (
+                <Tag className=' mt-2 w-5rem h-2rem' severity="info" value="Pending"></Tag>
+            ) : status === 'Delivered' ? (
+                <Tag className=' mt-2 w-5rem h-2rem' severity="success" value="Delivered"></Tag>
             ) : status === 'Cancel' ? (
                 <Tag className=' mt-2 w-5rem h-2rem' severity="danger" value="Cancel"></Tag>
             ) : (
-                <Tag className=' mt-2 w-5rem h-2rem' severity="warning" value="Shipping"></Tag>
+                <Tag className=' mt-2 w-5rem h-2rem' severity="warning" value="Shipped"></Tag>
             )
         )
     };
@@ -249,8 +262,8 @@ const OrderManage = () => {
                             label="Customer Name"
                         />
                         <InputForm
-                            id="total_cost"
-                            value={priceBodyTemplate(obj.total_cost)}
+                            id="total"
+                            value={priceBodyTemplate(obj.total)}
                             label="Total Cost"
                         />
                         <InputForm
@@ -373,26 +386,21 @@ const OrderManage = () => {
         <div className="w-full border-round border-solid border-1 surface-border">
             <DataTable
                 className='m-2'
-                value={sampleData}
+                value={orders}
                 header={header}
                 first={first}
                 rows={rows}
                 onPage={(e) => setFirst(e.first)}
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                 paginator
-                currentPageReportTemplate={`In total there are ${sampleData ? sampleData.length : 0} orders.`}
+                currentPageReportTemplate={`In total there are ${orders ? orders.length : 0} orders.`}
             >
-                <Column field="id" header="Order ID"></Column>
-                <Column field="order_date" header="Order date" body={(rowData) => TimeBody(rowData.order_date)}></Column>
-                <Column field="customer_name" header="Customer Name"></Column>
-                <Column field="total_cost" header="Total Cost" body={(rowData) => priceBodyTemplate(rowData.total_cost)}></Column>
+                <Column field="_id" header="Order ID"></Column>
+                <Column field="order_date" header="Order date" body={(rowData) => TimeBody(rowData.orderDate)}></Column>
+                <Column field="user.full_name" header="Customer Name"></Column>
+                <Column field="total" header="Total Cost" body={(rowData) => priceBodyTemplate(rowData.total)}></Column>
                 <Column field="status" header="Status" body={(rowData) => statusBodyTemplate(rowData.status)}></Column>
-                <Column field="payment_method" header="Payment Method"></Column>
-                <Column field="description" header="Description"></Column>
-                <Column field="estimated_delivery_date" header="Estimated Delivery Date" body={(rowData) => TimeBody(rowData.estimated_delivery_date)} ></Column>
-                <Column field="transport_fee" header='Transport Fee' body={(rowData) => priceBodyTemplate(rowData.transport_fee)}></Column>
-                <Column field="tax" header='Tax'></Column>
-                <Column field="discount" header='Discount'></Column>
+                <Column header="Estimated Delivery Date" body={(rowData) => TimeBody(rowData.date)} ></Column>
                 <Column header="Operation" body={ActionBody} />
             </DataTable>
             <Dialog

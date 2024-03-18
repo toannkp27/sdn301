@@ -1,6 +1,7 @@
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Box, Card, Grid, IconButton, styled, Tooltip } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Small } from "../components/Typography";
 const StyledCard = styled(Card)(({ theme }) => ({
   display: "flex",
@@ -32,14 +33,31 @@ const Heading = styled("h6")(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
-const StatCards = () => {
+const StatCards = (props) => {
+  const { index } = props;
   const [sumWeekSale, setSumWeekSale] = useState(0);
   const [order, setOrder] = useState(0);
+  const [totalOfStock, setTotalOfStock] = useState(0);
+  const navigate = useNavigate();
+  const handleArrowClick = (index) => {
+    console.log(index);
+    navigate("/dashboard", { state: { selectedTab: index } });
+  };
   useEffect(() => {
     fetch("http://localhost:9999/receipt/sumWeekSale")
       .then((resp) => resp.json())
       .then((data) => {
         setSumWeekSale(data.total);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+  useEffect(() => {
+    fetch("http://localhost:9999/inventory/getTotalOfStock")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setTotalOfStock(data.total);
       })
       .catch((err) => {
         console.log(err.message);
@@ -60,21 +78,25 @@ const StatCards = () => {
       name: "New Leads",
       amount: 3050,
       icon: "pi pi-user",
+      index: 0,
     },
     {
       name: "This week Sales",
       amount: `${sumWeekSale} $`,
       icon: "pi pi-dollar",
+      index: 0,
     },
     {
       name: "Inventory Status",
-      amount: "8.5% Stock Surplus",
+      amount: `${totalOfStock} products in Stock`,
       icon: "pi pi-briefcase",
+      index: 1,
     },
     {
       name: "Orders to deliver",
       amount: `${order} Orders`,
       icon: "pi pi-shopping-cart",
+      index: 3,
     },
   ];
 
@@ -92,7 +114,7 @@ const StatCards = () => {
             </ContentBox>
 
             <Tooltip title="View Details" placement="top">
-              <IconButton>
+              <IconButton onClick={(e) => handleArrowClick(item.index)}>
                 <ArrowRightAltIcon>arrow_right_alt</ArrowRightAltIcon>
               </IconButton>
             </Tooltip>

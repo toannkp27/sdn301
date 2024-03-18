@@ -1,6 +1,6 @@
 import { Card, Grid, styled, useTheme } from "@mui/material";
 import { TabPanel, TabView } from "primereact/tabview";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logoooo.png";
@@ -12,7 +12,6 @@ import TopSellingTable from "../shared/TopSellingTable";
 import RevenueChart from "./Chart/RevenueChart.js";
 import OrderManage from "./OrdersManage";
 import ProductManage from "./ProductManage";
-import TemplateDemo from "./TopSeller";
 import UserManage from "./UserManage";
 const ContentBox = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -39,8 +38,11 @@ const H4 = styled("h4")(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const Dashboard = () => {
+const Dashboard = (state) => {
+  console.log(state);
   const { palette } = useTheme();
+  const [selectedTab, setSelectedTab] = useState(0);
+  console.log(selectedTab);
   return (
     <>
       <Container fluid>
@@ -64,7 +66,11 @@ const Dashboard = () => {
         style={{ paddingTop: "10px", paddingBottom: "20px" }}
         className="flex align-items-center justify-content-center no-underline"
       >
-        <TabView className="w-full">
+        <TabView
+          className="w-full"
+          activeIndex={selectedTab}
+          onTabChange={(e) => setSelectedTab(e.index)}
+        >
           <TabPanel header="Admin Dashboard">
             <div>
               <Fragment>
@@ -74,7 +80,6 @@ const Dashboard = () => {
                       <StatCards />
                       <TopSellingTable />
                       <StatCards2 />
-                      <H4>Ongoing Projects</H4>
                     </Grid>
                     <Grid item lg={4} md={4} sm={12} xs={12}>
                       <Card sx={{ px: 3, py: 2, mb: 3 }}>
@@ -98,9 +103,9 @@ const Dashboard = () => {
               </Fragment>
             </div>
           </TabPanel>
-          <TabPanel header="Top Seller">
+          {/* <TabPanel header="Top Seller">
             <TemplateDemo />
-          </TabPanel>
+          </TabPanel> */}
           <TabPanel header="Product Management">
             <ProductManage />
           </TabPanel>

@@ -1,11 +1,11 @@
+import axios from "axios";
+import { format } from "date-fns";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Image } from "primereact/image";
 import { default as React, useEffect, useState } from "react";
-import { InputForm } from "../../components";
-import { format } from "date-fns";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { InputForm } from "../../components";
 const EditProfile = (props) => {
   const { visible, setVisible } = props;
   const user = JSON.parse(localStorage.getItem("user"));
