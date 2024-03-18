@@ -14,19 +14,21 @@ const Comments = () => {
   const [text, setText] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
 
- useEffect(() => {
-  axios.get("http://localhost:9999/comments/" + pid)
-    .then((res) => {
-      const sortedComments = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      setListComments(sortedComments);
-      console.log(sortedComments);
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-}, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:9999/comments/" + pid)
+      .then((res) => {
+        const sortedComments = res.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setListComments(sortedComments);
+        console.log(sortedComments);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
-  console.log(user._id);
   const handleCreate = (e) => {
     e.preventDefault();
     axios
@@ -116,13 +118,17 @@ const Comments = () => {
                     <strong>{l.userId?.username}</strong>
                     <p className="mb-0 d-block">{l.text}</p>
                   </div>
-                  <button
-                    onClick={(e) => handleDeleteComment(e, l._id)}
-                    className="btn btn-sm btn-danger ml-2"
-                  >
-                    Xóa
-                  </button>
-                  <button className="btn btn-sm btn-danger ml-2">Edit</button>
+                  {user && l.userId?._id === user._id && (
+                    <>
+                      <button
+                        onClick={(e) => handleDeleteComment(e, l._id)}
+                        className="btn btn-sm btn-danger ml-2"
+                      >
+                        Xóa
+                      </button>
+                      <button className="btn btn-sm btn-danger ml-2">Edit</button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
