@@ -88,19 +88,23 @@ const Comments = () => {
           />
         </div>
         <div className=" flex justify-content-center">
-          <InputText
-            value={text}
-            rows={2}
-            cols={30}
-            onChange={(e) => setText(e.target.value)}
-          />
+          {user && (
+            <InputText
+              value={text}
+              rows={2}
+              cols={30}
+              onChange={(e) => setText(e.target.value)}
+            />
+          )}
         </div>
         <div className="p-col-fixed">
-          <Button
-            label="Post"
-            className="p-button-primary"
-            onClick={handleCreate}
-          />
+          {user && (
+            <Button
+              label="Post"
+              className="p-button-primary"
+              onClick={handleCreate}
+            />
+          )}
         </div>
       </div>
       <div>
@@ -126,7 +130,9 @@ const Comments = () => {
                       >
                         Xóa
                       </button>
-                      <button className="btn btn-sm btn-danger ml-2">Edit</button>
+                      <button className="btn btn-sm btn-danger ml-2">
+                        Edit
+                      </button>
                     </>
                   )}
                 </div>
