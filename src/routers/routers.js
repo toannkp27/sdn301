@@ -18,6 +18,7 @@ import UserProfile from "../screens/UserProfile";
 import CartShop from "../screens/Cart_Shop";
 import Login from "../screens/auth/Login";
 import ChangePassWord from "../screens/auth/ChangePassWord";
+import Comments from "../screens/Comments";
 export const routers = [
   {
     path: "/login",
@@ -27,6 +28,11 @@ export const routers = [
   {
     path: "/register",
     page: Register,
+    isShowHeader: false,
+  },
+  {
+    path: "/comments",
+    page: Comments,
     isShowHeader: false,
   },
   {

@@ -13,7 +13,7 @@ const Footer = () => {
                     style={{ objectFit: "contain", paddingLeft: "50px" }}
                 />
             </div>
-           
+           {/* . */}
 
             <div className="footer-column p-col p-md-4 p-lg-4 p-text-center order-2 order-md-1" style={{ marginRight: '1rem', paddingLeft: "40px"  }}>
                 <h2 className="footer-heading">Support</h2>
