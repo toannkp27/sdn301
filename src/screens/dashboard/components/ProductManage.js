@@ -163,12 +163,14 @@ const ProductManage = () => {
               // options={status}
               onChange={(e) => setFilter({ ...filter, status: e.target.value })}
               placeholder="Size"
+              style={{ height: "50px" }}
             />
             <Dropdownz
               value={filter.status}
               // options={status}
               onChange={(e) => setFilter({ ...filter, status: e.target.value })}
               placeholder="Brand"
+              style={{ height: "50px" }}
             />
           </GridForm>
         </div>
