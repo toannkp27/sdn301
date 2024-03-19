@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
 import axios from "axios";
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import React, { useState } from "react";
 
 const ChangePassWord = () => {
   const containerStyle = {

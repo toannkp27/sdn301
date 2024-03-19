@@ -2,10 +2,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import {
   Avatar,
   Box,
-  Card, IconButton,
-  MenuItem,
-  Select,
-  styled,
+  Card,
+  IconButton, styled,
   Table,
   TableBody,
   TableCell,
@@ -13,6 +11,7 @@ import {
   TableRow,
   useTheme
 } from "@mui/material";
+import { useEffect, useState } from "react";
 import { Paragraph } from "../components/Typography";
 const CardHeader = styled(Box)(() => ({
   display: "flex",
@@ -54,19 +53,25 @@ const Small = styled("small")(({ bgcolor }) => ({
 }));
 
 const TopSellingTable = () => {
+  const [top5, setTop5] = useState([]);
   const { palette } = useTheme();
   const bgError = palette.error.main;
   const bgPrimary = palette.primary.main;
   const bgSecondary = palette.secondary.main;
-
+  useEffect(() => {
+    fetch("http://localhost:9999/receipt/getTop5")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setTop5(data.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
   return (
     <Card elevation={3} sx={{ pt: "20px", mb: 3 }}>
       <CardHeader>
         <Title>top selling products</Title>
-        <Select size="small" defaultValue="this_month">
-          <MenuItem value="this_month">This Month</MenuItem>
-          <MenuItem value="last_month">Last Month</MenuItem>
-        </Select>
       </CardHeader>
 
       <Box overflow="auto">
@@ -80,7 +85,7 @@ const TopSellingTable = () => {
                 Revenue
               </TableCell>
               <TableCell sx={{ px: 0 }} colSpan={2}>
-                Stock Status
+                Amount sold
               </TableCell>
               <TableCell sx={{ px: 0 }} colSpan={1}>
                 Action
@@ -89,7 +94,7 @@ const TopSellingTable = () => {
           </TableHead>
 
           <TableBody>
-            {productList.map((product, index) => (
+            {top5.map((product, index) => (
               <TableRow key={index} hover>
                 <TableCell
                   colSpan={4}
@@ -97,7 +102,7 @@ const TopSellingTable = () => {
                   sx={{ px: 0, textTransform: "capitalize" }}
                 >
                   <Box display="flex" alignItems="center">
-                    <Avatar src={product.imgUrl} />
+                    <Avatar src={product.image} />
                     <Paragraph sx={{ m: 0, ml: 4 }}>{product.name}</Paragraph>
                   </Box>
                 </TableCell>
@@ -108,23 +113,13 @@ const TopSellingTable = () => {
                   sx={{ px: 0, textTransform: "capitalize" }}
                 >
                   $
-                  {product.price > 999
-                    ? (product.price / 1000).toFixed(1) + "k"
-                    : product.price}
+                  {product.export_price > 999
+                    ? (product.export_price / 1000).toFixed(1) + "k"
+                    : product.export_price}
                 </TableCell>
 
-                <TableCell sx={{ px: 0 }} align="left" colSpan={2}>
-                  {product.available ? (
-                    product.available < 20 ? (
-                      <Small bgcolor={bgSecondary}>
-                        {product.available} available
-                      </Small>
-                    ) : (
-                      <Small bgcolor={bgPrimary}>in stock</Small>
-                    )
-                  ) : (
-                    <Small bgcolor={bgError}>out of stock</Small>
-                  )}
+                <TableCell sx={{ px: 0 }} align="center" colSpan={2}>
+                  {product.quantity}
                 </TableCell>
 
                 <TableCell sx={{ px: 0 }} colSpan={1}>
@@ -143,31 +138,36 @@ const TopSellingTable = () => {
 
 const productList = [
   {
-    imgUrl: "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4eb226710c1d4baab6256b741b7d0be7_9366/gi%C3%A0y-ultraboost-light.jpg",
+    imgUrl:
+      "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4eb226710c1d4baab6256b741b7d0be7_9366/gi%C3%A0y-ultraboost-light.jpg",
     name: "Ultraboost Light",
     price: 100,
     available: 15,
   },
   {
-    imgUrl: "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/67e3732b3fee450092aae2724526d569_9366/gi%C3%A0y-superstar-slip-on.jpg",
+    imgUrl:
+      "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/67e3732b3fee450092aae2724526d569_9366/gi%C3%A0y-superstar-slip-on.jpg",
     name: "Superstar Slip-On",
     price: 1500,
     available: 30,
   },
   {
-    imgUrl: "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4e5f3f5011d04322a1914a8aa7fd670d_9366/gi%C3%A0y-superstar.jpg",
+    imgUrl:
+      "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/4e5f3f5011d04322a1914a8aa7fd670d_9366/gi%C3%A0y-superstar.jpg",
     name: "Superstar",
     price: 1900,
     available: 35,
   },
   {
-    imgUrl: "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/6bf90d60370e41df970a2a8b920aad5f_9366/stan-smith-pf-w.jpg",
+    imgUrl:
+      "https://assets.adidas.com/images/w_766,h_766,f_auto,q_auto,fl_lossy,c_fill,g_auto/6bf90d60370e41df970a2a8b920aad5f_9366/stan-smith-pf-w.jpg",
     name: "Stan Smith PF W",
     price: 100,
     available: 0,
   },
   {
-    imgUrl: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg",
+    imgUrl:
+      "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d8845335f0fd4b29928017b151b51fa4_9366/Giay_Superstar_XLG_nau_IF3701_04_standard.jpg",
     name: "TRAINER TRAE YOUNG 3 LOW",
     price: 1190,
     available: 5,

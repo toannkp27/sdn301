@@ -5,9 +5,11 @@ import { Ripple } from "primereact/ripple";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Profile from "../screens/auth/Profile";
+import CartShop from "../screens/Cart_Shop";
 
 export default function MenuBar() {
   const navigate = useNavigate();
+  const [visibledDialog, setVisibledDialog] = useState(false);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const itemRenderer = (item, options) => {
@@ -94,7 +96,7 @@ export default function MenuBar() {
   }
   const [visible, setVisible] = useState(false);
   const end = (props) => {
-    const {} = props;
+    const { } = props;
 
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -114,6 +116,10 @@ export default function MenuBar() {
     };
     const handleShowProfile = () => {
       setVisible(true);
+      setAnchorEl(null);
+    };
+    const handleShowCart = () => {
+      setVisibledDialog(true);
       setAnchorEl(null);
     };
     return (
@@ -149,7 +155,7 @@ export default function MenuBar() {
                   Profile
                 </div>
               </MenuItem>
-              <MenuItem className="m-2" component={Link} to="/cart">
+              <MenuItem className="m-2" onClick={handleShowCart}>
                 <div style={{ minWidth: "12rem", lineHeight: "32px" }}>
                   <i
                     className="pi pi-shopping-cart"
@@ -158,6 +164,7 @@ export default function MenuBar() {
                   My Order
                 </div>
               </MenuItem>
+
               <MenuItem
                 className="m-2"
                 component={Link}
@@ -182,6 +189,9 @@ export default function MenuBar() {
                 </div>
               </MenuItem>
             </Menu>
+            {visibledDialog === true && (
+              <CartShop visible={visibledDialog} setVisible={setVisibledDialog} />
+            )}
             {visible === true && (
               <Profile visible={visible} setVisible={setVisible} />
             )}

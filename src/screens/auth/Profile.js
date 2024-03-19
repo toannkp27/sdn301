@@ -1,10 +1,10 @@
+import axios from "axios";
+import { format } from "date-fns";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Image } from "primereact/image";
 import { default as React, useEffect, useState } from "react";
 import { InputForm } from "../../components";
-import { format } from "date-fns";
-import axios from "axios";
 import EditProfile from "./EditProfile";
 const Profile = (props) => {
   const { visible, setVisible } = props;
@@ -54,7 +54,6 @@ const Profile = (props) => {
   );
 
   const icon = <i className="pi pi-search"></i>;
-
   return (
     <Dialog
       header="Profile"

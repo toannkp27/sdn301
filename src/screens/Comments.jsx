@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Panel } from "primereact/panel";
-import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
-import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
-import { Image } from "primereact/image";
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import { Panel } from "primereact/panel";
+import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import { useParams } from "react-router";
-import { InputForm } from "../components";
 const Comments = () => {
   const [listComments, setListComments] = useState([]);
   const { pid } = useParams();
