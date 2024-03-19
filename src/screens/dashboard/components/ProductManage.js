@@ -6,6 +6,7 @@ import AddProduct from "../../AddProduct";
 import { useGetParams } from "../../hooks";
 import { Dropdownz, GridForm, Inputz } from "./forrm/ForrmList";
 import axios from "axios";
+import { FormInput } from "../../../uiCore";
 
 const ProductManage = () => {
   const [first, setFirst] = useState(0);
@@ -17,29 +18,64 @@ const ProductManage = () => {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState({ key_search: "", floor: "" });
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchButtonClicked, setSearchButtonClicked] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      let response;
+      if (searchTerm) {
+        response = await axios.get(
+          `http://localhost:9999/search/${searchTerm}`
+        );
+        console.log(response.data);
+      } else {
+        response = await axios.get("http://localhost:9999/products");
+      }
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Lỗi khi gọi API lấy danh sách sản phẩm:", error);
+    }
+  };
+
+  const handeDeleteProduct = (index) => {
+    if (window.confirm("Do you want to product - ID: " + index + "?")) {
+      axios
+        .delete("http://localhost:9999/products/" + index)
+        .then(() => {
+          alert("Delete successfully!");
+          setProducts(products.filter((p) => p._id !== index));
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let response;
-        if (searchTerm) {
-          response = await axios.get(
-            `http://localhost:9999/search/${searchTerm}`
-          );
-          console.log(response.data);
-        } else {
-          response = await axios.get("http://localhost:9999/products");
-        }
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Lỗi khi gọi API lấy danh sách sản phẩm:", error);
-      }
-    };
-
-    fetchData();
+    if (searchTerm) {
+      setIsSearching(true);
+    } else {
+      setIsSearching(false);
+    }
   }, [searchTerm]);
+  useEffect(() => {
+    if (!isSearching) {
+      fetchData();
+    }
+  }, [isSearching]);
 
-  
+  const handleSearchButtonClick = () => {
+    setSearchButtonClicked(true);
+  };
+
+  useEffect(() => {
+    if (searchButtonClicked) {
+      setSearchButtonClicked(false);
+      fetchData();
+    }
+  }, [searchButtonClicked]);
+
   const formatCurrency = (value) => {
     if (value) {
       return value.toLocaleString("en-US", {
@@ -68,19 +104,6 @@ const ProductManage = () => {
     setVisible(true);
   };
 
-  const handeDeleteProduct = (index) => {
-    if (window.confirm("Do you want to product - ID: " + index + "?")) {
-      axios
-        .delete("http://localhost:9999/products/" + index)
-        .then(() => {
-          alert("Delete successfully!");
-          setProducts(products.filter((p) => p._id !== index));
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    }
-  };
   const ActionBody = (rowData) => {
     return (
       <>
@@ -105,7 +128,6 @@ const ProductManage = () => {
 
   return (
     <div className="w-full border-round border-solid border-1 surface-border">
-      {/* <Header setParams={setParams} /> */}
       <hr />
 
       <>
@@ -113,7 +135,7 @@ const ProductManage = () => {
           <span className="text-3xl text-900 font-bold">Products Manage</span>
         </div>
         <hr />
-        <div className="m-3">
+        <div className="m-3" style={{ display: "flex", alignItems: "center" }}>
           <GridForm
             setParams={setParams}
             filter={filter}
@@ -124,6 +146,17 @@ const ProductManage = () => {
               value={searchTerm}
               placeholder="Find by name"
               onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <Button
+              onClick={handleSearchButtonClick}
+              icon="pi pi-search"
+              label="Search"
+              size="small"
+              severity="info"
+              raised
+              type="button"
+              style={{ height: "50px" }}
+              className="ml-2"
             />
             <Dropdownz
               value={filter.status}
@@ -151,7 +184,7 @@ const ProductManage = () => {
         type="button"
         className="m-2 ml-4"
       />
-      
+
       <DataTable
         className="m-2"
         value={products}
@@ -170,17 +203,15 @@ const ProductManage = () => {
         ></Column>
         <Column field="price" header="Price" body={priceBodyTemplate}></Column>
         <Column
-  header="Sizes"
-  style={{ minWidth: "15rem" }}
-  body={(rowData) => {
-    // console.log(rowData); // Log dữ liệu của mỗi hàng (sản phẩm) ra console
-    return (
-      rowData.size.sizes.map((size) => (
-        <span key={size._id}>{size.size} </span>
-      ))
-    );
-  }}
-/>
+          header="Sizes"
+          style={{ minWidth: "15rem" }}
+          body={(rowData) => {
+            // console.log(rowData); // Log dữ liệu của mỗi hàng (sản phẩm) ra console
+            return rowData.size.sizes.map((size) => (
+              <span key={size._id}>{size.size} </span>
+            ));
+          }}
+        />
         <Column field="quantity" header="Quantity"></Column>
         <Column field="total_cost" header="Total_Cost"></Column>
         <Column field="brand.name" header="Brand"></Column>
