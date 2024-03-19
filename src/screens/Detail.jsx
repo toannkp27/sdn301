@@ -9,7 +9,8 @@ import { InputText } from "primereact/inputtext";
 import Comments from "./Comments";
 import { setToast } from "../redux/features";
 import { listToast } from "../constants";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Detail = () => {
   const [value, setValue] = useState(1);
   const [images, setImages] = useState([]);
@@ -74,7 +75,7 @@ const Detail = () => {
           dispatch(
             setToast({ ...listToast[0], detail: "Product added to cart!!" })
           );
-          console.log("Product added to cart!!");
+          toast.success("Product added to cart!!");
         } else {
           console.error("Failed to add product");
         }
@@ -179,6 +180,7 @@ const Detail = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
       <div className="comments ">
         <Comments />
