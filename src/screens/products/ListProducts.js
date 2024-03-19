@@ -19,6 +19,7 @@ const ListProducts = () => {
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState(null);
+  
   const fetchData = async () => {
     try {
       let response;

@@ -7,6 +7,7 @@ import { useGetParams } from "../../hooks";
 import { Dropdownz, GridForm, Inputz } from "./forrm/ForrmList";
 import axios from "axios";
 import { FormInput } from "../../../uiCore";
+import { Dropdown } from "primereact/dropdown";
 
 const ProductManage = () => {
   const [first, setFirst] = useState(0);
@@ -20,6 +21,8 @@ const ProductManage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState(null);
+  const [brands, setBrands] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -37,6 +40,33 @@ const ProductManage = () => {
       console.error("Lỗi khi gọi API lấy danh sách sản phẩm:", error);
     }
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:9999/brands/listBrand")
+      .then((response) => setBrands(response.data))
+      .catch((error) => console.error("Error fetching brands:", error));
+  }, []);
+
+  const fetchDataByBrand = async (selectedBrand) => {
+    try {
+      let response;
+      if (selectedBrand) {
+        response = await axios.get(
+          `http://localhost:9999/products/brand/${selectedBrand}`
+        );
+      } else {
+        response = await axios.get("http://localhost:9999/products");
+      }
+      setProducts(response.data);
+    } catch (error) {
+      console.error(
+        "Lỗi khi gọi API lấy danh sách sản phẩm theo brand ",
+        error
+      );
+    }
+  };
+
 
   const handeDeleteProduct = (index) => {
     if (window.confirm("Do you want to product - ID: " + index + "?")) {
@@ -75,6 +105,17 @@ const ProductManage = () => {
       fetchData();
     }
   }, [searchButtonClicked]);
+
+
+  const handleBrandChange = (e) => {
+    if (e.value) {
+      setSelectedBrand(e.value);
+      fetchDataByBrand(e.value._id);
+    } else {
+      setSelectedBrand(null);
+      fetchData();
+    }
+  };
 
   const formatCurrency = (value) => {
     if (value) {
@@ -165,13 +206,14 @@ const ProductManage = () => {
               placeholder="Size"
               style={{ height: "50px" }}
             />
-            <Dropdownz
-              value={filter.status}
-              // options={status}
-              onChange={(e) => setFilter({ ...filter, status: e.target.value })}
-              placeholder="Brand"
-              style={{ height: "50px" }}
-            />
+                <Dropdown
+            value={selectedBrand}
+            options={[{ name: "All Brands", _id: null }, ...brands]}
+            optionLabel="name"
+            style={{ height: "50px", width: "20%", marginLeft: "30px" }}
+            onChange={handleBrandChange}
+            placeholder="Brands"
+          />
           </GridForm>
         </div>
       </>
@@ -208,7 +250,7 @@ const ProductManage = () => {
           header="Sizes"
           style={{ minWidth: "15rem" }}
           body={(rowData) => {
-            // console.log(rowData); // Log dữ liệu của mỗi hàng (sản phẩm) ra console
+            console.log(rowData); // Log dữ liệu của mỗi hàng (sản phẩm) ra console
             return rowData.size.sizes.map((size) => (
               <span key={size._id}>{size.size} </span>
             ));
