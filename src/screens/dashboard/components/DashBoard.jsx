@@ -13,6 +13,8 @@ import RevenueChart from "./Chart/RevenueChart.js";
 import OrderManage from "./OrdersManage";
 import ProductManage from "./ProductManage";
 import UserManage from "./UserManage";
+import TemplateDemo from "./TopSeller.js";
+import Product from "./Product.js"
 const ContentBox = styled("div")(({ theme }) => ({
   margin: "30px",
   [theme.breakpoints.down("sm")]: { margin: "16px" },
@@ -103,9 +105,9 @@ const Dashboard = (state) => {
               </Fragment>
             </div>
           </TabPanel>
-          {/* <TabPanel header="Top Seller">
-            <TemplateDemo />
-          </TabPanel> */}
+          <TabPanel header="Top Seller">
+            <TemplateDemo/>
+          </TabPanel>
           <TabPanel header="Product Management">
             <ProductManage />
           </TabPanel>
@@ -115,9 +117,9 @@ const Dashboard = (state) => {
           <TabPanel header="Order Management">
             <OrderManage />
           </TabPanel>
-          {/* <TabPanel header="Cash Flow Management">
+          <TabPanel header="Cash Flow Management">
             <Product />
-          </TabPanel> */}
+          </TabPanel>
         </TabView>
       </div>
     </>
