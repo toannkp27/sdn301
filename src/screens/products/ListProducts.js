@@ -5,12 +5,8 @@ import { Paginator } from "primereact/paginator";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "primereact/button";
-
-import {
-  Dropdownz,
-  GridForm,
-  Inputz,
-} from "../dashboard/components/forrm/ForrmList";
+import { Dropdown } from "primereact/dropdown";
+import { GridForm, Inputz } from "../dashboard/components/forrm/ForrmList";
 import { useGetParams } from "../hooks";
 
 const ListProducts = () => {
@@ -22,7 +18,7 @@ const ListProducts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
-
+  const [selectedBrand, setSelectedBrand] = useState(null);
   const fetchData = async () => {
     try {
       let response;
@@ -30,6 +26,7 @@ const ListProducts = () => {
         response = await axios.get(
           `http://localhost:9999/search/${searchTerm}`
         );
+
         console.log(response.data);
       } else {
         response = await axios.get("http://localhost:9999/products");
@@ -47,7 +44,26 @@ const ListProducts = () => {
       .catch((error) => console.error("Error fetching brands:", error));
   }, []);
 
+  const fetchDataByBrand = async (selectedBrand) => {
+    try {
+      let response;
+      if (selectedBrand) {
+        response = await axios.get(
+          `http://localhost:9999/products/brand/${selectedBrand}`
+        );
+      } else {
+        response = await axios.get("http://localhost:9999/products");
+      }
+      setProducts(response.data);
+    } catch (error) {
+      console.error(
+        "Lỗi khi gọi API lấy danh sách sản phẩm theo brand ",
+        error
+      );
+    }
+  };
 
+  console.log(selectedBrand);
 
   useEffect(() => {
     if (searchTerm) {
@@ -72,7 +88,16 @@ const ListProducts = () => {
       fetchData();
     }
   }, [searchButtonClicked]);
-
+  const handleBrandChange = (e) => {
+    if (e.value) {
+      setSelectedBrand(e.value);
+      fetchDataByBrand(e.value._id);
+    } else {
+      setSelectedBrand(null);
+      fetchData();
+    }
+  };
+  console.log(products);
   const items = [{ label: "Products" }];
   const home = { icon: "pi pi-home", url: "http://localhost:3000/" };
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,36 +110,45 @@ const ListProducts = () => {
     setCurrentPage(event.page + 1);
   };
   const renderProducts = () => {
-    return productsOnPage.map((p) => {
+    if (products.length === 0) {
       return (
-        <div
-          key={p.id}
-          className="col-3 flex align-items-center justify-content-center"
-        >
-          <div className="m-2 border-round-md">
-            <Image
-              className="border-round-md"
-              src={p.images[0].url}
-              alt="Image"
-              width="280"
-              preview
-            />
-            <Link to={`/detail/${p._id}`} style={{ textDecoration: "none" }}>
-              <div className="font-bold text-base" style={{ color: "black" }}>
-                {p.name}
-              </div>
-              <div className="text-xl text-red-400 inline-block font-bold">
-                {p.price * 0.5}$
-              </div>{" "}
-              <span className="line-through text-base text-color inline-block">
-                {p.price}$
-              </span>{" "}
-            </Link>
-          </div>
+        <div>
+          <h4>Không có sản phẩm</h4>
         </div>
       );
-    });
+    } else {
+      return productsOnPage.map((p) => {
+        return (
+          <div
+            key={p.id}
+            className="col-3 flex align-items-center justify-content-center"
+          >
+            <div className="m-2 border-round-md">
+              <Image
+                className="border-round-md"
+                src={p.images[0].url}
+                alt="Image"
+                width="280"
+                preview
+              />
+              <Link to={`/detail/${p._id}`} style={{ textDecoration: "none" }}>
+                <div className="font-bold text-base" style={{ color: "black" }}>
+                  {p.name}
+                </div>
+                <div className="text-xl text-red-400 inline-block font-bold">
+                  {p.price * 0.5}$
+                </div>{" "}
+                <span className="line-through text-base text-color inline-block">
+                  {p.price}$
+                </span>{" "}
+              </Link>
+            </div>
+          </div>
+        );
+      });
+    }
   };
+
   return (
     <div
       className="container"
@@ -127,49 +161,38 @@ const ListProducts = () => {
           setFilter={setFilter}
           className="lg:col-12"
         >
-         <Inputz
-              value={searchTerm}
-              placeholder="Find by name"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <Button
-              onClick={handleSearchButtonClick}
-              icon="pi pi-search"
-              label="Search"
-              size="small"
-              severity="info"
-              raised
-              type="button"
-              style={{ height: "50px" }}
-              className="ml-2"
-            />
-          <Dropdownz
-            value={filter.status}
-            options={brands.map((brand) => (
-              <option key={brand.id} value={brand.id}>
-                {brand.name}
-              </option>
-            ))}
-            // options={status}
-            style={{ height: "50px" }}
-            onChange={(e) => setFilter({ ...filter, status: e.target.value })}
-            placeholder="Status"
+          <Inputz
+            value={searchTerm}
+            placeholder="Find by name"
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <Dropdownz
-            value={filter.status}
+          <Button
+            onClick={handleSearchButtonClick}
+            icon="pi pi-search"
+            label="Search"
+            size="small"
+            severity="info"
+            raised
+            type="button"
             style={{ height: "50px" }}
-            onChange={(e) => setFilter({ ...filter, status: e.target.value })}
-            placeholder="Category"
-            // options={status}
+            className="ml-2"
           />
-          
+
+          <Dropdown
+            value={selectedBrand}
+            options={[{ name: "All Brands", _id: null }, ...brands]}
+            optionLabel="name"
+            style={{ height: "50px", width: "20%", marginLeft: "30px" }}
+            onChange={handleBrandChange}
+            placeholder="Brands"
+          />
         </GridForm>
       </div>
 
       <div className="m-2 w-full">
         <BreadCrumb model={items} home={home} />
       </div>
-      
+
       <hr />
       <div className="grid mt-2 surface-ground p-3 surface-0 shadow-2">
         {renderProducts()}
