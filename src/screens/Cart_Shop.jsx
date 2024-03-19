@@ -1,194 +1,225 @@
-import React, { useState } from "react";
-
-const CartShop = () => {
+import axios from "axios";
+import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
+import { InputText } from "primereact/inputtext";
+import React, { useEffect, useState } from "react";
+const ConfirmDialog = (props) => {
+  const { visible, setVisible, id } = props;
+  const onHide = () => {
+    setVisible(false);
+  };
+  const onConfirm = () => {
+    axios
+      .post("http://localhost:9999/order_detail/delOrderDetail", {
+        detailId: id,
+      })
+      .then((res) => {
+        if (res.data.success) {
+          console.log("Delete successfully!");
+        } else {
+          console.error("Failed to delete order detail!");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .then((e) => {
+        setVisible(false);
+      });
+  };
+  return (
+    <Dialog
+      header="Confirm Delete"
+      visible={visible}
+      style={{ width: "50vw" }}
+      onHide={onHide}
+      footer={
+        <div>
+          <Button
+            label="Cancel"
+            icon="pi pi-times"
+            onClick={onHide}
+            className="p-button-text"
+          />
+          <Button
+            label="Confirm"
+            icon="pi pi-check"
+            onClick={onConfirm}
+            autoFocus
+          />
+        </div>
+      }
+    >
+      <div>Are you sure you want to delete this order detail?</div>
+    </Dialog>
+  );
+};
+const CartShop = (props) => {
+  const { visible, setVisible } = props;
+  const user = JSON.parse(localStorage.getItem("user"));
   const [totalPrice, setTotalPrice] = useState(0);
+  const [value, setValue] = useState(1);
+  const [order, setOder] = useState(null);
+  const [orderDetail, setOrderDetail] = useState([]);
+  const [visibleDialog, setVisibleDialog] = useState(false);
+  useEffect(() => {
+    fetch(`http://localhost:9999/order/getOrderDetail?userId=${user._id}`, {
+      userId: user._id,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setOrderDetail(data.data);
+        setTotalPrice(data.total_cost);
+        setOder(data.id);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [visibleDialog]);
 
-  const handleQuantityChange = (id, operation) => {
-    const input = document.getElementById(id);
-    if (operation === "increase") {
-      input.stepUp();
-    } else if (operation === "decrease") {
-      input.stepDown();
-    }
-
-    // Calculate total price
-    const price = id === "form1" ? 499 : 599; // Set price based on product
-    const quantity = parseInt(input.value);
-    const newTotalPrice = price * quantity;
-    setTotalPrice(newTotalPrice);
+  const increaseQuantity = () => {
+    setValue((prevValue) => prevValue + 1);
   };
 
+  const decreaseQuantity = () => {
+    if (value > 1) {
+      setValue((prevValue) => prevValue - 1);
+    }
+  };
+  const onHide = () => {
+    setVisible(false);
+  };
+  const handlePay = (order) => {
+    axios
+      .post("http://localhost:9999/order/changStatusOrder", { orderId: order })
+      .then((response) => {
+        if (response.data.success) {
+          console.log("Payment success!");
+        } else {
+          console.error("Failed to add product");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .then((e) => {
+        setVisible(false);
+      });
+  };
   return (
-    <div className="h-100" style={{ backgroundColor: "#eee" }}>
-      <div className="container h-100 py-5">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-10">
-            <div className="col-10">
-              <div className="d-flex justify-content-between align-items-center mb-4">
-                <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
-                <div>
-                  <p className="mb-0">
-                    <span className="text-muted">Sort by:</span>{" "}
-                    <a href="#!" className="text-body">
-                      price <i className="fas fa-angle-down mt-1"></i>
-                    </a>
-                  </p>
-                </div>
-              </div>
-              <div className="card rounded-3 mb-4">
-                <div className="card-body p-4">
-                  <div className="row d-flex justify-content-between align-items-center">
-                    <div className="col-md-2 col-lg-2 col-xl-2">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                        className="img-fluid rounded-3"
-                        alt="Cotton T-shirt"
-                      />
+    <Dialog
+      header="Shopping Cart"
+      visible={visible}
+      style={{ width: "70vw" }}
+      modal
+      onHide={onHide}
+      // footer={dialogFooter}
+    >
+      <div className="flex flex-column">
+        <div className="card">
+          {orderDetail && orderDetail[0] ? (
+            orderDetail.map((o) => {
+              return (
+                <div className="flex align-items-center justify-content-center m-auto card w-10 surface-200 mt-4">
+                  <div className="formgrid grid">
+                    <div className="field col-6 my-auto">
+                      <div className="formgrid grid my-auto">
+                        <div className="field col-5 flex my-auto">
+                          <img
+                            src={o.image}
+                            className="flex align-items-center justify-content-center img-fluid rounded-3 m-auto"
+                            alt="Cotton T-shirt"
+                            style={{ width: "70%" }}
+                          />
+                        </div>
+                        <div className="field col-7 font-bold m-auto">
+                          <div className="w-full mb-3">{o.name}</div>
+                          <div>
+                            <div className=" mb-3">Size: {o.size} </div>
+                            <div className=" mb-3">Color: Grey</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="col-md-3 col-lg-3 col-xl-3">
-                      <p className="lead fw-normal mb-2">Basic T-shirt</p>
-                      <p>
-                        <span className="text-muted">Size: </span>M{" "}
-                        <span className="text-muted">Color: </span>Grey
-                      </p>
+                    <div className="field col-3 my-auto">
+                      <div className="mt-2">
+                        <Button
+                          className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-200"
+                          label="-"
+                          onClick={decreaseQuantity}
+                        />
+                        <InputText
+                          className="h-4rem w-4rem border-round border-2 border-200 mx-2"
+                          style={{ textAlign: "center" }}
+                          value={value}
+                          onChange={(e) => setValue(e.target.value)}
+                        />
+                        <Button
+                          className=" bg-white text-green-600 h-4rem w-4rem border-round border-2 border-200"
+                          label="+"
+                          onClick={increaseQuantity}
+                        />
+                      </div>
                     </div>
-                    <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <button
-                        className="btn btn-link px-2"
-                        onClick={() =>
-                          document.getElementById("form1").stepDown()
-                        }
-                      >
-                        <i className="fas fa-minus"></i>
-                      </button>
-                      <input
-                        id="form1"
-                        min="0"
-                        name="quantity"
-                        value="2"
-                        type="number"
-                        className="form-control form-control-sm"
-                      />
-                      <button
-                        className="btn btn-link px-2"
-                        onClick={() =>
-                          document.getElementById("form1").stepUp()
-                        }
-                      >
-                        <i className="fas fa-plus"></i>
-                      </button>
-                    </div>
-                    <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h5 className="mb-0">$499.00</h5>
-                    </div>
-                    <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="#!" className="text-danger">
-                        <i className="fas fa-trash fa-lg"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Add more card items here */}
-              <div className="card rounded-3 mb-4">
-                <div className="card-body p-4">
-                  <div className="row d-flex justify-content-between align-items-center">
-                    <div className="col-md-2 col-lg-2 col-xl-2">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp"
-                        className="img-fluid rounded-3"
-                        alt="Cotton T-shirt"
-                      />
-                    </div>
-                    <div className="col-md-3 col-lg-3 col-xl-3">
-                      <p className="lead fw-normal mb-2">Basic T-shirt</p>
-                      <p>
-                        <span className="text-muted">Size: </span>M{" "}
-                        <span className="text-muted">Color: </span>Grey
-                      </p>
-                    </div>
-                    <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <button
-                        className="btn btn-link px-2"
-                        onClick={() =>
-                          document.getElementById("form2").stepDown()
-                        }
-                      >
-                        <i className="fas fa-minus"></i>
-                      </button>
-                      <input
-                        id="form2"
-                        min="0"
-                        name="quantity"
-                        value="2"
-                        type="number"
-                        className="form-control form-control-sm"
-                      />
-                      <button
-                        className="btn btn-link px-2"
-                        onClick={() =>
-                          document.getElementById("form2").stepUp()
-                        }
-                      >
-                        <i className="fas fa-plus"></i>
-                      </button>
-                    </div>
-                    <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h5 className="mb-0">$599.00</h5>
-                    </div>
-                    <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="#!" className="text-danger">
-                        <i className="fas fa-trash fa-lg"></i>
-                      </a>
+                    <div className="field col-3 my-auto">
+                      <div className="formgrid grid">
+                        <div className="field col my-auto">
+                          <div className="my-auto inline-block">
+                            <h3 className="my-auto">
+                              {o.total_cost.toLocaleString("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                              })}
+                            </h3>
+                          </div>
+                        </div>
+                        <div className="field col my-auto">
+                          <div className="ml-6 my-auto inline-block">
+                            <Button
+                              className="my-auto bg-red-500"
+                              label="x"
+                              onClick={(e) => setVisibleDialog(true)}
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="card mb-4">
-                <div className="card-body p-4 d-flex flex-row">
-                  <div className="form-outline flex-fill">
-                    <input
-                      type="text"
-                      id="form1"
-                      className="form-control form-control-lg"
+                  {visibleDialog === true && (
+                    <ConfirmDialog
+                      visible={visibleDialog}
+                      setVisible={setVisibleDialog}
+                      id={o._id}
                     />
-                    <label className="form-label" htmlFor="form1">
-                      Discount code
-                    </label>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-outline-warning btn-lg ms-3"
-                  >
-                    Apply
-                  </button>
+                  )}
                 </div>
-              </div>
-              <div className="card mb-4">
-                <div className="card-body">
-                  <button
-                    type="button"
-                    className="btn btn-warning btn-block btn-lg"
-                  >
-                    <h5>Total Price: ${totalPrice.toFixed(2)}</h5>
-                  </button>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-body">
-                  <button
-                    type="button"
-                    className="btn btn-warning btn-block btn-lg"
-                  >
-                    Proceed to Pay
-                  </button>
-                </div>
-              </div>
+              );
+            })
+          ) : (
+            <div className="text-center font-bold text-3xl">Cart is empty</div>
+          )}
+          <div className="flex align-items-center justify-content-center m-auto card w-10 surface-200 mt-4">
+            <div>
+              Total:{" "}
+              {totalPrice
+                ? totalPrice.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })
+                : 0}
             </div>
+            <div></div>
+          </div>
+          <div className="flex align-items-center justify-content-center m-auto card w-3  mt-4">
+            <Button
+              className="w-full"
+              label="Pay"
+              onClick={(e) => handlePay(order)}
+            />
           </div>
         </div>
       </div>
-    </div>
+    </Dialog>
   );
 };
 

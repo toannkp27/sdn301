@@ -5,6 +5,6 @@
 // export * from './myTool'
 // export * from './residents'
 // export * from './services'
-export * from './toast';
+export * from './toast.js';
 // export * from './userInfo'
 
