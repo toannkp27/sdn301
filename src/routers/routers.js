@@ -1,5 +1,5 @@
 import AddProduct from "../screens/AddProduct";
-import Register from "../screens/auth/Register";
+import Register from "../screens/RegisterForm";
 import Blog from "../screens/Blog";
 import Category from "../screens/Category";
 import Contact from "../screens/Contact";
@@ -16,7 +16,7 @@ import UserList from "../screens/UserList";
 import UserProfile from "../screens/UserProfile";
 
 import ChangePassWord from "../screens/auth/ChangePassWord";
-import Login from "../screens/auth/Login";
+import Login from "../screens/LoginForm";
 import CartShop from "../screens/Cart_Shop";
 export const routers = [
   {
@@ -96,8 +96,8 @@ export const routers = [
     isShowHeader: true,
   },
   {
-    path: '/user',
-    page: UserList
+    path: "/user",
+    page: UserList,
   },
   {
     path: "/userprofile",
@@ -110,18 +110,18 @@ export const routers = [
     isShowHeader: true,
   },
   {
-    path: '/login',
+    path: "/login",
     page: Login,
-    isShowHeader: false
+    isShowHeader: false,
   },
   {
-    path: '/register',
+    path: "/register",
     page: Register,
-    isShowHeader: false
+    isShowHeader: false,
   },
   {
-    path: '/auth/change_password',
+    path: "/auth/change_password",
     page: ChangePassWord,
-    isShowHeader: true
-  }
+    isShowHeader: true,
+  },
 ];
