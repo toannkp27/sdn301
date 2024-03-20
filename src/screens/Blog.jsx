@@ -32,34 +32,40 @@ const Footer = () => (
 // Component Blog
 const Blog = () => {
   const [showFullContent, setShowFullContent] = useState({
-    Converse: false,
+    Puma: false,
     Adidas: false,
-    Vans: false,
+    Balance: false,
     Nike: false,
   });
 
+   
+  // Puma: false,
+  // Adidas: false,
+  // Balance: false,
+  // Nike: false,
+
 
   const shoeImages = {
-    Converse:
-      "https://hanoi26sneaker.com/wp-content/uploads/2023/06/Giay-Converse-Chuck-70-Club-House-HI-Utility-5.jpg",
+    Puma:
+      "https://product.hstatic.net/1000243581/product/1d71864f409945acb84b9c84ca3f91cb_a53e3a2b71dd48cda11219d76b92946e_grande.jpg",
     Adidas:
-      "https://hanoi26sneaker.com/wp-content/uploads/2023/07/Giay-Adidas-Originals-Centennial-85-Low-White-Brown-IE2369.jpg   ",
-    Vans: "https://ordixi.com/wp-content/uploads/2019/10/giay-vans-forgotten-bones-sk8-high-black-true-white-vnoa4bv6v8v2-1.jpg",
-    Nike: "https://trungsneaker.com/wp-content/uploads/2022/12/giay-nike-court-vision-mid-smoke-grey-dn3577-002-3-1020x680.jpg",
+      "https://giayxshop.vn/wp-content/uploads/2024/02/z5181999377889_f8e8e19ac44bb5ec4f25738905fc1a00.jpg ",
+    Balance: "https://giayxshop.vn/wp-content/uploads/2022/05/z4770893597522_7d0b0d7a52eb3c20d6d49114c2fadd29.jpg",
+    Nike: "https://giayxshop.vn/wp-content/uploads/2021/12/24-5-scaled.jpg",
   };
 
   const descriptions = {
-    Converse: {
-      short: "Giày Converse là...",
-      full: "Giày Converse là một trong những thương hiệu giày lâu đời và nổi tiếng bậc nhất trên thế giới. Với thiết kế đẹp, chất lượng tuyệt vời cùng khả năng marketing tốt, thương hiệu giày “Converse” đã thu hút được một lượng fans khổng lồ trên thế giới, trở thành 1 trong 5 thương hiệu giày được yêu thích nhất hiện tại.",
+    Puma: {
+      short: "Giày Puma là...",
+      full: "Giày Puma là một trong những thương hiệu giày lâu đời và nổi tiếng bậc nhất trên thế giới. Với thiết kế đẹp, chất lượng tuyệt vời cùng khả năng marketing tốt, thương hiệu giày Puma đã thu hút được một lượng fans khổng lồ trên thế giới, trở thành 1 trong 5 thương hiệu giày được yêu thích nhất hiện tại.",
     },
     Adidas: {
       short: "Giày Adidas là...",
       full: "Adidas (tiếng Đức: [ˈʔadiˌdas] ⓘ; cách điệu thành adidas từ năm 1949)là một tập đoàn đa quốc gia của Đức, được thành lập và có trụ sở tại Herzogenaurach, Bavaria, chuyên thiết kế và sản xuất giày dép, quần áo và phụ kiện. Đây là nhà sản xuất đồ thể thao lớn nhất ở châu Âu và lớn thứ hai trên thế giới, sau Nike. Đây là công ty cổ phần của Tập đoàn Adidas, bao gồm 8,33% cổ phần của câu lạc bộ bóng đá Bayern München,[7] và Runtastic, một công ty công nghệ thể dục của Áo. Doanh thu của Adidas cho năm 2018 được liệt kê là 21,915 tỷ euro.",
     },
-    Vans: {
-      short: "Giày Vans là...",
-      full: "Vans là một thương hiệu sản xuất giày, thời trang và phụ kiện nổi tiếng của Mỹ Công ty được thành lập năm 1966 bởi Paul và Jim Van Doren cùng đối tác là Gordon Lee và Serge Delia. Thương hiệu nổi tiếng toàn cầu và được xem là biểu tượng gắn liền với phong cách trượt ván đường phố. Ban đầu là một doanh nghiệp sản xuất giày và bán trực tiếp cho công chúng. Cái tên Vans đã sống qua gần 1 thế kỷ và vượt xa hơn trên toàn thế giới. Cho đến nay, Vans đã vươn mình thành thương hiệu được săn đón hàng đầu.",
+    Balance: {
+      short: "Giày Balance là...",
+      full: "Balance là một thương hiệu sản xuất giày, thời trang và phụ kiện nổi tiếng của Mỹ Công ty được thành lập năm 1966 bởi Paul và Jim Van Doren cùng đối tác là Gordon Lee và Serge Delia. Thương hiệu nổi tiếng toàn cầu và được xem là biểu tượng gắn liền với phong cách trượt ván đường phố. Ban đầu là một doanh nghiệp sản xuất giày và bán trực tiếp cho công chúng. Cái tên Balance đã sống qua gần 1 thế kỷ và vượt xa hơn trên toàn thế giới. Cho đến nay, Balance đã vươn mình thành thương hiệu được săn đón hàng đầu.",
     },
     Nike: {
       short: "Giày Nike là...",
@@ -92,14 +98,14 @@ const Blog = () => {
       >
         <div style={{ width: "40%", padding: "5px", display: "flex" }}>
           <Card
-            title={`Giày Converse`}
-            onClick={() => toggleContent("Converse")}
+            title={`Giày Puma`}
+            onClick={() => toggleContent("Puma")}
             style={{ marginBottom: "20px", flex: 1 }}
           >
             <div style={{ flexDirection: "column" }}>
               <img
-                src={shoeImages["Converse"]}
-                alt={"Converse"}
+                src={shoeImages["Puma"]}
+                alt={"Puma"}
                 style={{
                   width: "100%",
                   marginBottom: "1rem",
@@ -109,9 +115,9 @@ const Blog = () => {
               />
               <div style={{ maxWidth: "100%", paddingTop: "20px" }}>
                 <p>
-                  {showFullContent["Converse"]
-                    ? descriptions["Converse"].full
-                    : descriptions["Converse"].short}
+                  {showFullContent["Puma"]
+                    ? descriptions["Puma"].full
+                    : descriptions["Puma"].short}
                 </p>
               </div>
               <button
@@ -124,7 +130,7 @@ const Blog = () => {
                   borderRadius: "5px",
                 }}
               >
-                {showFullContent["Converse"] ? "Thu gọn" : "Đọc thêm"}
+                {showFullContent["Puma"] ? "Thu gọn" : "Đọc thêm"}
               </button>
             </div>
           </Card>
@@ -181,21 +187,21 @@ const Blog = () => {
       >
         <div style={{ width: "40%", padding: "5px", display: "flex" }}>
           <Card
-            title={`Giày Vans`}
-            onClick={() => toggleContent("Vans")}
+            title={`Giày Balance`}
+            onClick={() => toggleContent("Balance")}
             style={{ marginBottom: "20px", flex: 1 }}
           >
             <div style={{ flexDirection: "column" }}>
               <img
-                src={shoeImages["Vans"]}
-                alt={"Vans"}
+                src={shoeImages["Balance"]}
+                alt={"Balance"}
                 style={{ width: "100%", marginBottom: "1rem", border: "none" }}
               />
               <div style={{ maxWidth: "100%" }}>
                 <p>
-                  {showFullContent["Vans"]
-                    ? descriptions["Vans"].full
-                    : descriptions["Vans"].short}
+                  {showFullContent["Balance"]
+                    ? descriptions["Balance"].full
+                    : descriptions["Balance"].short}
                 </p>
               </div>
               <button
@@ -208,7 +214,7 @@ const Blog = () => {
                   borderRadius: "5px",
                 }}
               >
-                {showFullContent["Vans"] ? "Thu gọn" : "Đọc thêm"}
+                {showFullContent["Balance"] ? "Thu gọn" : "Đọc thêm"}
               </button>
             </div>
           </Card>
