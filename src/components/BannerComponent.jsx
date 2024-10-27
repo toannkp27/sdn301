@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image } from 'react-bootstrap';
 import Slider from 'react-slick';
-
+//aaaaaaa
 const BannerComponent = ({ arrImages }) => {
     const settings = {
         infinite: true,
